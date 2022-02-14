@@ -77,20 +77,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wax_crate.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-# ****LOCAL DJANGO SQL DATABASE****
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# ****PRODUCTION POSTGRES DATABASE****
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
+if 'DATABASE_URL' in os.environ:
+    # ****PRODUCTION POSTGRES DATABASE****
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    # Database
+    # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+    # ****LOCAL DJANGO SQL DATABASE****
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
