@@ -37,7 +37,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">Wax Crate</a>
-            <a class="nav-link">Bag</a>
+            <a class="nav-link d-lg-none" href="#">Bag</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -73,6 +73,7 @@
                         </ul>
                     </li>
                 </ul>
+                <a class="nav-link d-flex mr-4" href="#">Bag</a>
                 <form class="d-flex" method="GET" action="">
                     <input class="form-control me-2" type="text" name="q" placeholder="Find your next absolute banger" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -88,7 +89,12 @@
 
 {% block content %}
 {% endblock %}
-
+<footer class="w-100" style="height: 4rem;">
+    <div class="row">
+        <div class="col-lg-4 bg-danger"></div>
+        <div class="col-lg-7 offset-1" style="background-color: blue;"></div>
+    </div>
+</footer>
 {% block postload_js %}
 {% endblock %}
 </body>
