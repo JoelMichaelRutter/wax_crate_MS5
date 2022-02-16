@@ -65,8 +65,35 @@
 
 /* ------------------------------------------------------- */
 
-/* CUSTOM BOOTSTRAP */
+/* CUSTOM CSS */
 
 .logo {
     font-size: 2rem;
+}
+
+
+
+.home-hero-image {
+    background-image: url('/media/home-page-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    height: calc(100vh - 4rem);
+}
+
+
+
+
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 600px)  {
+    .logo {
+        margin-left: 1rem;
+    }
 }
