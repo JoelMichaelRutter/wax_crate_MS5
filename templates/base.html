@@ -19,6 +19,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- FONT AWESOME CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -45,7 +46,7 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#">Wax Crate</a>
+                <a class="navbar-brand major-mono logo" href="#">wax crAte</a>
                 <!-- MOBILE CART LINK -->
                 <a class="nav-link d-lg-none" href="#">
                     <div class="text-center">
@@ -62,36 +63,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i> Home</a>
+                            <a class="nav-link active roboto-mono-font text-dark" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-record-vinyl"></i> All Records</a>
+                            <a class="nav-link roboto-mono-font text-dark" href="#"><i class="fa-solid fa-record-vinyl"></i> All Records</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbargenreDropdown" role="button"
+                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#" id="navbargenreDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-bars-staggered"></i> Genres
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbargenreDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="#">Action</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="#">Another action</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbaraccountDropdown" role="button"
+                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#" id="navbaraccountDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-user-gear"></i> My Account
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item" aria-current="page" href="#">Back Office</a></li>
+                                <li><a class="dropdown-item roboto-mono-font text-dark" aria-current="page" href="#"><i class="fa-solid fa-gear"></i> Back Office</a></li>
                                 {% endif %}
-                                <li><a class="dropdown-item" href="#">My Account</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a></li>
+                                <li><a class="dropdown-item roboto-mono-font text-dark" href="#"><i class="fa-solid fa-circle-user"></i> My Account</a></li>
+                                <li><a class="dropdown-item text-dark" href="{% url 'account_logout' %}"><i class="fa-solid fa-door-open"></i> Sign out</a></li>
                                 {% else %}
-                                <li><a class="dropdown-item" href="{% url 'account_login' %}">Sign in</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_login' %}"><i class="fa-solid fa-door-open"></i> Sign in</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_signup' %}">Register</a></li>
                                 {% endif %}
                             </ul>
                         </li>
@@ -109,7 +110,7 @@
                             </p>
                         </div>
                     </a>
-                    <form class="d-flex" method="GET" action="">
+                    <form class="search-form d-flex roboto-mono-font" method="GET" action="">
                         <input class="form-control me-2" type="text" name="q"
                             placeholder="Find your next absolute banger" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>

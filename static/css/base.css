@@ -1,0 +1,72 @@
+/* MAJOR MONO FONT IMPORTED FROM GOOGLE FONTS */
+/* FONT RULES - font-family: 'Major Mono Display', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+/* ROBOTO MONO FONT IMPORTED FROM GOOGLE FONTS */
+/* FONT RULES - font-family: 'Roboto Mono', monospace;*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+
+/* FONT HELPER CLASSES */
+.major-mono {
+    font-family: 'Major Mono Display', monospace;
+}
+
+.roboto-light {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+}
+
+.roboto-mono-font {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+}
+
+.roboto-semi-bold {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+}
+
+.roboto-bold {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+}
+/* END FONT HELPER CLASSES */
+
+/* ------------------------------------------------------------------------------------ */
+
+/* COLOR HELPER CLASSES */
+
+
+/* END COLOR HELPER CLASSES */
+
+/* ----------------------------------------------------------------------------------- */
+
+/* BOOTSTRAP OVERRIDES */
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-toggler {
+    margin-left: 0.7rem;
+}
+
+.navbar-nav .nav-link {
+    padding-left: 1rem;
+}
+
+.search-form {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* END BOOTSTRAP OVERRIDES */
+
+/* ------------------------------------------------------- */
+
+/* CUSTOM BOOTSTRAP */
+
+.logo {
+    font-size: 2rem;
+}
