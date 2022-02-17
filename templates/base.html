@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- HOVER CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css"
+        integrity="sha512-SJw7jzjMYJhsEnN/BuxTWXkezA2cRanuB8TdCNMXFJjxG9ZGSKOX5P3j03H6kdMxalKHZ7vlBMB4CagFP/de0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
@@ -64,15 +69,19 @@
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item hvr-float">
                             <a class="nav-link active roboto-mono-font text-dark" aria-current="page"
                                 href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i> Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item hvr-float">
                             <a class="nav-link roboto-mono-font text-dark" href="#"><i
                                     class="fa-solid fa-record-vinyl"></i> All Records</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item hvr-float">
+                            <a class="nav-link roboto-mono-font text-dark" href="#"><i
+                                    class="fa-solid fa-fire-flame-curved"></i> Hot Picks</a>
+                        </li>
+                        <li class="nav-item dropdown hvr-float">
                             <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#"
                                 id="navbargenreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-bars-staggered"></i> Genres
@@ -82,7 +91,7 @@
                                 <li><a class="dropdown-item roboto-mono-font" href="#">Another action</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown hvr-float">
                             <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#"
                                 id="navbaraccountDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -121,9 +130,9 @@
                         </div>
                     </a>
                     <form class="search-form d-flex roboto-mono-font" method="GET" action="">
-                        <input class="form-control me-2" type="text" name="q"
-                            placeholder="Find your next absolute banger" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control rounded-0 search-form-custom me-2" type="text" name="q"
+                            placeholder="Search the shop" aria-label="Search">
+                        <button class="btn btn-outline-success dark-cta-button rounded-0" type="submit" aria-label="Execute search"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
 
