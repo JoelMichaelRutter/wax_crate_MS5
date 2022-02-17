@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid h-100">
     <div class="row">
         <div class="col-12 col-lg-8">
             <div class="home-hero-image">
@@ -20,8 +19,7 @@
                     <p class="roboto-mono-font"><em>Welcome to the Wax Crate family!</em></p>
 
             </div>
-            <a href="#" class="dark-cta-button hvr-grow-shadow btn btn-large rounded-0 mt-5 major-mono">Get digging!</a>
+            <a href="{% url 'records' %}" class="dark-cta-button hvr-grow-shadow btn btn-large rounded-0 mt-5 major-mono">Get digging!</a>
         </section>
     </div>
-</div>
 {% endblock %}

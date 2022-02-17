@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center mt-2">
+                    <h2 class="major-mono display-4">Records</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ records }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
