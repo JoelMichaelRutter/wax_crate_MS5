@@ -65,11 +65,48 @@
 
 /* ------------------------------------------------------- */
 
-/* CUSTOM CSS */
+/* CUSTOM CSS ---------------------------------------------- */
+
+/* BASE.HTML CUSTOM STYLES */
 
 .logo {
     font-size: 2rem;
 }
+
+footer {
+    min-height: 180px;
+    background-color: darkslategray;
+}
+
+.facebook-section {
+    height: 100px;
+    background-color: white;
+}
+
+.mailchimp-section {
+    height: 100px;
+    background-color: white;
+}
+
+
+#mc_embed_signup {
+    background: #fff;
+    clear: left;
+    font-family: 'Roboto-Mono', monospace;
+}
+
+                        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+                           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -79,7 +116,7 @@
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 200px);
 }
 
 

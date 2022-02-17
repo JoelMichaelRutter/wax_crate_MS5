@@ -15,11 +15,13 @@
 
     {% block corecss %}
     <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- FONT AWESOME CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -38,7 +40,7 @@
 </head>
 
 <body>
-    <header class="container-fluid">
+    <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -53,9 +55,9 @@
                         <div><i class="fas fa-cart-shopping"></i></div>
                         <p class="my-0">
                             {% if order_total %}
-                                £{{ order_total|floatformat:2 }}
+                            £{{ order_total|floatformat:2 }}
                             {% else %}
-                                £0.00
+                            £0.00
                             {% endif %}
                         </p>
                     </div>
@@ -63,14 +65,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active roboto-mono-font text-dark" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i> Home</a>
+                            <a class="nav-link active roboto-mono-font text-dark" aria-current="page"
+                                href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link roboto-mono-font text-dark" href="#"><i class="fa-solid fa-record-vinyl"></i> All Records</a>
+                            <a class="nav-link roboto-mono-font text-dark" href="#"><i
+                                    class="fa-solid fa-record-vinyl"></i> All Records</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#" id="navbargenreDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#"
+                                id="navbargenreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-bars-staggered"></i> Genres
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbargenreDropdown">
@@ -79,20 +83,26 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#" id="navbaraccountDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#"
+                                id="navbaraccountDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <i class="fa-solid fa-user-gear"></i> My Account
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item roboto-mono-font text-dark" aria-current="page" href="#"><i class="fa-solid fa-gear"></i> Back Office</a></li>
+                                <li><a class="dropdown-item roboto-mono-font text-dark" aria-current="page" href="#"><i
+                                            class="fa-solid fa-gear"></i> Back Office</a></li>
                                 {% endif %}
-                                <li><a class="dropdown-item roboto-mono-font text-dark" href="#"><i class="fa-solid fa-circle-user"></i> My Account</a></li>
-                                <li><a class="dropdown-item text-dark" href="{% url 'account_logout' %}"><i class="fa-solid fa-door-open"></i> Sign out</a></li>
+                                <li><a class="dropdown-item roboto-mono-font text-dark" href="#"><i
+                                            class="fa-solid fa-circle-user"></i> My Account</a></li>
+                                <li><a class="dropdown-item text-dark" href="{% url 'account_logout' %}"><i
+                                            class="fa-solid fa-door-open"></i> Sign out</a></li>
                                 {% else %}
-                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_login' %}"><i class="fa-solid fa-door-open"></i> Sign in</a></li>
-                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_signup' %}">Register</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_login' %}"><i
+                                            class="fa-solid fa-right-to-bracket"></i> Sign in</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'account_signup' %}"><i
+                                            class="fa-solid fa-list-check"></i> Register</a></li>
                                 {% endif %}
                             </ul>
                         </li>
@@ -103,9 +113,9 @@
                             <div><i class="fas fa-cart-shopping"></i></div>
                             <p class="my-0">
                                 {% if order_total %}
-                                    £{{ order_total|floatformat:2 }}
+                                £{{ order_total|floatformat:2 }}
                                 {% else %}
-                                    £0.00
+                                £0.00
                                 {% endif %}
                             </p>
                         </div>
@@ -126,10 +136,46 @@
 
     {% block content %}
     {% endblock %}
-    <footer class="w-100" style="height: 4rem;">
+    <footer class="w-100">
         <div class="row">
-            <div class="col-lg-4 bg-danger"></div>
-            <div class="col-lg-7 offset-1" style="background-color: blue;"></div>
+            <div class="col-sm-10 offset-sm-1 col-lg-4 offset-lg-1">
+                <section class="facebook-section mt-3 mb-3">FACEBOOK LINK</section>
+            </div>
+            <div class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-0">
+                <section class="mailchimp-section mt-3 mb-3">
+                    <!-- Begin Mailchimp Signup Form -->
+                    <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7_dtp.css" rel="stylesheet"
+                        type="text/css">
+                    <div id="mc_embed_signup">
+                        <form
+                            action="https://live.us14.list-manage.com/subscribe/post?u=33366589b1290bf02034f7f30&amp;id=05b303c251"
+                            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                            class="validate" target="_blank" novalidate>
+                            <div id="mc_embed_signup_scroll">
+                                <label for="mce-EMAIL">Subscribe to the Wax Crate mailing list to stay up to date with
+                                    our latest hot picks!</label>
+                                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL"
+                                    placeholder="email address" required>
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                        name="b_33366589b1290bf02034f7f30_05b303c251" tabindex="-1" value=""></div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" value="Subscribe" name="subscribe"
+                                            id="mc-embedded-subscribe" class="button">
+                                        <p class="brandingLogo"><a href="http://eepurl.com/hT-8l1"
+                                                title="Mailchimp - email marketing made easy and fun"><img
+                                                    src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--End mc_embed_signup-->
+                </section>
+            </div>
         </div>
     </footer>
     {% block postload_js %}
