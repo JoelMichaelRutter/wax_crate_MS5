@@ -8,12 +8,40 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-2">
-                    <h2 class="major-mono display-4">Records</h2>
+                    <h2 class="major-mono display-4">All Records</h2>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    {{ records }}
+                <div class="record-container col-10 offset-1">
+                    <div class="row mt-1 mb-2"></div>
+                    <div class="row">
+                        {% for record in records %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+                            <div class="card record-card">
+                                {% if record.image %}
+                                    <a href="#">
+                                        <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
+                                    </a>
+                                {% else %}
+                                    <a href="#">
+                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
+                                    </a>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title roboto-mono-font">{{  record.title }}</h5>
+                                    <h6 class="card-title roboto-light"><em>{{  record.artist }}</em></h6>
+                                    <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
+                                </ul>
+                                <div class="card-body-custom">
+                                    <a href="#" class="card-link roboto-mono-font btn btn-sm rounded-1 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
+                                    <a href="#" class="card-link roboto-mono-font btn btn-sm rounded-1 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -61,6 +61,10 @@ footer {
 
 /* BOOTSTRAP OVERRIDES */
 
+.row>* {
+    padding-right: 0;
+    padding-left: 0;
+}
 .container-fluid {
     padding-left: 0;
     padding-right: 0;
@@ -81,6 +85,26 @@ footer {
 
 .form-control {
     border: none;
+}
+
+
+element.style {
+}
+.list-group-item {
+    background-color: #262533;
+    color: #f8f9fa
+}
+
+.card-body-custom{
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+    background-color: #4d4b6e;
+    color: #f8f9fa;
+    text-align: center;
+}
+
+.card-link+.card-link {
+    margin-left: 0;
 }
 
 /* END BOOTSTRAP OVERRIDES */
@@ -183,6 +207,23 @@ footer {
 
 /* RECORDS PAGE STYLES */
 
+.record-card {
+    width: 18rem;
+    -webkit-box-shadow: 14px 14px 11px -6px rgba(0,0,0,0.39); 
+    box-shadow: 14px 14px 11px -6px rgba(0,0,0,0.39);
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: none;
+}
+
+.more-info-btn {
+    background-color: #DDEBEA;
+}
+
+.add-cart-btn {
+    background-color: #262533;
+    color: #f8f9fa;
+}
 
 
 
