@@ -16,7 +16,7 @@
                     <div class="row mt-1 mb-2"></div>
                     <div class="row">
                         {% for record in records %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"></div>
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card record-card">
                                 {% if record.image %}
                                     <a href="#">
@@ -28,18 +28,45 @@
                                     </a>
                                 {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title roboto-mono-font">{{  record.title }}</h5>
-                                    <h6 class="card-title roboto-light"><em>{{  record.artist }}</em></h6>
+                                    <h5 class="card-title roboto-mono-font music-title">{{  record.title }}</h5>
+                                    <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
                                     <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
                                 </ul>
                                 <div class="card-body-custom">
-                                    <a href="#" class="card-link roboto-mono-font btn btn-sm rounded-1 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
-                                    <a href="#" class="card-link roboto-mono-font btn btn-sm rounded-1 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
+                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
+                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
                                 </div>
                             </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                        <div class="col-12 d-sm-none">
+                            <hr class="breaker">
+                        </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                            <hr class="breaker">
+                        </div>
+                        {% endif %}
+
+                        {% if forloop.counter|divisibleby:3 %}
+                        <div class="col-12 d-none d-lg-block d-xl-none">
+                            <hr class="breaker">
+                        </div>
+                        {% endif %}
+
+                        {% if forloop.counter|divisibleby:4 %}
+                        <div class="col-12 d-none d-xl-block">
+                            <hr class="breaker">
+                        </div>
+                        {% endif %}
+
+                        <div class="col-12 d-sm-none">
+                            <hr class="breaker">
+                        </div>
                         {% endfor %}
                     </div>
                 </div>

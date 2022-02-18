@@ -61,10 +61,10 @@ footer {
 
 /* BOOTSTRAP OVERRIDES */
 
-.row>* {
+/* .row>* {
     padding-right: 0;
     padding-left: 0;
-}
+} */
 .container-fluid {
     padding-left: 0;
     padding-right: 0;
@@ -87,25 +87,15 @@ footer {
     border: none;
 }
 
-
-element.style {
-}
 .list-group-item {
     background-color: #262533;
     color: #f8f9fa
 }
 
-.card-body-custom{
-    flex: 1 1 auto;
-    padding: 1rem 1rem;
-    background-color: #4d4b6e;
-    color: #f8f9fa;
-    text-align: center;
-}
-
 .card-link+.card-link {
     margin-left: 0;
 }
+
 
 /* END BOOTSTRAP OVERRIDES */
 
@@ -180,7 +170,6 @@ box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
 transform: scale(1.1);
 }
 
-
 footer {
     min-height: 180px;
     background-color: #4d4b6e;
@@ -208,12 +197,31 @@ footer {
 /* RECORDS PAGE STYLES */
 
 .record-card {
-    width: 18rem;
     -webkit-box-shadow: 14px 14px 11px -6px rgba(0,0,0,0.39); 
     box-shadow: 14px 14px 11px -6px rgba(0,0,0,0.39);
     border-left: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     border-right: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card-body-custom{
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+    background-color: #4d4b6e;
+    color: #f8f9fa;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.music-title {
+    min-height: 48px;
+}
+
+.artist-title {
+    min-height: 42px;
 }
 
 .more-info-btn {
@@ -225,7 +233,14 @@ footer {
     color: #f8f9fa;
 }
 
+.add-cart-btn:hover {
+    background-color: #262533;
+    color: #fff;
+}
 
+.breaker {
+    background-color: #fff;
+}
 
 
 /* MEDIA QUERIES */
