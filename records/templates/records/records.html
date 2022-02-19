@@ -19,11 +19,11 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card record-card">
                                 {% if record.image %}
-                                    <a href="#">
+                                    <a href="{% url 'show_record_details' record.slug %}">
                                         <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
                                     </a>
                                 {% else %}
-                                    <a href="#">
+                                    <a href="{% url 'show_record_details' record.slug %}">
                                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
                                     </a>
                                 {% endif %}
@@ -36,7 +36,7 @@
                                     <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
                                 </ul>
                                 <div class="card-body-custom">
-                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
+                                    <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
                                     <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
                                 </div>
                             </div>
