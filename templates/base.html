@@ -87,8 +87,9 @@
                                 <i class="fa-solid fa-bars-staggered"></i> Genres
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbargenreDropdown">
-                                <li><a class="dropdown-item roboto-mono-font" href="#">Action</a></li>
-                                <li><a class="dropdown-item roboto-mono-font" href="#">Another action</a></li>
+                                {% for genre in genres %}
+                                <li><a class="dropdown-item roboto-mono-font" href="#">{{  genre.genre }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
                         <li class="nav-item dropdown hvr-float">

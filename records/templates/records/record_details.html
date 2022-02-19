@@ -3,10 +3,10 @@
 
 {%  block content %}
 <div id="page-container">
-    <div class="container-fluid">
+    <div class="container-lg">
         <!-- RECORD INFORMATION ROW -->
         <div class="row">
-            <div class="col-12 col-md-12 col-lg-6 mt-3 text-center">
+            <div class="col-12 col-md-12 col-lg-5 mt-3 text-center">
                 <header>
                     <h5 class="roboto-mono-font text-center mb-2"><strong>{{ record.title }}</strong></h5>
                     <h6 class="roboto-mono-font text-center"><em>{{ record.artist }}</em></h6>
@@ -17,8 +17,8 @@
                 </section>
                 <div class="img-container">
                     {% if record.image %}
-                        <a href="{{ record.image.url }}">
-                            <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
+                        <a href="{{ record.image.url }}" target="_blank">
+                            <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }} cover art">
                         </a>
                     {% else %}
                         <a href="{% url 'show_record_details' record.slug %}">
@@ -30,6 +30,10 @@
                     <div class="roboto-mono-font"><p><strong>Price:</strong> £{{ record.price }}</p></div>
                     <div class="roboto-mono-font"><p><strong>Release Year:</strong> {{ record.release_year }}</p></div>
                 </section>
+                <div class="d-flex justify-content-between">
+                    <input class="qty-input" type="number" name="quantity" id="quantity" value="1">
+                    <button class="hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fas fa-cart-shopping"></i> Add to cart</button>
+                </div>
             </div>
 
         </div>

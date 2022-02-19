@@ -28,7 +28,7 @@
                                     </a>
                                 {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title roboto-mono-font music-title">{{  record.title }}</h5>
+                                    <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
                                     <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
                                     <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
                                 </div>
@@ -37,7 +37,7 @@
                                 </ul>
                                 <div class="card-body-custom">
                                     <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
-                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
+                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fas fa-cart-shopping"></i> Add to cart</a>
                                 </div>
                             </article>
                         </div>

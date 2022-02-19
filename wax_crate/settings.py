@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # Required by all auth, DO NOT REMOVE!
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'records.contexts.genres_in_database',
             ],
         },
     },
