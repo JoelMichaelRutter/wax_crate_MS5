@@ -17,7 +17,7 @@
                     <div class="row">
                         {% for record in records %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card record-card">
+                            <article class="card record-card">
                                 {% if record.image %}
                                     <a href="{% url 'show_record_details' record.slug %}">
                                         <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
@@ -39,7 +39,7 @@
                                     <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
                                     <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fa-solid fa-circle-plus"></i> Add to cart</a>
                                 </div>
-                            </div>
+                            </article>
                         </div>
                         {% if forloop.counter|divisibleby:1 %}
                         <div class="col-12 d-sm-none">

@@ -3,7 +3,36 @@
 
 {%  block content %}
 <div id="page-container">
-    <div id="content-wrap">
+    <div class="container-fluid">
+        <!-- RECORD INFORMATION ROW -->
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 mt-3 text-center">
+                <header>
+                    <h5 class="roboto-mono-font text-center mb-2"><strong>{{ record.title }}</strong></h5>
+                    <h6 class="roboto-mono-font text-center"><em>{{ record.artist }}</em></h6>
+                </header>
+                <section class="d-flex justify-content-between">
+                    <div class="roboto-mono-font"><p><strong>Label:</strong> {{ record.record_label }}</p></div>
+                    <div class="roboto-mono-font"><p><strong>Condition:</strong> {{ record.condition }}</p></div>
+                </section>
+                <div class="img-container">
+                    {% if record.image %}
+                        <a href="{{ record.image.url }}">
+                            <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'show_record_details' record.slug %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
+                        </a>
+                    {% endif %}
+                </div>
+                <section class="d-flex justify-content-between">
+                    <div class="roboto-mono-font"><p><strong>Price:</strong> £{{ record.price }}</p></div>
+                    <div class="roboto-mono-font"><p><strong>Release Year:</strong> {{ record.release_year }}</p></div>
+                </section>
+            </div>
+
+        </div>
     </div>
 </div>
 {% endblock %}
