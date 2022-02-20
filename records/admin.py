@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Genre, Record
 
 # Register your models here.
@@ -14,7 +15,7 @@ class GenreAdmin(admin.ModelAdmin):
     ]
 
 
-class RecordAdmin(admin.ModelAdmin):
+class RecordAdmin(SummernoteModelAdmin):
     """
     This admin class manages the record model within
     the django admin.
@@ -31,9 +32,11 @@ class RecordAdmin(admin.ModelAdmin):
         'has_link',
     ]
 
-    ordering = ['artist']
+    ordering = ['title']
 
     prepopulated_fields = {'slug': ('title',)}
+
+    summernote_fields = ('tracklist', 'description')
 
 
 admin.site.register(Genre, GenreAdmin)

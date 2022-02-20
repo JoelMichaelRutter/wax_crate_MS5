@@ -54,21 +54,39 @@ footer {
 
 /* COLOR HELPER CLASSES */
 
+.wax-crate-navy-bg {
+    background-color: #262533;
+}
+
+.wax-crate-navy-font {
+    color: #262533;
+}
+
+.wax-crate-purple-bg {
+    background-color: #4d4b6e;
+}
+
+.wax-crate-purple-font {
+    color: #4d4b6e;
+}
+
+.wax-crate-grey-bg {
+    background-color: #f8f9fa;
+}
+
+.wax-crate-grey-font {
+    color: #f8f9fa;
+}
+
+.white-border-bottom-seperator {
+    border-bottom: 1px solid #fff;
+}
 
 /* END COLOR HELPER CLASSES */
 
 /* ----------------------------------------------------------------------------------- */
 
 /* BOOTSTRAP OVERRIDES */
-
-/* .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-} */
-
-.navbar-toggler {
-    margin-left: 0.7rem;
-}
 
 .navbar {
     border-bottom: 1px solid #262533;
@@ -94,6 +112,23 @@ footer {
 
 .card-link+.card-link {
     margin-left: 0;
+}
+
+/* Thanks to harm manders on this stack overflow thread, I copied in the override
+and changed the fill attribute so that the colour was consistent 
+https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstrap*/
+.accordion-button:after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f8f9fa'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #f8f9fa;
+    background-color: #4d4b6e;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #f8f9fa;
+    background-color: #4d4b6e;
 }
 
 
@@ -246,6 +281,18 @@ footer {
     background-color: #fff;
 }
 
+/* END RECORDS PAGE STYLING */
+
+/* ----------------------------------------------------------- */
+
+/* RECORD DETAIL PAGE STYLING */
+
+.mobile-accordion-body-text {
+    font-size: 0.8rem;
+}
+
+
+/* END RECORD DETAIL PAGE STYLING */
 
 /* MEDIA QUERIES */
 
