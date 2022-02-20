@@ -6,18 +6,20 @@
     <!-- RECORD INFORMATION ROW -->
     <div class="row">
         <div class="col-12 col-md-12 col-lg-5 mt-3">
-            <header>
-                <h5 class="roboto-mono-font text-center mb-2"><strong>{{ record.title }}</strong></h5>
-                <h6 class="roboto-mono-font text-center"><em>{{ record.artist }}</em></h6>
-            </header>
-            <section class="d-flex justify-content-between">
-                <div class="roboto-mono-font">
-                    <p><strong>Label:</strong> {{ record.record_label }}</p>
-                </div>
-                <div class="roboto-mono-font">
-                    <p><strong>Condition:</strong> {{ record.condition }}</p>
-                </div>
-            </section>
+            <div>
+                <header>
+                    <h5 class="roboto-mono-font text-center mb-2"><strong>{{ record.title }}</strong></h5>
+                    <h6 class="roboto-mono-font text-center"><em>{{ record.artist }}</em></h6>
+                </header>
+                <section class="d-flex justify-content-between">
+                    <div class="roboto-mono-font">
+                        <p><strong>Label:</strong> {{ record.record_label }}</p>
+                    </div>
+                    <div class="roboto-mono-font">
+                        <p><strong>Condition:</strong> {{ record.condition }}</p>
+                    </div>
+                </section>
+            </div>
             <div class="img-container">
                 {% if record.image %}
                 <a href="{{ record.image.url }}" target="_blank">
@@ -52,7 +54,7 @@
                 {% endif %}
             </div>
             <!-- CART & QTY CONTAINER -->
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mb-4">
                 <input class="qty-input" type="number" name="quantity" id="quantity" value="1">
                 <button class="hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i
                         class="fas fa-cart-shopping"></i> Add to cart</button>
@@ -81,13 +83,13 @@
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
+                        <h2 class="accordion-header" id="descriptionHeader">
                             <button class="accordion-button rounded-0 collapsed accordion-button collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                data-bs-target="#descriptionBody" aria-expanded="false" aria-controls="collapseThree">
                                 Description
                             </button>
                         </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        <div id="descriptionBody" class="accordion-collapse collapse" aria-labelledby="descriptionHeader"
                             data-bs-parent="#tracklistDescListenAccordion">
                             <div class="accordion-body text-center roboto-mono-font mobile-accordion-body-text">
                                 {{ record.description | safe }}
@@ -96,6 +98,24 @@
                     </div>
                 </div>
             </section>
+        </div>
+        <!-- LARGER SCREEN DESCRIPTION, LISTEN LINK & TRACKLIST -->
+        <div class="d-none d-lg-block offset-lg-1 col-lg-6">
+            <div class="large-screen-content-pushdown d-flex align-items-center">
+                {% if record.has_link %}
+                    <a class="listen-button btn btn-large dark-cta-button hvr-grow-shadow rounded-0 w-100 roboto-mono-font mb-2" href="{{ record.link_to_music }}" target="_blank"><i class="fa-solid fa-headphones"></i> Have a listen?</a>
+                {% else %}
+                    <h4 class="text-muted roboto-mono-font text-center mb-2"><i class="fa-solid fa-xmark"></i> Sorry, it looks like we couldnt find a link to a digital version :(</h4>
+                {% endif %}
+            </div>
+            <h2 class="major-mono large-screen-heading-bottom-border">Tracklist</h2>
+            <div class="tracklist-container roboto-mono-font mb-4">
+                {{ record.tracklist | safe }}
+            </div>
+            <h2 class="major-mono large-screen-heading-bottom-border">Description</h2>
+            <div class="description-container roboto-mono-font">
+                {{ record.description | safe }}
+            </div>
         </div>
     </div>
 </div>
