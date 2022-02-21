@@ -1,22 +1,31 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
-from .models import Record
+from .models import Record, Genre
 
 
 def all_records(request):
     """
     This view shows all the records in the shop.
+    This view also handles search queries and filtering.
     """
     records = Record.objects.all()
     query = None
+    genre = None
     # Checks if there is a get request in user request.
+    # If get request exsists, assign name of search
+    # form to query variable.
     if request.GET:
+        if 'genre' in request.GET:
+            genre = request.GET['genre']
+            records = records.filter(genre__genre__contains=genre)
+            genres = Genre.objects.filter(genre__in=genre)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(
-                    request, "Sorry, we dont stock that at the moment"
+                    request, "You didn't enter anything into the search bar!"
                     )
                 return redirect(reverse('records'))
 
@@ -29,6 +38,7 @@ def all_records(request):
     context = {
         'records': records,
         'search_term': query,
+        'current_genre': genre,
     }
     return render(request, 'records/records.html', context)
 

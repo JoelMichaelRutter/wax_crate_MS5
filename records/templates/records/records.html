@@ -2,77 +2,72 @@
 {% load static %}
 
 {% block content %}
-
-<div id="page-container">
-    <div id="content-wrap">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col text-center mt-2">
-                    <h2 class="major-mono display-4">All Records</h2>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center mt-2">
+                <h2 class="major-mono display-4">Records</h2>
             </div>
-            <div class="row">
-                <div class="record-container col-10 offset-1">
-                    <div class="row mt-1 mb-2"></div>
-                    <div class="row">
-                        {% for record in records %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <article class="card record-card">
-                                {% if record.image %}
-                                    <a href="{% url 'show_record_details' record.slug %}">
-                                        <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
-                                    </a>
-                                {% else %}
-                                    <a href="{% url 'show_record_details' record.slug %}">
-                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
-                                    </a>
-                                {% endif %}
-                                <div class="card-body">
-                                    <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
-                                    <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
-                                    <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
-                                </ul>
-                                <div class="card-body-custom">
-                                    <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
-                                    <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fas fa-cart-shopping"></i> Add to cart</a>
-                                </div>
-                            </article>
-                        </div>
-                        {% if forloop.counter|divisibleby:1 %}
-                        <div class="col-12 d-sm-none">
-                            <hr class="breaker">
-                        </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:2 %}
-                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
-                            <hr class="breaker">
-                        </div>
-                        {% endif %}
-
-                        {% if forloop.counter|divisibleby:3 %}
-                        <div class="col-12 d-none d-lg-block d-xl-none">
-                            <hr class="breaker">
-                        </div>
-                        {% endif %}
-
-                        {% if forloop.counter|divisibleby:4 %}
-                        <div class="col-12 d-none d-xl-block">
-                            <hr class="breaker">
-                        </div>
-                        {% endif %}
-
-                        <div class="col-12 d-sm-none">
-                            <hr class="breaker">
-                        </div>
-                        {% endfor %}
+        </div>
+        <div class="row">
+            <div class="record-container col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for record in records %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <article class="card record-card">
+                            {% if record.image %}
+                                <a href="{% url 'show_record_details' record.slug %}">
+                                    <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'show_record_details' record.slug %}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
+                                </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
+                                <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
+                                <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
+                            </ul>
+                            <div class="card-body-custom">
+                                <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
+                                <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fas fa-cart-shopping"></i> Add to cart</a>
+                            </div>
+                        </article>
                     </div>
+                    {% if forloop.counter|divisibleby:1 %}
+                    <div class="col-12 d-sm-none">
+                        <hr class="breaker">
+                    </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                        <hr class="breaker">
+                    </div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:3 %}
+                    <div class="col-12 d-none d-lg-block d-xl-none">
+                        <hr class="breaker">
+                    </div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:4 %}
+                    <div class="col-12 d-none d-xl-block">
+                        <hr class="breaker">
+                    </div>
+                    {% endif %}
+
+                    <div class="col-12 d-sm-none">
+                        <hr class="breaker">
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-</div>
     
 {% endblock %}

@@ -88,7 +88,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbargenreDropdown">
                                 {% for genre in genres %}
-                                <li><a class="dropdown-item roboto-mono-font" href="#">{{  genre.genre  }}</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="{% url 'records' %}?genre={{ genre.genre }}">{{  genre.genre  }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>

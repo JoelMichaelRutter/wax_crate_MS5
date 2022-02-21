@@ -90,6 +90,7 @@ footer {
 
 .navbar {
     border-bottom: 1px solid #262533;
+    z-index: 9999999;
 }
 
 .navbar-nav .nav-link {
