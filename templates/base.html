@@ -88,7 +88,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbargenreDropdown">
                                 {% for genre in genres %}
-                                <li><a class="dropdown-item roboto-mono-font" href="#">{{  genre.genre }}</a></li>
+                                <li><a class="dropdown-item roboto-mono-font" href="#">{{  genre.genre  }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -130,7 +130,7 @@
                             </p>
                         </div>
                     </a>
-                    <form class="search-form d-flex roboto-mono-font" method="GET" action="">
+                    <form class="search-form d-flex roboto-mono-font" method="GET" action="{% url 'records' %}">
                         <input class="form-control rounded-0 search-form-custom me-2" type="text" name="q"
                             placeholder="Search the shop" aria-label="Search">
                         <button class="btn btn-outline-success dark-cta-button rounded-0" type="submit" aria-label="Execute search"><i class="fa-solid fa-magnifying-glass"></i></button>
