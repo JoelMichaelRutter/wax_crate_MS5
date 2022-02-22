@@ -13,19 +13,34 @@ def all_records(request):
     genres = Genre.objects.all()
     query = None
     genre = None
+    sort = None
+    direction = None
     # Checks if there is a get request in user request.
     # If get request exsists, assign name of search
     # form to query variable.
 
     if request.GET:
-        # This code black handles the filtering by genre functionality.
+
+        if 'sort' in request.GET:
+            sorting_key = request.GET['sort']
+            sort = sorting_key
+            if sorting_key == 'title':
+                sorting_key = 'title_lower'
+                records = records.annotate(title_lower=Lower('title'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sorting_key = f'-{sorting_key}'
+            records = records.order_by(sorting_key)
+
+        # This code block handles the filtering by genre functionality.
         if 'genre' in request.GET:
             genre = request.GET['genre']
             records = records.filter(genre__genre__contains=genre)
             genres = Genre.objects.filter(genre__contains=genre)
         # This code block handles the filtering by hot pick functionality.
         elif 'hot_picks' in request.GET:
-            hot_picks = request.GET['hot_picks']
             records = records.filter(hot_pick=True)
 
         # This code block handles the search form queries.
@@ -40,13 +55,15 @@ def all_records(request):
             queries = (Q(title__icontains=query) |
                        Q(artist__icontains=query) |
                        Q(record_label__icontains=query))
-
             records = records.filter(queries)
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'records': records,
         'search_term': query,
         'current_genre': genres,
+        'current_sorting': current_sorting,
     }
     return render(request, 'records/records.html', context)
 
