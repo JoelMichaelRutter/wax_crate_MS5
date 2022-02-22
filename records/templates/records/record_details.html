@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{%  block content %}
+{% block content %}
 <div class="container-lg">
     <!-- RECORD INFORMATION ROW -->
     <div class="row">
@@ -62,35 +62,40 @@
             <!-- MOBILE LISTEN, TRACKLIST & DESCRIPTION SECTION -->
             <section class="mt-3 d-lg-none">
                 {% if record.has_link %}
-                    <a class="listen-button btn btn-large dark-cta-button hvr-grow rounded-0 w-100 roboto-mono-font mb-2" href="{{ record.link_to_music }}" target="_blank"><i class="fa-solid fa-headphones"></i> Have a listen?</a>
+                <a class="listen-button btn btn-large dark-cta-button hvr-grow rounded-0 w-100 roboto-mono-font mb-2"
+                    href="{{ record.link_to_music }}" target="_blank"><i class="fa-solid fa-headphones"></i> Click here to listen!</a>
                 {% else %}
-                    <h6 class="text-muted roboto-mono-font text-center mb-2"><i class="fa-solid fa-xmark"></i> Sorry, it looks like we couldnt find a link to a digital version :(</h6>
+                <h6 class="text-muted roboto-mono-font text-center mb-2"><i class="fa-solid fa-xmark"></i> Sorry, it
+                    looks like we couldnt find a link to a digital version :(</h6>
                 {% endif %}
                 <div class="accordion mb-2" id="tracklistDescListenAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="tracklistAccordionHeader">
-                            <button class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font white-border-bottom-seperator" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#tracklistAccordionBody" aria-expanded="false"
-                                aria-controls="collapseTwo">
+                            <button
+                                class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font white-border-bottom-seperator"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#tracklistAccordionBody"
+                                aria-expanded="false" aria-controls="collapseTwo">
                                 Tracklist
                             </button>
                         </h2>
                         <div id="tracklistAccordionBody" class="accordion-collapse collapse"
                             aria-labelledby="headingTwo" data-bs-parent="#tracklistDescListenAccordion">
                             <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
-                                {{  record.tracklist | safe }}
+                                {{ record.tracklist | safe }}
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="descriptionHeader">
-                            <button class="accordion-button rounded-0 collapsed accordion-button collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#descriptionBody" aria-expanded="false" aria-controls="collapseThree">
+                            <button
+                                class="accordion-button rounded-0 collapsed accordion-button collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#descriptionBody"
+                                aria-expanded="false" aria-controls="collapseThree">
                                 Description
                             </button>
                         </h2>
-                        <div id="descriptionBody" class="accordion-collapse collapse" aria-labelledby="descriptionHeader"
-                            data-bs-parent="#tracklistDescListenAccordion">
+                        <div id="descriptionBody" class="accordion-collapse collapse"
+                            aria-labelledby="descriptionHeader" data-bs-parent="#tracklistDescListenAccordion">
                             <div class="accordion-body text-center roboto-mono-font mobile-accordion-body-text">
                                 {{ record.description | safe }}
                             </div>
@@ -103,9 +108,12 @@
         <div class="d-none d-lg-block offset-lg-1 col-lg-6">
             <div class="large-screen-content-pushdown d-flex align-items-center">
                 {% if record.has_link %}
-                    <a class="listen-button btn btn-large dark-cta-button hvr-grow-shadow rounded-0 w-100 roboto-mono-font mb-2" href="{{ record.link_to_music }}" target="_blank"><i class="fa-solid fa-headphones"></i> Have a listen?</a>
+                <a class="listen-button btn btn-large dark-cta-button hvr-grow-shadow rounded-0 w-100 roboto-mono-font mb-2"
+                    href="{{ record.link_to_music }}" target="_blank"><i class="fa-solid fa-headphones"></i> Click here
+                    to listen!</a>
                 {% else %}
-                    <h4 class="text-muted roboto-mono-font text-center mb-2"><i class="fa-solid fa-xmark"></i> Sorry, it looks like we couldnt find a link to a digital version :(</h4>
+                <h4 class="text-muted roboto-mono-font text-center mb-2"><i class="fa-solid fa-xmark"></i> Sorry, it
+                    looks like we couldnt find a link to a digital version :(</h4>
                 {% endif %}
             </div>
             <h2 class="major-mono large-screen-heading-bottom-border">Tracklist</h2>

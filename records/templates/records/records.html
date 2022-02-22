@@ -27,7 +27,12 @@
                             <div class="card-body">
                                 <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
                                 <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
-                                <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
+                                    {% if record.hot_pick %}
+                                        <h6 class="card-title roboto-mono-font"><i class="fa-solid fa-fire-flame-curved"></i> Hot Pick</h6>
+                                    {% endif %}
+                                </div>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>

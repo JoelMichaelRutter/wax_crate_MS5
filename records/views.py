@@ -10,17 +10,25 @@ def all_records(request):
     This view also handles search queries and filtering.
     """
     records = Record.objects.all()
+    genres = Genre.objects.all()
     query = None
     genre = None
     # Checks if there is a get request in user request.
     # If get request exsists, assign name of search
     # form to query variable.
+
     if request.GET:
+        # This code black handles the filtering by genre functionality.
         if 'genre' in request.GET:
             genre = request.GET['genre']
             records = records.filter(genre__genre__contains=genre)
-            genres = Genre.objects.filter(genre__in=genre)
+            genres = Genre.objects.filter(genre__contains=genre)
+        # This code block handles the filtering by hot pick functionality.
+        elif 'hot_picks' in request.GET:
+            hot_picks = request.GET['hot_picks']
+            records = records.filter(hot_pick=True)
 
+        # This code block handles the search form queries.
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -38,7 +46,7 @@ def all_records(request):
     context = {
         'records': records,
         'search_term': query,
-        'current_genre': genre,
+        'current_genre': genres,
     }
     return render(request, 'records/records.html', context)
 

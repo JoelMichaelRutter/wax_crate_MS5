@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block content %}
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-8 remove-padding">
             <div class="home-hero-image">
-
             </div>
         </div>
         <section class="col-lg-4 my-auto text-center">
-            <div class="company-info text-center">
+            <div class="company-info">
                 <h3 class="major-mono">welcome to wax crAte!</h3>
                 <p class="roboto-mono-font">We're an independent <strong>online vinyl record shop</strong>
                     based in the Northwest of England. We specialise in house, techno and hip-hop records, but we have
@@ -22,4 +22,5 @@
             <a href="{% url 'records' %}" class="dark-cta-button hvr-grow-shadow btn btn-large rounded-0 mt-5 major-mono">Get digging!</a>
         </section>
     </div>
+</div>
 {% endblock %}

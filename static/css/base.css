@@ -182,6 +182,15 @@ transform: translateY(-8px);
     height: calc(100vh - 200px);
 }
 
+.company-info {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.remove-padding {
+    padding: 0!important;
+}
+
 .dark-cta-button {
     background-color: #262533;
     color: #fff;
