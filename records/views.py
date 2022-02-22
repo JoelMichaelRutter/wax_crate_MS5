@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Record, Genre
 
 
@@ -20,7 +21,7 @@ def all_records(request):
     # form to query variable.
 
     if request.GET:
-
+        # Thiw code block hanldes the sorting functionality
         if 'sort' in request.GET:
             sorting_key = request.GET['sort']
             sort = sorting_key

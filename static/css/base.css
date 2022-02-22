@@ -312,6 +312,10 @@ select.record-sort-field > option {
     color: #262533;
 }
 
+.back-to-top-btn {
+    font-size: 2rem;
+}
+
 /* END RECORDS PAGE STYLING */
 
 /* ----------------------------------------------------------- */

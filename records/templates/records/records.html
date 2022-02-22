@@ -2,119 +2,165 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid">
-        <!-- HEADER ROW -->
-        <div class="row">
-            <div class="col text-center mt-2">
-                <h2 class="major-mono display-4 text-lowercase">Records</h2>
+<div class="container-fluid">
+    <!-- HEADER ROW -->
+    <div class="row">
+        <div class="col text-center mt-2">
+            <h2 class="major-mono display-4 text-lowercase">Records</h2>
+        </div>
+    </div>
+    <!-- GENRE FILTER & SEARCH RESULTS ROW -->
+    <div class="row">
+        <!-- GENRE FILTER COLUMN -->
+        <div class="col-10 col-md-5 offset-1 offset-md-1 d-flex flex-wrap">
+            <div class="col d-flex align-items-center flex-wrap">
+                <p class="roboto-semi-bold my-auto">Genre Filter: </p>
+                {% for genre in current_genre %}
+                <a class="genre-badge text-decoration-none" href="{% url 'records' %}?genre={{ genre.genre }}">
+                    <span class="p-2 mt-2 m-1 badge rounded-0 roboto-mono-font dark-cta-button hvr-grow-shadow">{{ genre.genre }}</span>
+                </a>
+                {% endfor %}
             </div>
         </div>
-        <!-- GENRE FILTER & SEARCH RESULTS ROW -->
-        <div class="row">
-            <!-- GENRE FILTER COLUMN -->
-            <div class="col-10 col-md-5 offset-1 offset-md-1 d-flex flex-wrap">
-                <div class="col d-flex align-items-center flex-wrap">
-                    <p class="roboto-semi-bold my-auto">Genre Filter: </p>
-                    {% for genre in current_genre %}
-                        <a class="genre-badge text-decoration-none" href="{% url 'records' %}?genre={{ genre.genre }}">
-                            <span class="p-2 mt-2 m-1 badge rounded-0 roboto-mono-font dark-cta-button hvr-grow-shadow">{{ genre.genre }}</span>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <!-- SEARCH RESULTS COUNTER COLUMN -->
-            <div class="col-10 col-md-5 d-flex offset-1 offset-md-0 justify-content-sm-start justify-content-md-end">
-                <div class="">
-                    <p class="text-muted mt-3 text-center text-md-left roboto-mono-font">
-                        {% if search_term or current_genre or current_sorting != 'None_None' %}
-                            <span class="small wax-crate-navy-font"><a class="wax-crate-navy-font text-decoration-none hvr-float all-records-page-link" href="{% url 'records' %}"><i class="fa-solid fa-record-vinyl"></i> All Records</a> | </span>
-                        {% endif %}
-                        {{ records|length }} Records{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- SORTING SELECTOR ROW -->
-        <div class="row">
-            <!-- SORT SELECTOR COLUMN -->
-            <div class="col-10 col-md-5 offset-1 offset-md-1">
-                <select id="sort-selection-field" class="record-sort-field mt-1 roboto-mono-font rounded-0 {% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                    <option value="name_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A-Z)</option>
-                    <option value="name_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z-A)</option>
-                    <option value="category_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Artist (A-Z)</option>
-                    <option value="category_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Artist (Z-A)</option>
-                </select>
-            </div>
-        </div>
-        <!-- RECORD & CONTENT ROW -->
-        <div class="row">
-            <div class="record-container col-10 offset-1">
-                <div class="row mt-1 mb-2"></div>
-                <div class="row">
-                    {% for record in records %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <article class="card record-card">
-                            {% if record.image %}
-                                <a href="{% url 'show_record_details' record.slug %}">
-                                    <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}" alt="{{ record.title }}">
-                                </a>
-                            {% else %}
-                                <a href="{% url 'show_record_details' record.slug %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg" alt="No image available">
-                                </a>
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
-                                <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
-                                    {% if record.hot_pick %}
-                                        <h6 class="card-title roboto-mono-font"><i class="fa-solid fa-fire-flame-curved"></i> Hot Pick</h6>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
-                            </ul>
-                            <div class="card-body-custom">
-                                <a href="{% url 'show_record_details' record.slug %}" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i class="fa-solid fa-circle-info"></i> More info</a>
-                                <a href="#" class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i class="fas fa-cart-shopping"></i> Add to cart</a>
-                            </div>
-                        </article>
-                    </div>
-                    {% if forloop.counter|divisibleby:1 %}
-                    <div class="col-12 d-sm-none">
-                        <hr class="breaker">
-                    </div>
+        <!-- SEARCH RESULTS COUNTER COLUMN -->
+        <div class="col-10 col-md-5 d-flex offset-1 offset-md-0 justify-content-sm-start justify-content-md-end">
+            <div class="">
+                <p class="text-muted mt-3 text-md-left roboto-mono-font">
+                    {% if search_term or current_genre or current_sorting != "None_None" %}
+                    <span class="wax-crate-navy-font"><a
+                            class="wax-crate-navy-font text-decoration-none hvr-float all-records-page-link"
+                            href="{% url 'records' %}"><i class="fa-solid fa-record-vinyl"></i> All Records</a> |
+                    </span>
                     {% endif %}
-                    {% if forloop.counter|divisibleby:2 %}
-                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
-                        <hr class="breaker">
-                    </div>
-                    {% endif %}
-
-                    {% if forloop.counter|divisibleby:3 %}
-                    <div class="col-12 d-none d-lg-block d-xl-none">
-                        <hr class="breaker">
-                    </div>
-                    {% endif %}
-
-                    {% if forloop.counter|divisibleby:4 %}
-                    <div class="col-12 d-none d-xl-block">
-                        <hr class="breaker">
-                    </div>
-                    {% endif %}
-
-                    <div class="col-12 d-sm-none">
-                        <hr class="breaker">
-                    </div>
-                    {% endfor %}
-                </div>
+                    {{ records|length }} Records{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                </p>
             </div>
         </div>
     </div>
-    
+    <!-- SORTING SELECTOR ROW -->
+    <div class="row">
+        <!-- SORT SELECTOR COLUMN -->
+        <div class="col-10 col-md-5 offset-1 offset-md-1">
+            <select id="sort-selection-field" class="record-sort-field rounded-0 roboto-mono-font">
+                <option value="reset" {% if current_sorting == 'None_None' %} selected {% endif %}>Sort by...</option>
+                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A-Z)</option>
+                <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z-A)</option>
+                <option value="artist_asc" {% if current_sorting == 'artist_asc' %}selected{% endif %}>Artist (A-Z)</option>
+                <option value="artist_desc" {% if current_sorting == 'artist_desc' %}selected{% endif %}>Artist (Z-A)</option>
+            </select>
+        </div>
+    </div>
+    <!-- RECORD & CONTENT ROW -->
+    <div class="row">
+        <div class="record-container col-10 offset-1">
+            <div class="row mt-1 mb-2"></div>
+            <div class="row">
+                {% for record in records %}
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <article class="card record-card">
+                        {% if record.image %}
+                        <a href="{% url 'show_record_details' record.slug %}">
+                            <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}"
+                                alt="{{ record.title }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'show_record_details' record.slug %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg"
+                                alt="No image available">
+                        </a>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title roboto-mono-font music-title">{{ record.title }}</h5>
+                            <h6 class="card-title roboto-light artist-title"><em>{{ record.artist }}</em></h6>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="card-title roboto-mono-font">£{{ record.price }}</h6>
+                                {% if record.hot_pick %}
+                                <h6 class="card-title roboto-mono-font"><i class="fa-solid fa-fire-flame-curved"></i>
+                                    Hot Pick</h6>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item roboto-mono-font"><strong>Genre:</strong> {{ record.genre }}</li>
+                        </ul>
+                        <div class="card-body-custom">
+                            <a href="{% url 'show_record_details' record.slug %}"
+                                class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 more-info-btn"><i
+                                    class="fa-solid fa-circle-info"></i> More info</a>
+                            <a href="#"
+                                class="card-link hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn"><i
+                                    class="fas fa-cart-shopping"></i> Add to cart</a>
+                        </div>
+                    </article>
+                </div>
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none">
+                    <hr class="breaker">
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                    <hr class="breaker">
+                </div>
+                {% endif %}
+
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none">
+                    <hr class="breaker">
+                </div>
+                {% endif %}
+
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block">
+                    <hr class="breaker">
+                </div>
+                {% endif %}
+                <div class="col-12 d-sm-none">
+                    <hr class="breaker">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- BACK TO TOP BUTTON -->
+    <!-- <div class="back-to-top-btn wax-crate-navy-font text-center">
+        <div>
+            <a class="wax-crate-navy-font">
+                <i class="fa-solid fa-circle-up"></i>
+            </a>
+        </div>
+        <div class="">
+            <small>Back to the top</small>
+        </div>
+    </div> -->
+    <!-- DIVIDER, PUSHES FOOTER DOWN FROM CARDS -->
+    <div class="row mt-4"></div>
+</div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+    <script type="text/javascript">
+        $('#sort-selection-field').change(function () {
+            let selector = $(this);
+            let currentUrl = new URL(window.location);
+
+            let selectedSort = selector.val();
+
+            if (selectedSort != "reset") {
+                let sort = selectedSort.split("_")[0];
+                let direction = selectedSort.split("_")[1];
+
+                currentUrl.searchParams.set('sort', sort);
+                currentUrl.searchParams.set('direction', direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+            }
+        });
+    </script>
 {% endblock %}
