@@ -3,11 +3,53 @@
 
 {% block content %}
     <div class="container-fluid">
+        <!-- HEADER ROW -->
         <div class="row">
             <div class="col text-center mt-2">
-                <h2 class="major-mono display-4">Records</h2>
+                <h2 class="major-mono display-4 text-lowercase">Records</h2>
             </div>
         </div>
+        <!-- GENRE FILTER & SEARCH RESULTS ROW -->
+        <div class="row">
+            <!-- GENRE FILTER COLUMN -->
+            <div class="col-10 col-md-5 offset-1 offset-md-1 d-flex flex-wrap">
+                <div class="col d-flex align-items-center flex-wrap">
+                    <p class="roboto-semi-bold my-auto">Genre Filter: </p>
+                    {% for genre in current_genre %}
+                        <a class="genre-badge text-decoration-none" href="{% url 'records' %}?genre={{ genre.genre }}">
+                            <span class="p-2 mt-2 m-1 badge rounded-0 roboto-mono-font dark-cta-button hvr-grow-shadow">{{ genre.genre }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- SEARCH RESULTS COUNTER COLUMN -->
+            <div class="col-10 col-md-5 d-flex offset-1 offset-md-0 justify-content-sm-start justify-content-md-end">
+                <div class="">
+                    <p class="text-muted mt-3 text-center text-md-left roboto-mono-font">
+                        {% if search_term or current_genre or current_sorting != 'None_None' %}
+                            <span class="small wax-crate-navy-font"><a class="wax-crate-navy-font text-decoration-none hvr-float all-records-page-link" href="{% url 'records' %}"><i class="fa-solid fa-record-vinyl"></i> All Records</a> | </span>
+                        {% endif %}
+                        {{ records|length }} Records{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- SORTING SELECTOR ROW -->
+        <div class="row">
+            <!-- SORT SELECTOR COLUMN -->
+            <div class="col-10 col-md-5 offset-1 offset-md-1">
+                <select id="sort-selection-field" class="record-sort-field mt-1 roboto-mono-font rounded-0 {% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                    <option value="name_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A-Z)</option>
+                    <option value="name_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z-A)</option>
+                    <option value="category_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Artist (A-Z)</option>
+                    <option value="category_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Artist (Z-A)</option>
+                </select>
+            </div>
+        </div>
+        <!-- RECORD & CONTENT ROW -->
         <div class="row">
             <div class="record-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>
