@@ -241,6 +241,11 @@ footer {
     font-family: 'Roboto-Mono', monospace;
 }
 
+.footer-holddown {
+    min-height: 90vh;
+}
+
+
 /* ------------------------------------------------- */
 
 /* RECORDS PAGE STYLES */
@@ -297,11 +302,9 @@ footer {
     border-left: none;
     border-top: none;
     cursor: pointer;
-    padding: 0.375rem 0.75rem;
     padding-top: 0.375rem;
     padding-right: 0.75rem;
     padding-bottom: 0.375rem;
-    padding-left: 0.75rem;
 }
 
 select.record-sort-field > option {
@@ -312,10 +315,15 @@ select.record-sort-field > option {
     color: #262533;
 }
 
-.back-to-top-btn {
-    font-size: 2rem;
+.back-to-top-btn-container {
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+a:hover {
+    color: #262533;
+}
 /* END RECORDS PAGE STYLING */
 
 /* ----------------------------------------------------------- */

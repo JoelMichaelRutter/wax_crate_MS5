@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid footer-holddown">
     <!-- HEADER ROW -->
     <div class="row">
         <div class="col text-center mt-2">
@@ -125,16 +125,14 @@
         </div>
     </div>
     <!-- BACK TO TOP BUTTON -->
-    <!-- <div class="back-to-top-btn wax-crate-navy-font text-center">
+    <div class="back-to-top-btn-container wax-crate-navy-font text-center mt-4">
         <div>
-            <a class="wax-crate-navy-font">
+            <a class="wax-crate-navy-font text-decoration-none hvr-float" id="back-to-top">
                 <i class="fa-solid fa-circle-up"></i>
+                <small class="roboto-mono-font">Back to the top</small>
             </a>
         </div>
-        <div class="">
-            <small>Back to the top</small>
-        </div>
-    </div> -->
+    </div>
     <!-- DIVIDER, PUSHES FOOTER DOWN FROM CARDS -->
     <div class="row mt-4"></div>
 </div>
@@ -142,6 +140,11 @@
 
 {% block postload_js %}
 {{ block.super }}
+    <script type="text/javascript">
+        $('#back-to-top').click(function(e) {
+            window.scrollTo(0,0);
+        });
+    </script>
     <script type="text/javascript">
         $('#sort-selection-field').change(function () {
             let selector = $(this);
