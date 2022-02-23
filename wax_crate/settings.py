@@ -82,6 +82,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'records.contexts.genres_in_database',
+                'cart.contexts.cart_items',
             ],
         },
     },
@@ -169,6 +170,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+FREE_DELIVERY_ON_ORDERS_OVER = 80
+STANDARD_DELIVERY_COST = 5
+
 
 if 'USE_AWS' in os.environ:
     # File caching control settings
