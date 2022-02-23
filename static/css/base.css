@@ -160,8 +160,8 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
   }
   
 .hvr-float:hover, .hvr-float:focus, .hvr-float:active {
--webkit-transform: translateY(-8px);
-transform: translateY(-8px);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
 }
 
 .cart-link {
@@ -353,6 +353,22 @@ a:hover {
 }
 
 /* END RECORD DETAIL PAGE STYLING */
+
+/* ------------------------------------------------------------------ */
+
+/* CART PAGE STYLINGS */
+
+.cart-hero-image {
+    background-image: url('/media/cart-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 90vh;
+}
+
+/* END OF CART PAGE STYLINGS */
+
+/* -------------------------------------------------------------------- */
 
 /* MEDIA QUERIES */
 

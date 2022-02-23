@@ -58,7 +58,7 @@
                 </button>
                 <a class="navbar-brand major-mono logo" href="{% url 'home' %}">wax crAte</a>
                 <!-- MOBILE & TABLET CART LINK -->
-                <a class="nav-link d-lg-none" href="#">
+                <a class="nav-link d-lg-none" href="{% url 'show_cart' %}">
                     <div class="text-center cart-link">
                         <div><i class="fas fa-cart-shopping"></i></div>
                         <p class="my-0 roboto-mono-font">
@@ -123,7 +123,7 @@
                         </li>
                     </ul>
                     <!-- LARGER SCREEN CART LINK -->
-                    <a class="nav-link d-none d-lg-block hvr-grow" href="#">
+                    <a class="nav-link d-none d-lg-block hvr-grow" href="{% url 'show_cart' %}">
                         <div class="text-center cart-link">
                             <div><i class="fas fa-cart-shopping"></i></div>
                             <p class="my-0 roboto-mono-font">
