@@ -132,6 +132,10 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     background-color: #4d4b6e;
 }
 
+.input-group {
+    width: 60%;
+}
+
 
 /* END BOOTSTRAP OVERRIDES */
 
@@ -350,6 +354,19 @@ a:hover {
 .description-container {
     height: 170px;
     overflow: auto;
+}
+
+.qty-control {
+    height: 38px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #262553;
+}
+
+.add-cart-btn-larger {
+    height: 38px;
+    width: 158px;
 }
 
 /* END RECORD DETAIL PAGE STYLING */

@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+    function handleEnableDisable(recordId) {
+        let currentQty = parseInt(($`#id_qty_${recordId}`).val());
+        let reduceButtonDisabled = currentQty < 2;
+        let increaseButtonDisabled = currentQty >= 10;
+        $(`decrease-qty-for-record-${recordId}`).prop('disabled', reduceButtonDisabled);
+        $(`increase-qty-for-record-${recordId}`).prop('disabled', increaseButtonDisabled);
+
+    }
+    // Increases the quantity in the quantity field.
+    $('.increase-qty').click(function(e) {
+        e.preventDefault();
+        let closestInput = $(this).closest('.input-group').find('.qty-control')[0];
+        let currentQty = parseInt($(closestInput).val());
+        $(closestInput).val(currentQty + 1);
+        let recordId = $(this).data('record_id');
+        handleEnableDisable(recordId);
+    });
+    // Decreases the quantity in the quantity field.
+    $('.reduce-qty').click(function(e) {
+        e.preventDefault();
+        let closestInput = $(this).closest('.input-group').find('.qty-control')[0];
+        let currentQty = parseInt($(closestInput).val());
+        $(closestInput).val(currentQty - 1);
+        let recordId = $(this).data('record_id');
+        handleEnableDisable(recordId);
+    });
+</script>
