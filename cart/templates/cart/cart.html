@@ -6,41 +6,78 @@
     <div class="row">
         <section class="col-12 col-md-10 offset-md-1 offset-lg-0 col-lg-5 text-center">
             <div class="row">
-                <div class="col">
+                <div class="col wax-crate-grey-font wax-crate-navy-bg">
                     <h1 class="major-mono text-lowercase mt-2">Your Cart</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 offset-lg-1">
                     {% if records_in_cart %}
-                        <div class="cart-items-container mt-3">
-                            {% for record in records_in_cart %}
-                                <div class="card cart-card rounded-0 mb-1">
-                                    <div class="row g-0">
-                                        <div class="col-12 d-flex">
-                                            <div class="cart-line-image-container align-items-center d-flex">
-                                                <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}" alt="{{ record.title }}">
-                                            </div>
-                                            <div class="card-body cart-card-information text-start">
-                                                <h6 class="card-title roboto-mono-font cart-card-title-info">{{ record.record.title }}</h6>
-                                                <p class="roboto-mono-font cart-card-artist-info">{{ record.record.artist }}</p>
-                                                <p class="roboto-mono-font cart-card-qty-info"><small class="text-muted">Quantity: {{ record.quantity }}</small></p>
-                                                <p class="card-text roboto-mono-font cart-card-price-info"><small class="text-muted">Price: £{{ record.record.price }}</small></p>
-                                            </div>
-                                        </div>
+                    <div class="cart-items-container mt-3">
+                        {% for record in records_in_cart %}
+                        <div class="card cart-card rounded-0 mb-1">
+                            <div class="row g-0">
+                                <div class="col-12 d-flex">
+                                    <div class="cart-line-image-container align-items-center d-flex">
+                                        <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}"
+                                            alt="{{ record.title }}">
+                                    </div>
+                                    <div class="card-body cart-card-information text-start">
+                                        <h6 class="card-title roboto-mono-font cart-card-title-info">{{ record.record.title }}</h6>
+                                        <p class="roboto-mono-font cart-card-artist-info">{{ record.record.artist }}</p>
+                                        <p class="roboto-mono-font cart-card-qty-info">
+                                            <small class="text-muted">Quantity: {{ record.quantity }}</small>
+                                        </p>
+                                        <p class="card-text roboto-mono-font cart-card-price-info">
+                                            <small class="text-muted">Price: £{{ record.record.price }}</small>
+                                        </p>
                                     </div>
                                 </div>
-                            {% endfor %}
+                            </div>
                         </div>
+                        {% endfor %}
+                    </div>
                     {% else %}
-                        <div>
-                            <h3 class="roboto-mono-font">You have nothing in your cart!</h3>
-                            <a href="{% url 'records' %}" class="dark-cta-button btn btn-large rounded-0 mt-4 roboto-mono-font hvr-grow-shadow"><i class="fa-solid fa-compact-disc"></i> Back to the shop</a>
-                        </div>
+                    <div>
+                        <h3 class="roboto-mono-font">You have nothing in your cart!</h3>
+                        <a href="{% url 'records' %}"
+                            class="dark-cta-button btn btn-large rounded-0 mt-4 roboto-mono-font hvr-grow-shadow"><i
+                                class="fa-solid fa-compact-disc"></i> Back to the shop</a>
+                    </div>
                     {% endif %}
                 </div>
             </div>
+            <!-- TOTAL, DELIVERY, CHECKOUT AND BACK TO SHOP ROW -->
+            {% if records_in_cart %}
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1 text-start">
+                    {% if free_delivery_difference > 0 %}
+                        <small class="roboto-mono-font text-muted">Get free delivery by spending 
+                            <span class="roboto-bold">£ {{ free_delivery_difference }}</span> more!
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1 text-start">
+                    <!-- COSTING CONTAINER -->
+                        <h6 class="roboto-mono-font mt-1">Purchase Total: £ {{ total|floatformat:2 }}</h6>
+                        <h6 class="roboto-mono-font">Delivery: £ {{ delivery_charge|floatformat:2 }}</h6>
+                    <!-- NEXT STEPS BUTTON CONTAINER -->
+                    <div class="next-step-button-continer">
+                        <a href="{% url 'records' %}"
+                            class="roboto-mono-font mt-2 btn alt-cta-button rounded-0 hvr-float text-decoration-none wax-crate-navy-font"><i
+                                class="fa-solid fa-compact-disc"></i> Back to shop
+                            </a>
+                        <a href="" class="dark-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-grow-shadow">
+                            <i class="fa-solid fa-credit-card"></i> Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </section>
+        <!-- HERO IMAGE - DISPLAYS ON LARGER SCREENS ONLY -->
         <div class="d-none d-md-none d-lg-block col-lg-7 remove-padding">
             <div class="cart-hero-image">
             </div>
