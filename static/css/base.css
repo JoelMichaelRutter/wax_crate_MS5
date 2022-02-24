@@ -358,6 +358,11 @@ a:hover {
 
 /* CART PAGE STYLINGS */
 
+.cart-items-container {
+    height: 700px;
+    overflow: auto;
+}
+
 .cart-hero-image {
     background-image: url('/media/cart-hero-image.jpg');
     background-repeat: no-repeat;
@@ -365,6 +370,43 @@ a:hover {
     background-position: center center;
     min-height: 90vh;
 }
+
+.cart-card {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #262533;
+    padding-bottom: 5px;
+}
+
+.cart-line-image-container {
+    width: 80px;
+}
+
+.cart-card-information {
+    padding: 0rem 1rem;
+}
+
+.cart-card-title-info,
+.cart-card-artist-info {
+    max-width: 50%;
+}
+
+.cart-card-artist-info,
+.cart-card-qty-info,
+.cart-card-price-info  {
+    font-size: 0.7rem;
+}
+
+.cart-card-title-info, 
+.cart-card-artist-info,
+.cart-card-qty-info,
+.cart-card-price-info  {
+    margin-bottom: 0;
+}
+
+
+
 
 /* END OF CART PAGE STYLINGS */
 

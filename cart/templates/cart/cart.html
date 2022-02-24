@@ -11,10 +11,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 ">
-                    {% if cart_items %}
-                        <div class="cart-items-container">
-                    
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    {% if records_in_cart %}
+                        <div class="cart-items-container mt-3">
+                            {% for record in records_in_cart %}
+                                <div class="card cart-card rounded-0 mb-1">
+                                    <div class="row g-0">
+                                        <div class="col-12 d-flex">
+                                            <div class="cart-line-image-container align-items-center d-flex">
+                                                <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}" alt="{{ record.title }}">
+                                            </div>
+                                            <div class="card-body cart-card-information text-start">
+                                                <h6 class="card-title roboto-mono-font cart-card-title-info">{{ record.record.title }}</h6>
+                                                <p class="roboto-mono-font cart-card-artist-info">{{ record.record.artist }}</p>
+                                                <p class="roboto-mono-font cart-card-qty-info"><small class="text-muted">Quantity: {{ record.quantity }}</small></p>
+                                                <p class="card-text roboto-mono-font cart-card-price-info"><small class="text-muted">Price: £{{ record.record.price }}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     {% else %}
                         <div>

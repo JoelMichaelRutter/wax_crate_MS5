@@ -4,6 +4,8 @@
 """
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from records.models import Record
 
 
 def cart_items(request):
@@ -14,6 +16,18 @@ def cart_items(request):
     records_in_cart = []
     total = 0
     record_count = 0
+
+    cart = request.session.get('cart', {})
+
+    for record_id, quantity in cart.items():
+        record = get_object_or_404(Record, pk=record_id)
+        total += quantity * record.price
+        record_count += quantity
+        records_in_cart.append({
+            'record_id': record_id,
+            'quantity': quantity,
+            'record': record,
+        })
 
     if total < settings.FREE_DELIVERY_ON_ORDERS_OVER:
         delivery_charge = Decimal(settings.STANDARD_DELIVERY_COST)

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+
 def show_cart(request):
     """
     A view that renders the Cart page.
@@ -24,5 +25,4 @@ def add_record_to_cart(request, record_id):
         cart[record_id] = quantity
 
     request.session['cart'] = cart
-    print(request.session['cart'])
     return (redirect(redirect_url))
