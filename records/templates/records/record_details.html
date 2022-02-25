@@ -64,13 +64,13 @@
                         <div class="d-inline-flex input-group my-auto">
                             <p class="roboto-bold my-auto">Qty:</p>
                             <div class="input-group-prepend ms-1">
-                                <button class="reduce-qty btn rounded-0 dark-cta-button" data-record_id="{{ record.id }}" id="decrease-qty-for-record-{{ record.id }}">
+                                <button class="reduce-qty btn rounded-0 dark-cta-button" data-record_id="{{ record.id }}" id="decrease-qty-{{ record.id }}">
                                     <i class="fa-solid fa-square-caret-down"></i>
                                 </button>
                             </div>
                             <input class="qty-control d-inline roboto-mono-font text-center" type="number" name="quantity" value="1" min="1" max="10" data-record_id="{{ record.id }}" id="id_qty_{{ record.id }}">
                             <div class="input-group-append">
-                                <button class="increase-qty btn rounded-0 dark-cta-button" data-record-id="{{ record.id }}" id="decrease-qty-for-record-{{ record.id }}">
+                                <button class="increase-qty btn rounded-0 dark-cta-button" data-record_id="{{ record.id }}" id="increase-qty-{{ record.id }}">
                                     <i class="fa-solid fa-square-caret-up"></i>
                                 </button>
                             </div>

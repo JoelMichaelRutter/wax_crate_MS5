@@ -1,13 +1,26 @@
 <script type="text/javascript">
 
     function handleEnableDisable(recordId) {
-        let currentQty = parseInt(($`#id_qty_${recordId}`).val());
-        let reduceButtonDisabled = currentQty < 2;
-        let increaseButtonDisabled = currentQty >= 10;
-        $(`decrease-qty-for-record-${recordId}`).prop('disabled', reduceButtonDisabled);
-        $(`increase-qty-for-record-${recordId}`).prop('disabled', increaseButtonDisabled);
+        let currentQty = parseInt($(`#id_qty_${recordId}`).val());
+        let disableReduceButton = currentQty < 2;
+        let disableIncreaseButton = currentQty > 9;
+        let decreaseButton = $(`#decrease-qty-${recordId}`);
+        let increaseButton = $(`#increase-qty-${recordId}`)
+        $(decreaseButton).prop('disabled', disableReduceButton);
+        $(increaseButton).prop('disabled', disableIncreaseButton)
+    };
 
+    let allQtyControl = $('.qty-control');
+    for(let i = 0; i < allQtyControl.length; i++){
+        let recordId = $(allQtyControl[i]).data('record_id');
+        handleEnableDisable(recordId);
     }
+
+    $('.qty-control').change(function() {
+        let recordId = $(this).data('record_id');
+        handleEnableDisable(recordId);
+    });
+
     // Increases the quantity in the quantity field.
     $('.increase-qty').click(function(e) {
         e.preventDefault();
