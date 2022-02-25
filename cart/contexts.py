@@ -38,8 +38,11 @@ def cart_items(request):
         delivery_charge = 0
         free_delivery_difference = 0
 
-    order_total = delivery_charge + total
-
+    if records_in_cart:
+        order_total = total + delivery_charge
+    else:
+        order_total = 0
+    
     context = {
         'records_in_cart': records_in_cart,
         'total': total,
