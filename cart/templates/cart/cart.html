@@ -17,20 +17,63 @@
                         {% for record in records_in_cart %}
                         <div class="card cart-card rounded-0 mb-1">
                             <div class="row g-0">
-                                <div class="col-12 d-flex">
-                                    <div class="cart-line-image-container align-items-center d-flex">
+                                <div class="card-grid-parent">
+                                    <!-- IMAGE GRID CONTAINER -->
+                                    <div class="cart-image-grid-container align-items-center d-flex">
                                         <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}"
                                             alt="{{ record.title }}">
                                     </div>
-                                    <div class="card-body cart-card-information text-start">
-                                        <h6 class="card-title roboto-mono-font cart-card-title-info">{{ record.record.title }}</h6>
-                                        <p class="roboto-mono-font cart-card-artist-info">{{ record.record.artist }}</p>
-                                        <p class="roboto-mono-font cart-card-qty-info">
+                                    <!-- RECORD INFO GRID CONTAINER -->
+                                    <div class="record-info-grid-container text-start">
+                                        <h6 class="roboto-mono-font ms-2">{{ record.record.title }}</h6>
+                                        <p class="roboto-mono-font mb-0 ms-2 cart-card-artist-info">{{ record.record.artist }}</p>
+                                        <p class="roboto-mono-font mb-0 ms-2 cart-card-qty-info">
                                             <small class="text-muted">Quantity: {{ record.quantity }}</small>
                                         </p>
-                                        <p class="card-text roboto-mono-font cart-card-price-info">
+                                        <p class="roboto-mono-font mb-0 ms-2 cart-card-price-info">
                                             <small class="text-muted">Price: £{{ record.record.price }}</small>
                                         </p>
+                                    </div>
+                                    <!-- UPDATE CART FORM GRID CONTAINER -->
+                                    <div class="update-cart-grid-column update-cart-grid-parent">
+                                        <form action="" class="edit-qty-remove-form" method="post"></form>
+                                            <!-- ROW 1 OF UPDATE CART -->
+                                            <div class="update-cart-grid-row-1 d-flex align-items-center justify-content-center">
+                                                <form action="" method="post">
+                                                    {% csrf_token %}
+                                                        <div class="input-group input-group-cart d-flex">
+                                                            <div class="input-group-prepend">
+                                                                <button class="reduce-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="decrease-qty-{{ record.record_id }}">
+                                                                    <i class="fa-solid fa-square-caret-down"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input class="qty-control qty-control-cart d-inline roboto-mono-font text-center" type="number" name="quantity" value="{{ record.quantity }}" min="1" max="10" data-record_id="{{ record.record_id }}" id="id_qty_{{ record.record_id }}">
+                                                            <div class="input-group-append">
+                                                                <button class="increase-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="increase-qty-{{ record.record_id }}">
+                                                                    <i class="fa-solid fa-square-caret-up"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="align-items-end">
+                                                            <button type="submit" class="hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn add-cart-btn-larger"><i
+                                                                class="fas fa-cart-shopping"></i> Add to cart</button>
+                                                        </div> -->
+                                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            </div>
+                                        </form>
+                                        <!-- ROW 2 OF UPDATE CART -->
+                                        <div class="update-cart-grid-row-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex-justify-content-between align-items-center">
+                                                <a href="" class="edit-qty-button btn btn-sm dark-cta-button rounded-0">
+                                                    <div><i class="fa-solid fa-pen-to-square fa-xl"></i></div>
+                                                    Update
+                                                </a>
+                                                <a href="" id="remove_{{ record.record_id }}" class="delete-from-bag-button btn btn-sm dark-cta-button rounded-0">
+                                                    <div><i class="fa-solid fa-trash-can fa-xl"></i></div>
+                                                    Remove
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,4 +127,28 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    {% include 'records/includes/qty-input-script.html' %}
+    <script type="text/javascript">
+        // Update the quantity on the cart line when edit button is clicked.
+        $('.edit-qty-button').click(function(e) {
+            let cartQtyForm = $(this).prev('.edit-qty-remove-form');
+            form.submit();
+        });
+
+        // Removes the record from the cart when remove button is clicked.
+        $('.delete-from-bag-button').click(function(e) {
+            let csrfToken = "{{ csrf_token }}"
+            let recordId = $(this).attr('id').split('remove_')[1];
+            let url =`/cart/remove/${recordId}`;
+            let data ={'csrfmiddlewaretoken': csrfToken};
+            $.post(url, data)
+            .done(function() {
+                 location.reload();
+             })
+        });
+    </script>   
 {% endblock %}

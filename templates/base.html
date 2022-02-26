@@ -63,9 +63,9 @@
                         <div><i class="fas fa-cart-shopping"></i></div>
                         <p class="my-0 roboto-mono-font">
                             {% if order_total %}
-                            £0.00
+                                £{{ order_total|floatformat:2 }}
                             {% else %}
-                            £{{ order_total|floatformat:2 }}
+                                £0.00
                             {% endif %}
                         </p>
                     </div>

@@ -136,6 +136,15 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     width: 60%;
 }
 
+.edit-qty-button,
+.delete-from-bag-button {
+    font-size: 0.5rem;
+}
+
+.delete-from-bag-button {
+    background-color: #a13b2c!important;
+}
+
 
 /* END BOOTSTRAP OVERRIDES */
 
@@ -409,17 +418,48 @@ input[type=number] {
     padding-bottom: 5px;
 }
 
+.card-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+    
+.cart-image-grid-container { 
+    grid-area: 1 / 1 / 2 / 2; 
+}
+
+.record-info-grid-container { 
+    grid-area: 1 / 2 / 2 / 3; 
+}
+
+.update-cart-grid-column  { 
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.update-cart-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.update-cart-grid-row-1 { 
+    grid-area: 1 / 1 / 2 / 2; 
+}
+
+.update-cart-grid-row-2 { 
+    grid-area: 2 / 1 / 3 / 2; 
+}
+
 .cart-line-image-container {
     width: 80px;
 }
 
 .cart-card-information {
     padding: 0rem 1rem;
-}
-
-.cart-card-title-info,
-.cart-card-artist-info {
-    max-width: 50%;
 }
 
 .cart-card-artist-info,
@@ -433,6 +473,15 @@ input[type=number] {
 .cart-card-qty-info,
 .cart-card-price-info  {
     margin-bottom: 0;
+}
+
+.input-group-cart {
+    width: 100%;
+}
+
+.qty-control-cart {
+    height: 31px;
+    width: 37px;
 }
 
 .alt-cta-button {
