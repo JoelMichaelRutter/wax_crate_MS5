@@ -36,39 +36,34 @@
                                     </div>
                                     <!-- UPDATE CART FORM GRID CONTAINER -->
                                     <div class="update-cart-grid-column update-cart-grid-parent">
-                                        <form action="" class="edit-qty-remove-form" method="post"></form>
-                                            <!-- ROW 1 OF UPDATE CART -->
-                                            <div class="update-cart-grid-row-1 d-flex align-items-center justify-content-center">
-                                                <form action="" method="post">
-                                                    {% csrf_token %}
-                                                        <div class="input-group input-group-cart d-flex">
-                                                            <div class="input-group-prepend">
-                                                                <button class="reduce-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="decrease-qty-{{ record.record_id }}">
-                                                                    <i class="fa-solid fa-square-caret-down"></i>
-                                                                </button>
-                                                            </div>
-                                                            <input class="qty-control qty-control-cart d-inline roboto-mono-font text-center" type="number" name="quantity" value="{{ record.quantity }}" min="1" max="10" data-record_id="{{ record.record_id }}" id="id_qty_{{ record.record_id }}">
-                                                            <div class="input-group-append">
-                                                                <button class="increase-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="increase-qty-{{ record.record_id }}">
-                                                                    <i class="fa-solid fa-square-caret-up"></i>
-                                                                </button>
-                                                            </div>
+                                        <!-- ROW 1 OF UPDATE CART -->
+                                        <div class="update-cart-grid-row-1 d-flex align-items-center justify-content-center">
+                                            <form action="{% url 'amend_cart' record.record_id %}" class="edit-qty-remove-form" method="post">
+                                                {% csrf_token %}
+                                                    <div class="input-group input-group-cart d-flex">
+                                                        <div class="input-group-prepend">
+                                                            <button class="reduce-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="decrease-qty-{{ record.record_id }}">
+                                                                <i class="fa-solid fa-square-caret-down"></i>
+                                                            </button>
                                                         </div>
-                                                        <!-- <div class="align-items-end">
-                                                            <button type="submit" class="hvr-grow-shadow roboto-mono-font btn btn-sm rounded-0 add-cart-btn add-cart-btn-larger"><i
-                                                                class="fas fa-cart-shopping"></i> Add to cart</button>
-                                                        </div> -->
-                                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                            </div>
-                                        </form>
+                                                        <input class="qty-control qty-control-cart d-inline roboto-mono-font text-center" type="number" name="quantity" value="{{ record.quantity }}" min="1" max="10" data-record_id="{{ record.record_id }}" id="id_qty_{{ record.record_id }}">
+                                                        <div class="input-group-append">
+                                                            <button class="increase-qty btn btn-sm rounded-0 dark-cta-button" data-record_id="{{ record.record_id }}" id="increase-qty-{{ record.record_id }}">
+                                                                <i class="fa-solid fa-square-caret-up"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            </form>
+                                        </div>
                                         <!-- ROW 2 OF UPDATE CART -->
                                         <div class="update-cart-grid-row-2 d-flex align-items-center justify-content-center">
                                             <div class="d-flex-justify-content-between align-items-center">
-                                                <a href="" class="edit-qty-button btn btn-sm dark-cta-button rounded-0">
+                                                <a class="edit-qty-button btn btn-sm dark-cta-button rounded-0">
                                                     <div><i class="fa-solid fa-pen-to-square fa-xl"></i></div>
                                                     Update
                                                 </a>
-                                                <a href="" id="remove_{{ record.record_id }}" class="delete-from-bag-button btn btn-sm dark-cta-button rounded-0">
+                                                <a id="remove_{{ record.record_id }}" class="delete-from-bag-button btn btn-sm dark-cta-button rounded-0">
                                                     <div><i class="fa-solid fa-trash-can fa-xl"></i></div>
                                                     Remove
                                                 </a>
@@ -135,7 +130,7 @@
     <script type="text/javascript">
         // Update the quantity on the cart line when edit button is clicked.
         $('.edit-qty-button').click(function(e) {
-            let cartQtyForm = $(this).prev('.edit-qty-remove-form');
+            let form = $('.edit-qty-remove-form');
             form.submit();
         });
 
@@ -143,8 +138,9 @@
         $('.delete-from-bag-button').click(function(e) {
             let csrfToken = "{{ csrf_token }}"
             let recordId = $(this).attr('id').split('remove_')[1];
-            let url =`/cart/remove/${recordId}`;
+            let url =`/cart/remove/${recordId}/`;
             let data ={'csrfmiddlewaretoken': csrfToken};
+            console.log(url)
             $.post(url, data)
             .done(function() {
                  location.reload();
