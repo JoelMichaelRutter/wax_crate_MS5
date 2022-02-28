@@ -1,13 +1,11 @@
-<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-    <div class="toast" style="position: absolute; top: 0; right: 0;">
-        <div class="toast-header">
-            <strong class="mr-auto"><i class="fa-solid fa-circle-info"></i> Warning, Warning!</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            {{ message }}
-        </div>
+<div class="toast rounded-1 border-top-0" data-autohide="true">
+    <div class="toast-header wax-crate-navy-bg d-flex justify-content-between">
+        <strong class="mr-auto wax-crate-grey-font roboto-mono-font"><i class="fa-solid fa-circle-info"></i> Public Service Announcement</strong>
+        <button type="button" class="ml-2 mb-1 close wax-crate-navy-bg wax-crate-grey-font custom-toast-close" id="close-toast" data-dismiss="toast" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="toast-body bg-white roboto-mono-font">
+        {{ message }}        
     </div>
 </div>
