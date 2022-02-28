@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from records.models import Record
 
@@ -57,7 +57,7 @@ def amend_cart(request, record_id):
     records in the cart prior to checkout.
     """
     # Get record from database to use in message string.
-    record = Record.objects.get(pk=record_id)
+    record = get_object_or_404(Record, pk=record_id)
     # Get quantity from post data from cart-qty control field.
     quantity = int(request.POST.get('quantity'))
     # Set cart to the current cart in the browser session.
@@ -93,7 +93,7 @@ def remove_from_cart(request, record_id):
     by using the delete button.
     """
     # Get record from database to use in message string.
-    record = Record.objects.get(pk=record_id)
+    record = get_object_or_404(Record, pk=record_id)
     # Get current cart stored in session.
     cart = request.session.get('cart', {})
 
