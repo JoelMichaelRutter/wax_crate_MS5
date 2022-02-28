@@ -258,6 +258,13 @@ footer {
     min-height: 90vh;
 }
 
+.message-container {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    z-index: 888888;
+}
+
 
 /* ------------------------------------------------- */
 

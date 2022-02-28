@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
+from records.models import Record
 
 
 def show_cart(request):
@@ -13,7 +15,7 @@ def add_record_to_cart(request, record_id):
     This view handles adding the specified
     qty of records to the customers cart.
     """
-
+    record = Record.objects.get(pk=record_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
 
@@ -23,6 +25,10 @@ def add_record_to_cart(request, record_id):
         cart[record_id] += quantity
     else:
         cart[record_id] = quantity
+        messages.success(
+            request,
+            f'You added {record.title} by {record.artist} to the cart'
+            )
 
     request.session['cart'] = cart
     return redirect(redirect_url)
