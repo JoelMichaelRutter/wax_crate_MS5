@@ -149,12 +149,25 @@
     {% if messages %}
         <div class="message-container">
             {% for message in messages %}
-                {% include 'includes/toasts/success_message.html' %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/error_message.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/warning_message.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/success_message.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/info_message.html' %}
+                    {% endif %}                  
+                {% endwith %}
             {% endfor %}
         </div>
     {% endif %}
+
+    <!-- CONTENT BLOCK POPULATED BY OTHER TEMPLATES -->
     {% block content %}
     {% endblock %}
+
     <div class="breaker"></div>
     <footer class="w-100">
         <div class="container-fluid">
@@ -205,7 +218,13 @@
     </footer>
     {% block postload_js %}
         <script type="text/javascript">
-            $('.toast').toast('show');
+            $(document).ready(function() {
+                $('.toast').toast('show');
+
+                $('#close-toast').click(function(event) {
+                    $(".toast").slideUp("slow")
+                });
+            });
         </script>
     {% endblock %}
 </body>

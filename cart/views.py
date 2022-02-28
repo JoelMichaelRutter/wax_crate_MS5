@@ -22,12 +22,29 @@ def add_record_to_cart(request, record_id):
     cart = request.session.get('cart', {})
 
     if record_id in list(cart.keys()):
-        cart[record_id] += quantity
+        if quantity > 1:
+            cart[record_id] += quantity
+            messages.success(
+                request,
+                f'You added {quantity} additional copies of \
+                {record.title} to the cart'
+            )
+        elif cart[record_id] == 10:
+            messages.error(
+                request,
+                "You can only add up to 10 copies of each record to your cart!"
+            )
+        else:
+            cart[record_id] += quantity
+            messages.success(
+                request,
+                f'You added an additional copy of {record.title} to the cart'
+            )
     else:
         cart[record_id] = quantity
         messages.success(
             request,
-            f'You added {record.title} by {record.artist} to the cart'
+            f'You added "{record.title}" by "{record.artist}" to the cart'
             )
 
     request.session['cart'] = cart

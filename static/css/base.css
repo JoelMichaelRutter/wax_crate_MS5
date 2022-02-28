@@ -70,6 +70,10 @@ footer {
     color: #4d4b6e;
 }
 
+.wax-crate-red-bg {
+    background-color: #a13b2c;
+}
+
 .wax-crate-grey-bg {
     background-color: #f8f9fa;
 }
@@ -143,6 +147,15 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
 
 .delete-from-bag-button {
     background-color: #a13b2c!important;
+}
+
+.toast {
+    width: 300px;
+    /* display: block!important; */
+}
+
+.custom-toast-close {
+    border: none;
 }
 
 
