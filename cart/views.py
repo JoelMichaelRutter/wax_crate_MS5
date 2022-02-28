@@ -106,4 +106,9 @@ def remove_from_cart(request, record_id):
         )
         return HttpResponse(status=200)
     except Exception as e:
+        messages.error(
+            request,
+            f'We encountered an error removing the item from the cart: \
+                {e}'
+        )
         return HttpResponse(status=500)
