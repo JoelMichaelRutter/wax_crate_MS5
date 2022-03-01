@@ -21,33 +21,44 @@ def add_record_to_cart(request, record_id):
 
     cart = request.session.get('cart', {})
 
+    # Logic in first code block is for if record already exists in cart.
     if record_id in list(cart.keys()):
-        if quantity > 1:
+        # Check if quantity in plus the new quantity coming from forms
+        # is > 10 and if true, display error and quantity does not increase.
+        if cart[record_id] + quantity > 10:
+            messages.error(
+                request,
+                "You can only add up to 10 copies of each record to your cart!"
+            )
+        # Check if quantity received is greater than one and that current
+        # quantity of the record in cart is less than 10 for adding
+        # multiple additional copies of a record.
+        elif quantity > 1:
             cart[record_id] += quantity
             messages.success(
                 request,
                 f'You added {quantity} additional copies of \
                 {record.title} to the cart'
             )
-        elif cart[record_id] == 10:
-            messages.error(
-                request,
-                "You can only add up to 10 copies of each record to your cart!"
-            )
+        # Final check is for incrementing quantity where singular additional
+        # copies of a record are added.
         else:
             cart[record_id] += quantity
             messages.success(
                 request,
                 f'You added an additional copy of {record.title} to the cart'
             )
+    # This else block handles adding a record to the cart where it doesn't already
+    # exist in the cart.
     else:
         cart[record_id] = quantity
         messages.success(
             request,
             f'You added "{record.title}" by "{record.artist}" to the cart'
-            )
+        )
 
     request.session['cart'] = cart
+    print(cart[record_id])
     return redirect(redirect_url)
 
 
