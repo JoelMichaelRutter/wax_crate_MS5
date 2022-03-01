@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'home',
     'records',
     'cart',
+    'checkout',
 
     # Other apps
     'storages',
