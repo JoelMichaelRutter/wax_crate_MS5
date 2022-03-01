@@ -43,8 +43,8 @@ class CheckoutForm(forms.ModelForm):
             'customer_street_address1': 'Enter the first line of your address',
             'customer_street_address2':
             'Enter the second line of your address',
-            'customer_postcode': 'Enter your postcode',
-            'customer_town_or_city': 'Town or City',
+            'customer_postcode': 'Postcode',
+            'customer_town_or_city': 'Town/City',
             'customer_county': 'County',
         }
 
@@ -64,7 +64,7 @@ class CheckoutForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
 
             # Looping through all fields and adding class to fields via widget.
-            self.fields[field].widget.attrs['class'] = 'custom_checkout_form'
+            self.fields[field].widget.attrs['class'] = 'custom-checkout-form'
 
             # Looping through fields and setting the label attribute to false
             # as there is no requriement for labels due to the placeholders.

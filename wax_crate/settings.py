@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     # Other apps
     'storages',
+    'crispy_forms',
 
 ]
 
@@ -67,6 +68,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wax_crate.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -85,6 +88,10 @@ TEMPLATES = [
                 'records.contexts.genres_in_database',
                 'cart.contexts.cart_items',
             ],
+            'builtins':[
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
