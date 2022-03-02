@@ -30,10 +30,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # Check switches off debug in production environment as DEVELOPMENT 
 # is set to true within the local env.py file. This check ensures
 # that debug is set to false in the deployed site.
-if 'DEVELOPMENT' in os.environ:
-    DEBUG = True
-else:
-    DEBUG = False
+# if 'DEVELOPMENT' in os.environ:
+#     DEBUG = True
+# else:
+DEBUG = False
 
 ALLOWED_HOSTS = ['wax-crate-ms5.herokuapp.com', 'localhost']
 
