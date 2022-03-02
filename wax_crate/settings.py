@@ -188,6 +188,16 @@ FREE_DELIVERY_ON_ORDERS_OVER = 80
 
 STANDARD_DELIVERY_COST = 3.75
 
+# STRIPE SETTINGS ---------------------------------
+STRIPE_CURRENCY = 'gbp'
+# Setting stripe public key based on value from environment and set to
+# empty string if false.
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+# Setting stripe secret key based on value within env variables and
+# set to an empty string if false. This must be kept secret to ensure
+# that the data within the secret key cannot be used maliciously.
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
 if 'USE_AWS' in os.environ:
     # File caching control settings
     AWS_S3_OBJECT_PARAMETERS = {

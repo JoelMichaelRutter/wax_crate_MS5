@@ -43,3 +43,28 @@ let cardElement = elements.create('card', {style, style});
 /*Finally, in the below line, I mount the card into the div I've created in the checkout template
 with the corresponding id.*/
 cardElement.mount('#card-element');
+
+/**
+ * In the below code block, I populate the card-errors div. Firstly, I'ved added an event listener to the 
+ * card element. I've declared the varaible errorContainer and assigned it a value of the DOM element "card-errors"
+ * It listens for a change within the element and everytime the card element is changed
+ * it listens for an event. If the event is an error, the conditional check decares a 
+ * variable called "content" which I initilaise to some HTML containing a template literal.
+ * Within the html, I create two spans with an icon and then another span which then drills via dot notation
+ * into the event paramenter then into the error and then arriving at the message.
+ * I then assign the content variable outside the template literal to the errorContainer via the "html" jquery method.
+ */
+cardElement.addEventListener('change', function(event) {
+    let errorContainer = document.getElementById('card-errors');
+    if (event.error) {
+        let content = `
+            <span class="icon wax-crate-red-font ps-1" role="alert">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <span class="wax-crate-red-font ps-1">${event.error.message}</span>
+        `;
+        $(errorContainer).html(content);
+    } else {
+        errorContainer.textContent = '';
+    }
+});

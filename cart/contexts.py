@@ -42,7 +42,7 @@ def cart_items(request):
         order_total = total + delivery_charge
     else:
         order_total = 0
-    
+
     context = {
         'records_in_cart': records_in_cart,
         'total': total,
