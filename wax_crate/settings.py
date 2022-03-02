@@ -27,13 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Check switches off debug in production environment as DEVELOPMENT 
-# is set to true within the local env.py file. This check ensures
-# that debug is set to false in the deployed site.
-# if 'DEVELOPMENT' in os.environ:
-#     DEBUG = True
-# else:
-DEBUG = False
+# Sets debug to the DEVELOPMENT variable value in my local env.py
+# file. In my case, its set to True but in the production environment
+# the variable isnt set so this will default to false.
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = ['wax-crate-ms5.herokuapp.com', 'localhost']
 

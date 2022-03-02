@@ -539,38 +539,6 @@ input[type=number] {
 
 /* -------------------------------------------------------------------- */
 
-/* CHECKOUT PAGE STYLINGS */
-
-.checkout-image {
-    background-image: url('/media/checkout-page-image.jpg');
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: center;
-}
-
-.custom-checkout-form {
-    display: block;
-    margin-top: 1rem;
-    height: 40px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    font-family: 'Roboto Mono';
-    border-bottom: 1px solid black;
-    border-radius: 0;
-}
-
-#id_customer_town_or_city,
-#id_customer_postcode {
-    border-right: 1px solid black;
-}
-
-
-/* END OF CHECKOUT PAGE STYLINGS */
-
-
 
 /* MEDIA QUERIES */
 
