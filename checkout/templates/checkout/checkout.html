@@ -68,6 +68,7 @@
                                     <a class="roboto-bold wax-crate-navy-font" href="{% url 'account_login' %}">Sign In</a> to save this information.
                                 </label>
                             {% endif %}
+                            <p class="roboto-bold mt-3 wax-crate-red-bg wax-crate-grey-font ps-2">You will be charged £{{ order_total|floatformat:2 }} for this order.</p>
                             <div class="d-flex justify-content-end mt-3 mb-3">
                                 <a href="{% url 'show_cart' %}"
                                     class="roboto-mono-font mt-2 btn alt-cta-button rounded-0 hvr-float text-decoration-none wax-crate-navy-font">

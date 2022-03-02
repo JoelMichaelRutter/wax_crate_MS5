@@ -162,6 +162,23 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     border: none;
 }
 
+.form-control:focus {
+    border: none;
+    box-shadow: 0 0 0 0.10rem #A35A6F;
+}
+
+.form-check-input {
+    border: 1px solid black;
+}
+
+.form-check-input:checked {
+    background-color: #262533;
+    border-color: #262533;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
 
 /* END BOOTSTRAP OVERRIDES */
 
@@ -544,29 +561,12 @@ input[type=number] {
     border-bottom: 1px solid black;
     border-radius: 0;
 }
-/* MOVE TO BS OVERRIDE */
-.form-control:focus {
-    border: none;
-    box-shadow: 0 0 0 0.10rem #A35A6F;
-}
 
 #id_customer_town_or_city,
 #id_customer_postcode {
     border-right: 1px solid black;
 }
 
-.form-check-input {
-    border: 1px solid black;
-}
-/* MOVE TO BS OVERRIDE */
-.form-check-input:checked {
-    background-color: #262533;
-    border-color: #262533;
-}
-/* MOVE TO BS OVERRIDE */
-.form-check-input:focus {
-    box-shadow: none;
-}
 
 /* END OF CHECKOUT PAGE STYLINGS */
 

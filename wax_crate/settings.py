@@ -27,7 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Check switches off debug in production environment as DEVELOPMENT 
+# is set to true within the local env.py file. This check ensures
+# that debug is set to false in the deployed site.
+if 'DEVELOPMENT' in os.environ:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -85,6 +91,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # Required by all auth, DO NOT REMOVE!
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'records.contexts.genres_in_database',
                 'cart.contexts.cart_items',
             ],
