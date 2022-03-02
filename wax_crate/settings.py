@@ -35,7 +35,7 @@ if 'DEVELOPMENT' in os.environ:
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wax-crate-ms5.herokuapp.com', 'localhost']
 
 
 # Application definition
