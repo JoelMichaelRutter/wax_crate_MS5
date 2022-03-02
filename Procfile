@@ -1,0 +1,1 @@
+web: guicorn wax_crate.wsgi:application
