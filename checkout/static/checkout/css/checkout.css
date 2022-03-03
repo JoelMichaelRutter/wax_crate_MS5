@@ -16,10 +16,9 @@
     padding: 1.38rem;
 }
 
-.accordion-collapse,
 .accordion-body {
-    border: none!important;
-    border-radius: 0!important;
+    height: 290px;
+    overflow: auto;
 }
 
 .record-info-grid-container-order-summary { 
