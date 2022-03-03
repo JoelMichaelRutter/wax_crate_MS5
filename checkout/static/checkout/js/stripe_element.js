@@ -6,9 +6,9 @@
  * to ensure that the string quotation marks are not included as this would
  * cause probles with the key's authentication and use.
  */
-let stripe_public_key = $('#id_stripe_public_key').text().slice(1, -1);
+let stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 
-let client_secret = $('#id_client_secret').text().slice(1, -1);
+let clientSecret = $('#id_client_secret').text().slice(1, -1);
 
 /**
  * Below I initiate a variable called "stripe and assign it the 
@@ -17,7 +17,7 @@ let client_secret = $('#id_client_secret').text().slice(1, -1);
  * within the base template.
  */
 
-let stripe = Stripe(stripe_public_key);
+let stripe = Stripe(stripePublicKey);
 /*I initiate a variable called elements here and drill in to the stripe
 variable declared above to access the elements method.*/
 let elements = stripe.elements();
@@ -68,3 +68,67 @@ cardElement.addEventListener('change', function(event) {
         errorContainer.textContent = '';
     }
 });
+
+
+// The below code handles the submission of the checkout form.
+
+// Firsty, I've accessed the form from the DOM with the id "checkout-form with abit of jQuery"
+let checkoutForm = $('#checkout-form');
+
+/* Add an event listener to the form to listen for the submit event.
+When the submit event is triggered, the function within the event listener is
+excecuted.*/
+checkoutForm.addEventListener('submit', function(event) {
+    /* Firstly, prevent the form from posting data to ensure that 
+    so that we can complete the relevant error checks */
+    event.preventDefault();
+    /* In this part of the script, I disable the card element and submit
+    button by using the update function and passing it an object with a key 
+    value pair of 'disabled': true. To access the submit button, I call the DOM
+    element using jQuery and set the disabled attribute on the element to true.*/
+    cardElement.update({'disabled': true});
+    $('checkout-submit').attr('disabled', true);
+
+    /* Usinng the stripe confirm card payment method, I pass in the
+    client secret decalred at the top of the script which accesses
+    the key which is inserted into the template from the view which
+    in turn accesses it from the settings which is passed through the 
+    environmnent from env.py 
+
+    This an async function so I provide the card to stripe and in the 
+    "then" block I wait for the result of the interaction. Once the 
+    result is returned, I pass it in to the then block to check what
+    result is returned from stripe.
+    */
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+        }
+    }).then(function(result) {
+        if (result.error) {
+            /* Similar to the logic above, if the result is an error I populate
+            the error div with the message that is returned */
+            let errorContainer = document.getElementById('card-errors');
+            let content = `
+                <span class="icon wax-crate-red-font ps-1" role="alert">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                </span>
+                <span class="wax-crate-red-font ps-1">${result.error.message}</span>
+            `;
+            $(errorContainer).html(content);
+            // If there has been an error, I re-enable the card element and from submit button.
+            cardElement.update({'disabled': false});
+            $('checkout-submit').attr('disabled', false);
+        /* In this else block, I handle the successsful submission to stripe
+        by submitting the payment details to stripe provided that the result
+        status is equal to 'succeeded' */
+        } else {
+            if (result.paymentIntent.status === 'succeeded') {
+                checkoutForm.submit();
+            }
+        };
+    });
+});
+
+
+
