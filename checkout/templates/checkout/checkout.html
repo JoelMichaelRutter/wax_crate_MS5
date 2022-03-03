@@ -11,6 +11,48 @@
         <!-- IMAGE - DISPLAYS ON LARGER SCREENS ONLY -->
         <div class="d-none d-md-none d-lg-block col-lg-5 remove-padding">
             <div class="checkout-image wax-crate-navy-bg">
+                <div class="accordion mb-2" id="orderSummaryAccordion">
+                    <div class="accordion-item order-summary-accordion-item">
+                        <h2 class="accordion-header" id="orderSummaryAccordionHeader">
+                            <button
+                                class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-pink-bg wax-crate-grey-font"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#orderSummaryAccordionBody"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                View your order summary
+                            </button>
+                        </h2>
+                        <div id="orderSummaryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
+                            aria-labelledby="headingTwo" data-bs-parent="#orderSummaryAccordionBody">
+                            <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
+                                {% for record in records_in_cart %}
+                                    <div class="card cart-card rounded-0 mb-1">
+                                        <div class="row g-0">
+                                            <div class="card-grid-parent">
+                                                <!-- IMAGE GRID CONTAINER -->
+                                                <div class="cart-image-grid-container align-items-center d-flex">
+                                                    <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}"
+                                                        alt="{{ record.title }}">
+                                                </div>
+                                                <!-- RECORD INFO GRID CONTAINER -->
+                                                <div class="record-info-grid-container-order-summary text-start">
+                                                    <h6 class="roboto-mono-font ms-2">{{ record.record.title }}</h6>
+                                                    <p class="roboto-mono-font mb-0 ms-2 cart-card-artist-info">{{ record.record.artist }}</p>
+                                                    <p class="roboto-mono-font mb-0 ms-2 cart-card-qty-info">
+                                                        <small class="text-muted">Quantity: {{ record.quantity }}</small>
+                                                    </p>
+                                                    <p class="roboto-mono-font mb-0 ms-2 cart-card-price-info">
+                                                        <small class="text-muted">Price per unit: £{{ record.record.price }}</small>
+                                                    </p>
+                                                </div>
+                                                <!-- UPDATE CART FORM GRID CONTAINER -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <section class="col-12 col-md-10 offset-md-1 offset-lg-0 col-lg-7 text-center">
@@ -21,21 +63,6 @@
             </div>
             <div class="row">
                 <div class="col-10 offset-1 text-start">
-                    <div class="mt-2">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button roboto-mono-font" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Click here to see your order summary
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="my-auto">
                         <p class="text-muted roboto-bold mt-3">
                             Please fill out the form below to checkout and finalise your order.

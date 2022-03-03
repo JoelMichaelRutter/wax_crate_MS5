@@ -7,6 +7,27 @@
     background-position-y: center;
 }
 
+
+.accordion-item {
+    border: none;
+}
+
+.accordion-button {
+    padding: 1.38rem;
+}
+
+.accordion-collapse,
+.accordion-body {
+    border: none!important;
+    border-radius: 0!important;
+}
+
+.record-info-grid-container-order-summary { 
+    grid-area: 1 / 2 / 2 / 5; 
+}
+
+
+
 .custom-checkout-form {
     display: block;
     margin-top: 1rem;
@@ -27,3 +48,4 @@
 .stripe-element-custom {
     height: 33px;
 }
+
