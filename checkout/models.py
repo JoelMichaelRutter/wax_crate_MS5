@@ -1,15 +1,16 @@
 """
 1 - Importing UUID to generate order number
-2 - Importing models for use in class based data models.
-3 - Importing Sum for use in calculating totals.
-4 - Importing settings.
-5 - Importing Record model for use in Lines in Order model.
+2 - Importing decimal to convert delivery charge float from settings.
+3 - Importing models for use in class based data models.
+4 - Importing Sum for use in calculating totals.
+5 - Importing settings.
+6 - Importing Record model for use in Lines in Order model.
 """
 import uuid
+import decimal
 
 from django.db import models
 from django.db.models import Sum
-import decimal
 from django.conf import settings
 
 from records.models import Record
@@ -73,7 +74,9 @@ class Order(models.Model):
             self.delivery_charge = settings.STANDARD_DELIVERY_COST
         else:
             self.delivery_charge = 0
-        self.order_total = self.purchase_total_cost + decimal.Decimal(self.delivery_charge)
+        self.order_total = (
+            self.purchase_total_cost + decimal.Decimal(self.delivery_charge)
+        )
         self.save()
 
     def save(self, *args, **kwargs):

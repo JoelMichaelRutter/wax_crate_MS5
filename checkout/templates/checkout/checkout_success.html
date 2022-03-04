@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row">
@@ -12,8 +16,39 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 offset-lg-1">
-                    <p class="roboto-mono">Brilliant, your order was successful. Your order information is below and a
+                    <p class="roboto-mono-font mt-2">Brilliant, your order was successful. Your order information is below and a
                         confirmation email will be sent to {{ order.customer_email }}.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <h6 class="roboto-bold text-start text-decoration-underline">Your Order Information</h6>
+                    <!-- ORDER INFORMATION - ORDER NUM & DATE -->
+                    <div class="d-flex justify-content-between">
+                        <div class="information-header-container roboto-bold text-start">
+                            <h6>Order Number:</h6>
+                            <h6>Date Order Placed:</h6>
+                        </div>
+                        <div class="order-data-container roboto-mono-font text-start">
+                            <p class="mb-0">{{ order.order_number }}</p>
+                            <p class="mb-0">{{ order.order_date|date:'d/m/Y' }}</p>
+                        </div>
+                    </div>
+                    <h6 class="roboto-bold text-start text-decoration-underline">Your Purchases</h6>
+                    <div class="checkout-order-lines-headers-grid-parent text-start roboto-bold text-decoration-underline">
+                        <div class="title-column">Title</div>
+                        <div class="artist-column">Artist</div>
+                        <div class="qty-column text-center">Quantity</div>
+                        <div class="price-per-unit-column text-center"><small>Price per unit</small></div>
+                    </div>
+                    {% for item in order.order_lines.all %}
+                    <div class="checkout-order-lines-data-grid-parent over-flow-grid text-start">
+                            <div class="title-column">{{ item.record.title }}</div>
+                            <div class="artist-column">{{ item.record.artist }}</div>
+                            <div class="qty-column text-center mt-0">{{ item.quantity }}</div>
+                            <div class="price-per-unit-column text-center">£{{ item.record.price }}</div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
