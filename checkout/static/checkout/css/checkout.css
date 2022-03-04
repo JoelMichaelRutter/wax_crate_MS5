@@ -25,8 +25,6 @@
     grid-area: 1 / 2 / 2 / 5; 
 }
 
-
-
 .custom-checkout-form {
     display: block;
     margin-top: 1rem;
@@ -46,5 +44,13 @@
 
 .stripe-element-custom {
     height: 33px;
+}
+
+.checkout-success-hero-image {
+    background-image: url('/media/checkout-success-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 90vh;
 }
 

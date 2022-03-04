@@ -23,7 +23,7 @@ def update_order_lines_on_save(sender, instance, created, **kwargs):
     row.
     **kwargs - any additional key word arguments.
     """
-    instance.order.update_total()
+    instance.customer_order.update_totals()
 
 
 @receiver(post_delete, sender=LinesInOrder)
@@ -39,4 +39,4 @@ def update_order_lines_on_delete(sender, instance, **kwargs):
     row.
     **kwargs - any additional key word arguments.
     """
-    instance.order.update_total()
+    instance.customer_order.update_totals()

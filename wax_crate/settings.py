@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
+if os.path.exists('env.py'):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -192,11 +192,11 @@ STANDARD_DELIVERY_COST = 3.75
 STRIPE_CURRENCY = 'gbp'
 # Setting stripe public key based on value from environment and set to
 # empty string if false.
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 # Setting stripe secret key based on value within env variables and
 # set to an empty string if false. This must be kept secret to ensure
 # that the data within the secret key cannot be used maliciously.
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 
 if 'USE_AWS' in os.environ:
     # File caching control settings

@@ -6,9 +6,9 @@
  * to ensure that the string quotation marks are not included as this would
  * cause probles with the key's authentication and use.
  */
-let stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 
-let clientSecret = $('#id_client_secret').text().slice(1, -1);
+var clientSecret = $('#id_client_secret').text().slice(1, -1);
 
 /**
  * Below I initiate a variable called "stripe and assign it the 
@@ -17,13 +17,13 @@ let clientSecret = $('#id_client_secret').text().slice(1, -1);
  * within the base template.
  */
 
-let stripe = Stripe(stripePublicKey);
+var stripe = Stripe(stripePublicKey);
 /*I initiate a variable called elements here and drill in to the stripe
 variable declared above to access the elements method.*/
-let elements = stripe.elements();
+var elements = stripe.elements();
 
 // Creating a style dictionary for the card element to use when it renders.
-let style = {
+var style = {
     base: {
         fontFamily: "'Roboto-Mono', monospace",
         fontSize: "18px",
@@ -38,7 +38,7 @@ let style = {
 to drill into the previously declared elements variable and create a new card element.
 I also pass it the style dictionary created above to ensure that the type setting
 and font size are consistent with the rest of the form.*/
-let cardElement = elements.create('card', {style, style});
+var cardElement = elements.create('card', {style, style});
 
 /*Finally, in the below line, I mount the card into the div I've created in the checkout template
 with the corresponding id.*/
@@ -55,9 +55,9 @@ cardElement.mount('#card-element');
  * I then assign the content variable outside the template literal to the errorContainer via the "html" jquery method.
  */
 cardElement.addEventListener('change', function(event) {
-    let errorContainer = document.getElementById('card-errors');
+    var errorContainer = document.getElementById('card-errors');
     if (event.error) {
-        let content = `
+        var content = `
             <span class="icon wax-crate-red-font ps-1" role="alert">
                 <i class="fa-solid fa-circle-exclamation"></i>
             </span>
@@ -73,15 +73,15 @@ cardElement.addEventListener('change', function(event) {
 // The below code handles the submission of the checkout form.
 
 // Firsty, I've accessed the form from the DOM with the id "checkout-form with abit of jQuery"
-let checkoutForm = $('#checkout-form');
+var checkoutForm = document.getElementById('checkout-form');
 
 /* Add an event listener to the form to listen for the submit event.
 When the submit event is triggered, the function within the event listener is
 excecuted.*/
-checkoutForm.addEventListener('submit', function(event) {
+checkoutForm.addEventListener('submit', function(ev) {
     /* Firstly, prevent the form from posting data to ensure that 
     so that we can complete the relevant error checks */
-    event.preventDefault();
+    ev.preventDefault();
     /* In this part of the script, I disable the card element and submit
     button by using the update function and passing it an object with a key 
     value pair of 'disabled': true. To access the submit button, I call the DOM
@@ -102,14 +102,14 @@ checkoutForm.addEventListener('submit', function(event) {
     */
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-            card: card,
+            card: cardElement,
         }
     }).then(function(result) {
         if (result.error) {
             /* Similar to the logic above, if the result is an error I populate
             the error div with the message that is returned */
-            let errorContainer = document.getElementById('card-errors');
-            let content = `
+            var errorContainer = document.getElementById('card-errors');
+            var content = `
                 <span class="icon wax-crate-red-font ps-1" role="alert">
                     <i class="fa-solid fa-circle-exclamation"></i>
                 </span>

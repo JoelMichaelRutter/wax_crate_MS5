@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <section class="col-12 col-md-10 offset-md-1 offset-lg-0 col-lg-5 text-center">
+            <div class="row">
+                <div class="col wax-crate-grey-font wax-crate-navy-bg">
+                    <h1 class="major-mono text-lowercase mt-2">Order Successful!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <p class="roboto-mono">Brilliant, your order was successful. Your order information is below and a
+                        confirmation email will be sent to {{ order.customer_email }}.</p>
+                </div>
+            </div>
+        </section>
+        <!-- HERO IMAGE - DISPLAYS ON LARGER SCREENS ONLY -->
+        <div class="d-none d-md-none d-lg-block col-lg-7 remove-padding">
+            <div class="checkout-success-hero-image">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -9,6 +9,7 @@ import uuid
 
 from django.db import models
 from django.db.models import Sum
+import decimal
 from django.conf import settings
 
 from records.models import Record
@@ -66,13 +67,13 @@ class Order(models.Model):
         self.purchase_total_cost = (
             self.order_lines.aggregate(
                 Sum('line_total')
-                )['line_total_sum__sum']
+                )['line_total__sum'] or 0
         )
         if self.purchase_total_cost < settings.FREE_DELIVERY_ON_ORDERS_OVER:
             self.delivery_charge = settings.STANDARD_DELIVERY_COST
         else:
             self.delivery_charge = 0
-        self.order_total = purchase_total_cost + delivery_charge
+        self.order_total = self.purchase_total_cost + decimal.Decimal(self.delivery_charge)
         self.save()
 
     def save(self, *args, **kwargs):
@@ -117,4 +118,6 @@ class LinesInOrder(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return str(f'{self.record.title} in order {self.order.order_number}')
+        return str(
+            f'{self.record.title} in order {self.customer_order.order_number}'
+        )

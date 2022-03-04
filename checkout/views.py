@@ -39,15 +39,16 @@ def checkout(request):
     # Block below checks if the method is post and obtains
     # checkout form data.
     if request.method == 'POST':
-        cart = request.session.get('cart')
+        # Gets current cart from the session.
+        cart = request.session.get('cart', {})
         # Get data from checkout form based on name attributes and
         # add to dictionary "checkout_form_data".
         checkout_form_data = {
-            'customer_name': request.POST['customer_full_name'],
+            'customer_full_name': request.POST['customer_full_name'],
             'customer_email': request.POST['customer_email'],
-            'street_address1': request.POST['customer_street_address1'],
-            'street_address2': request.POST['customer_street_address2'],
-            'town_or_city': request.POST['customer_town_or_city'],
+            'customer_street_address1': request.POST['customer_street_address1'],
+            'customer_street_address2': request.POST['customer_street_address2'],
+            'customer_town_or_city': request.POST['customer_town_or_city'],
             'customer_postcode': request.POST['customer_postcode'],
             'customer_county': request.POST['customer_county'],
         }
@@ -67,9 +68,9 @@ def checkout(request):
                     # ids in the cart
                     record = Record.objects.get(id=record_id)
                     # Create an instance of the Lines in Order model class
-                    # providing it the information from the cart.
+                    # providing it the information from the cart and .
                     lines_in_order = LinesInOrder(
-                        order=order,
+                        customer_order=order,
                         record=record,
                         quantity=quantity,
                     )
@@ -90,10 +91,12 @@ def checkout(request):
                     # to the view cart page.
                     order.delete()
                     return redirect(reverse('view_cart'))
+
             # In the below line, I'm checking to see if save-info is in
             # the post request so that I can use the checkout form data
             # in the accounts section of the wider application.
             request.session['save-info'] = 'save-info' in request.POST
+
             # If all is successful following the loop, the user
             # is redirected to the checkout success page which is taking
             # the order number to be displayed.
@@ -104,6 +107,7 @@ def checkout(request):
                 )
             )
         else:
+            print('Invalid form')
             messages.error(
                 request,
                 "Looks like problem with what you entered into \
@@ -111,7 +115,7 @@ def checkout(request):
                 try again."
             )
     else:
-        cart = request.session.get('cart')
+        cart = request.session.get('cart', {})
         if not cart:
             messages.error(
                 request,
@@ -138,25 +142,26 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-
-        # Checks if stripe public key is false and renders warning message to
-        # admin to state the stripe public key is missing.
-        if not stripe_public_key:
-            messages.warning(request, 'Wait! It looks like you forgot to set the \
-                Stripe Pubic Key')
-
+        print(intent)
         checkout_form = CheckoutForm()
-        template = 'checkout/checkout.html'
-        # Context renders the checkout form from forms.py,
-        # and both stripe keys for use within the javascript
-        # that handles the submission of the checkout form.
-        context = {
-            'checkout_form': checkout_form,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret,
-        }
 
-        return render(request, template, context)
+    # Checks if stripe public key is false and renders warning message to
+    # admin to state the stripe public key is missing.
+    if not stripe_public_key:
+        messages.warning(request, 'Wait! It looks like you forgot to set the \
+            Stripe Pubic Key')
+
+    template = 'checkout/checkout.html'
+    # Context renders the checkout form from forms.py,
+    # and both stripe keys for use within the javascript
+    # that handles the submission of tfhe checkout form.
+    context = {
+        'checkout_form': checkout_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+    # Return request, template and context when checkout is loaded.
+    return render(request, template, context)
 
 
 def checkout_success(request, order_number):
@@ -165,7 +170,7 @@ def checkout_success(request, order_number):
     It takes the order number as an argument from the checkout
     view to access the order created by the previous view and
     locates it in the database so that we can insert it into
-    the relecant template as context.
+    the relevant template as context.
     """
     # Get save info from the session
     save_info = request.session.get('save-info')
