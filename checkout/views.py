@@ -121,7 +121,7 @@ def checkout(request):
                 request,
                 'There is nothing in your cart'
             )
-            return redirect(reverse('products'))
+            return redirect(reverse('records'))
         # Get current cart from the cart context proceseor
         current_cart = cart_items(request)
         # Get total for current cart by drilling into cart dictionary

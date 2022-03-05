@@ -88,7 +88,8 @@ checkoutForm.addEventListener('submit', function(ev) {
     element using jQuery and set the disabled attribute on the element to true.*/
     cardElement.update({'disabled': true});
     $('checkout-submit').attr('disabled', true);
-
+    $('#checkout-form').fadeToggle(100);
+    $('#form-loading').fadeToggle(100);
     /* Usinng the stripe confirm card payment method, I pass in the
     client secret decalred at the top of the script which accesses
     the key which is inserted into the template from the view which
@@ -116,6 +117,8 @@ checkoutForm.addEventListener('submit', function(ev) {
                 <span class="wax-crate-red-font ps-1">${result.error.message}</span>
             `;
             $(errorContainer).html(content);
+            $('#checkout-form').fadeToggle(100);
+            $('#form-loading').fadeToggle(100);
             // If there has been an error, I re-enable the card element and from submit button.
             cardElement.update({'disabled': false});
             $('checkout-submit').attr('disabled', false);

@@ -16,7 +16,7 @@
 }
 
 .accordion-body {
-    height: 290px;
+    max-height: 290px;
     overflow: auto;
 }
 
@@ -54,8 +54,28 @@
 }
 
 .success-summary-container {
-    height: 230px;
+    max-height: 230px;
     overflow: auto;
+}
+
+#form-loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.37);
+    z-index: 9999999;
+}
+
+.disc-spin {
+    font-size: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
 }
 
 
