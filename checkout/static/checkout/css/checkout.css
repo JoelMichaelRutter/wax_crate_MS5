@@ -53,26 +53,9 @@
     min-height: 90vh;
 }
 
-.checkout-order-lines-headers-grid-parent {
-    display: grid;
-    grid-template-columns: 1fr 1fr repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+.success-summary-container {
+    height: 230px;
+    overflow: auto;
 }
 
-.checkout-order-lines-data-grid-parent {
-    display: grid;
-    grid-template-columns: 1fr 1fr repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    min-height: 48px;
-    padding: 5px;
-}
-
-.title-column { grid-area: 1 / 1 / 2 / 2;  }
-.artist-column { grid-area: 1 / 2 / 2 / 3; }
-.qty-column { grid-area: 1 / 3 / 2 / 4; }
-.price-per-unit-column { grid-area: 1 / 4 / 2 / 5; }
 

@@ -30,25 +30,64 @@
                             <h6>Date Order Placed:</h6>
                         </div>
                         <div class="order-data-container roboto-mono-font text-start">
-                            <p class="mb-0">{{ order.order_number }}</p>
+                            <p class="mb-0">{{ order.order_number|truncatechars:10 }}</p>
                             <p class="mb-0">{{ order.order_date|date:'d/m/Y' }}</p>
                         </div>
                     </div>
-                    <h6 class="roboto-bold text-start text-decoration-underline">Your Purchases</h6>
-                    <div class="checkout-order-lines-headers-grid-parent text-start roboto-bold text-decoration-underline">
-                        <div class="title-column">Title</div>
-                        <div class="artist-column">Artist</div>
-                        <div class="qty-column text-center">Quantity</div>
-                        <div class="price-per-unit-column text-center"><small>Price per unit</small></div>
+                    <h6 class="roboto-bold text-start text-decoration-underline mt-2">Your Purchases</h6>
+                    <div class="success-summary-container">
+                        {% for item in order.order_lines.all %}
+                            <div class="card cart-card rounded-0 mb-1">
+                                <div class="row g-0">
+                                    <div class="card-grid-parent">
+                                        <div class="cart-image-grid-container align-items-center d-flex">
+                                            <img class="img-fluid rounded-0 my-auto" src="{{ item.record.image.url }}"
+                                                alt="{{ item.record.title }}">
+                                        </div>
+                                        <div class="record-info-grid-container-order-summary text-start">
+                                            <h6 class="roboto-mono-font ms-2">{{ item.record.title }}</h6>
+                                            <p class="roboto-mono-font mb-0 ms-2 cart-card-artist-info">{{ item.record.artist }}</p>
+                                            <p class="roboto-mono-font mb-0 ms-2 cart-card-qty-info">
+                                                <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                                            </p>
+                                            <p class="roboto-mono-font mb-0 ms-2 cart-card-price-info">
+                                                <small class="text-muted">Price per unit: £{{ item.record.price }}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% for item in order.order_lines.all %}
-                    <div class="checkout-order-lines-data-grid-parent over-flow-grid text-start">
-                            <div class="title-column">{{ item.record.title }}</div>
-                            <div class="artist-column">{{ item.record.artist }}</div>
-                            <div class="qty-column text-center mt-0">{{ item.quantity }}</div>
-                            <div class="price-per-unit-column text-center">£{{ item.record.price }}</div>
+                    <div class="d-sm-block d-md-flex justify-content-between mt-2">
+                        <div class="w-sm-100 w-lg-50 text-start">
+                            <h6 class="roboto-bold text-decoration-underline mw-90">Delivery Information</h6>
+                            <div class="roboto-mono-font small mb-2">
+                                <p class="mb-0">{{ order.customer_full_name }}</p>
+                                <p class="mb-0">{{ order.customer_street_address1 }}</p>
+                                {% if order.customer_street_address2 %}
+                                    <p class="mb-0">{{ order.customer_street_address2 }}</p>
+                                {% endif %}
+                                <p class="mb-0">{{ order.customer_town_or_city }}</p>
+                                <p class="mb-0">{{ order.customer_postcode }}</p>
+                                {% if order.customer_county %}
+                                    <p class="mb-0">{{ order.customer_county }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="w-sm-100 w-lg-50 text-start">
+                            <h6 class="roboto-bold text-decoration-underline">Billing Information</h6>
+                            <div class="roboto-mono-font small">
+                                <p class="mb-1"><strong>Total cost of purchase(s):</strong> £{{ order.purchase_total_cost }}</p>
+                                <p class="mb-1"><strong>Delivery charges:</strong> £{{ order.delivery_charge }}</p>
+                                <p class="mb-1"><strong>Order total:</strong> £{{ order.order_total}}</p>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <p class="roboto-bold text-start mt-2">Your record(s) will be dispatched within three working days.</p>
+                    <p class="roboto-bold text-start">Looking for your next favourite record?</p>
+                    <a class="listen-button btn btn-large dark-cta-button hvr-float rounded-0 w-100 roboto-mono-font mb-2"
+                    href="{% url 'records' %}?hot_picks={{ record.hot_pick }}"><i class="fa-solid fa-fire-flame-curved"></i> Take a look at the latest hot picks!</a>
                 </div>
             </div>
         </section>
