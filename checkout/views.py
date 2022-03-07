@@ -56,7 +56,7 @@ def cache_checkout_data(request):
             pay_intent_id,
             metadata={
                 'cart': json.dumps(request.session.get('cart', {})),
-                # 'save_info': request.POST.get('save-info'),
+                'save_info': request.POST.get('save-info'),
                 'username': request.user,
             })
         return HttpResponse(status=200)
@@ -108,7 +108,13 @@ def checkout(request):
         # Check if the checkout form is valid and if true,
         # save the form.
         if checkout_form.is_valid():
-            order = checkout_form.save()
+            order = checkout_form.save(commit=False)
+            pay_intent_id = request.POST.get(
+                'client_secret', ''
+            ).split('_secret')[0]
+            order.stripe_pid = pay_intent_id
+            order.original_cart = json.dumps(cart)
+            order.save()
             # Loop through the items in the bag to create the lines within the
             # order entry on the db.
             for record_id, quantity in cart.items():

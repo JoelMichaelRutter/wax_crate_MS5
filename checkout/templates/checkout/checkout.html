@@ -151,6 +151,7 @@
                                 <div class="roboto-bold wax-crate-red-font mt-2" id="card-errors" role="alert">
                                     
                                 </div>
+                                <input type="hidden" value="{{ client_secret }}" name="client_secret">
                             </fieldset>
                             {% if user.is_authenticated %}
                                 <label for="save-info" class="roboto-mono-font">Click this box to save this information to your account:</label>

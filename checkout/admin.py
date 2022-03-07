@@ -23,6 +23,8 @@ class OrderAdmin(admin.ModelAdmin):
         'delivery_charge',
         'purchase_total_cost',
         'order_total',
+        'original_cart',
+        'stripe_pid',
     )
 
     fields = (
