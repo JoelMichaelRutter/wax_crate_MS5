@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <section class="col-12 col-md-10 offset-md-1 offset-lg-0 col-lg-5 text-center">
+            <div class="row">
+                <div class="col wax-crate-grey-font wax-crate-navy-bg">
+                    <h1 class="major-mono text-lowercase mt-2">Your Account</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    
+                </div>
+            </div>
+        </section>
+        <!-- HERO IMAGE - DISPLAYS ON LARGER SCREENS ONLY -->
+        <div class="d-none d-md-none d-lg-block col-lg-7 remove-padding">
+            <div class="account-hero-image">
+                <!-- LARGER SCREEN ORDER SUMMARY ACCORDION -->
+                <div class="accordion mb-2 d-md-none d-lg-block" id="orderSummaryAccordion">
+                    <div class="accordion-item order-history-accordion-item">
+                        <h2 class="accordion-header" id="orderHistoryAccordionHeader">
+                            <button
+                                class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-purple-bg wax-crate-grey-font"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#orderHistoryAccordionBody"
+                                aria-expanded="false" aria-controls="Collapses and expands the order summary">
+                                <i class="fa-solid fa-clock-rotate-left fa-xl mr-3"></i><span class="ms-3">View your order history</span>
+                            </button>
+                        </h2>
+                        <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
+                            aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
+                            <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

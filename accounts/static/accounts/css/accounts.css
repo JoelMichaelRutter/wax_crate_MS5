@@ -1,0 +1,20 @@
+.account-hero-image {
+    background-image: url('/media/account-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 90vh;
+}
+
+.accordion-item {
+    border: none;
+}
+
+.accordion-button {
+    padding: 1.38rem;
+}
+
+.accordion-body {
+    max-height: 450px;
+    overflow: auto;
+}
