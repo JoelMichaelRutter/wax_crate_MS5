@@ -198,6 +198,8 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 # that the data within the secret key cannot be used maliciously.
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+
 if 'USE_AWS' in os.environ:
     # File caching control settings
     AWS_S3_OBJECT_PARAMETERS = {
