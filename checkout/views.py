@@ -41,7 +41,9 @@ def cache_checkout_data(request):
     try:
         # From the post reqeust in the checkout form data, obtain the stripe
         # payment intent id and split it to get just the client_secret.
-        pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        pay_intent_id = request.POST.get(
+            'client_secret', ''
+            ).split('_secret')[0]
         # Setting up stripe package and passing in secret key from settings.
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Modify payment intent by calling stripe.PI.modify and passing in the
@@ -53,8 +55,8 @@ def cache_checkout_data(request):
         stripe.PaymentIntent.modify(
             pay_intent_id,
             metadata={
-                'cart': json.dumps(request.get('cart', {})),
-                'save_info': request.POST.get['save-info'],
+                'cart': json.dumps(request.session.get('cart', {})),
+                # 'save_info': request.POST.get('save-info'),
                 'username': request.user,
             })
         return HttpResponse(status=200)
@@ -63,7 +65,8 @@ def cache_checkout_data(request):
             request,
             "We can't process your payment right now. \
                 Please try again later!"
-            )
+        )
+        print(error)
         return HttpResponse(content=error, status=400)
 
 
@@ -89,10 +92,12 @@ def checkout(request):
         checkout_form_data = {
             'customer_full_name': request.POST['customer_full_name'],
             'customer_email': request.POST['customer_email'],
-            'customer_street_address1':
-                request.POST['customer_street_address1'],
-            'customer_street_address2':
-                request.POST['customer_street_address2'],
+            'customer_street_address1': request.POST[
+                'customer_street_address1'
+                ],
+            'customer_street_address2': request.POST[
+                'customer_street_address2'
+                ],
             'customer_town_or_city': request.POST['customer_town_or_city'],
             'customer_postcode': request.POST['customer_postcode'],
             'customer_county': request.POST['customer_county'],
@@ -187,7 +192,6 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        print(intent)
         checkout_form = CheckoutForm()
 
     # Checks if stripe public key is false and renders warning message to

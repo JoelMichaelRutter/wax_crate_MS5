@@ -90,66 +90,89 @@ checkoutForm.addEventListener('submit', function(ev) {
     $('checkout-submit').attr('disabled', true);
     $('#checkout-form').fadeToggle(100);
     $('#form-loading').fadeToggle(100);
-    /* Usinng the stripe confirm card payment method, I pass in the
-    client secret decalred at the top of the script which accesses
-    the key which is inserted into the template from the view which
-    in turn accesses it from the settings which is passed through the 
-    environmnent from env.py 
 
-    This an async function so I provide the card to stripe and in the 
-    "then" block I wait for the result of the interaction. Once the 
-    result is returned, I pass it in to the then block to check what
-    result is returned from stripe.
-    */
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: cardElement,
-            billing_details: {
+    /* Declare variable saveInfo and assign it the boolean value of the
+    checkbox in the checkout form. Get the value of the csrf token
+    from the form */
+    var saveInfo = Boolean($('#save-info').attr('checked'));
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+    // Creating object to pass data to cache_checkout_data view.
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save-info': saveInfo,
+    }
+    // Creating cache url
+    var url = '/checkout/cache_checkout_data/'
+    // Posting the cached data to the view.
+    // Once data has posted execute call back to complete payment,
+    $.post(url, postData).done(function() {
+        /* Using the stripe confirm card payment method, I pass in the
+        client secret decalred at the top of the script which accesses
+        the key which is inserted into the template from the view which
+        in turn accesses it from the settings which is passed through the 
+        environmnent from env.py 
+
+        This an async function so I provide the card to stripe and in the 
+        "then" block I wait for the result of the interaction. Once the 
+        result is returned, I pass it in to the then block to check what
+        result is returned from stripe.
+        */
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: cardElement,
+                billing_details: {
+                    name: $.trim(checkoutForm.customer_full_name.value),
+                    email: $.trim(checkoutForm.customer_email.value),
+                    address: {
+                        line1: $.trim(checkoutForm.customer_street_address1.value),
+                        line2: $.trim(checkoutForm.customer_street_address2.value),
+                        city: $.trim(checkoutForm.customer_town_or_city.value),
+                        state: $.trim(checkoutForm.customer_county.value),
+                    }
+                }
+            },
+            shipping: {
                 name: $.trim(checkoutForm.customer_full_name.value),
-                email: $.trim(checkoutForm.customer_email.value),
                 address: {
                     line1: $.trim(checkoutForm.customer_street_address1.value),
-                    line1: $.trim(checkoutForm.customer_street_address2.value),
+                    line2: $.trim(checkoutForm.customer_street_address2.value),
                     city: $.trim(checkoutForm.customer_town_or_city.value),
+                    postal_code: $.trim(checkoutForm.customer_postcode.value),
                     state: $.trim(checkoutForm.customer_county.value),
                 }
-            }
-        },
-        shipping: {
-            name: $.trim(checkoutForm.customer_full_name.value),
-            address: {
-                line1: $.trim(checkoutForm.customer_street_address1.value),
-                line1: $.trim(checkoutForm.customer_street_address2.value),
-                city: $.trim(checkoutForm.customer_town_or_city.value),
-                postal_code: $.trim(checkoutForm.customer_postcode.value),
-                state: $.trim(checkoutForm.customer_county.value),
-            }
-        }
-    }).then(function(result) {
-        if (result.error) {
-            /* Similar to the logic above, if the result is an error I populate
-            the error div with the message that is returned */
-            var errorContainer = document.getElementById('card-errors');
-            var content = `
-                <span class="icon wax-crate-red-font ps-1" role="alert">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                </span>
-                <span class="wax-crate-red-font ps-1">${result.error.message}</span>
-            `;
-            $(errorContainer).html(content);
-            $('#checkout-form').fadeToggle(100);
-            $('#form-loading').fadeToggle(100);
-            // If there has been an error, I re-enable the card element and from submit button.
-            cardElement.update({'disabled': false});
-            $('checkout-submit').attr('disabled', false);
-        /* In this else block, I handle the successsful submission to stripe
-        by submitting the payment details to stripe provided that the result
-        status is equal to 'succeeded' */
-        } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                checkoutForm.submit();
-            }
-        };
+            },
+        }).then(function(result) {
+            if (result.error) {
+                /* Similar to the logic above, if the result is an error I populate
+                the error div with the message that is returned */
+                var errorContainer = document.getElementById('card-errors');
+                var content = `
+                    <span class="icon wax-crate-red-font ps-1" role="alert">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </span>
+                    <span class="wax-crate-red-font ps-1">${result.error.message}</span>
+                `;
+                $(errorContainer).html(content);
+                $('#checkout-form').fadeToggle(100);
+                $('#form-loading').fadeToggle(100);
+                // If there has been an error, I re-enable the card element and from submit button.
+                cardElement.update({'disabled': false});
+                $('checkout-submit').attr('disabled', false);
+            /* In this else block, I handle the successsful submission to stripe
+            by submitting the payment details to stripe provided that the result
+            status is equal to 'succeeded' */
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    checkoutForm.submit();
+                }
+            };
+        });
+    }).fail(function() {
+        // Failure function for if cache_checkout_data gives a 400 error.
+        // Reloads page and error message from view displays.
+        location.reload()
     });
 });
 
