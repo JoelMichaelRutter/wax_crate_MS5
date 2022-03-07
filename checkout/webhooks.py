@@ -14,8 +14,6 @@ import stripe
 
 @require_POST
 @csrf_exempt
-
-
 def webhook(request):
     """
     This function listens for a stripe webhook through
@@ -40,11 +38,25 @@ def webhook(request):
     except stripe.error.SignatureVerificationError as e:
         # Exception to catch invalid stripe signature errors.
         return HttpResponse(status=400)
-    except Exception as e:
+    except Exception as code_error:
         # Generic exception to catch any other non specific errors.
         return HttpResponse(
-            content=e,
+            content=code_error,
             status=400
         )
-    print('Success')
-    return HttpResponse(status=200)
+    # Creating instance of WH handler
+    # class and assigning to "handler" variable.
+    handler = StripeWebHookHandler(request)
+
+    # Creating mapping dictionary to connect methods to wh statuses.
+    event_map = {
+        'payment_intent.succeeded': handler.handle_pay_intent_succeeded,
+        'payment_intent.payment_failed': handler.handle_pay_intent_unsuccessful,
+    }
+    # Obtain webhook types from stripe.
+    event_type = event['type']
+
+    event_handler = event_map.get(event_type, handler.handle_event)
+
+    response = event_handler(event)
+    return response

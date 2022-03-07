@@ -39,6 +39,6 @@ class StripeWebHookHandler:
         from stripe and provide unsuccessful response.
         """
         return HttpResponse(
-            content=f'Stripe webhook received: {event["type"]}',
+            content=f'Stripe webhook failed: {event["type"]}',
             status=200
         )
