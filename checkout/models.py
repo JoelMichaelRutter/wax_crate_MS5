@@ -15,6 +15,8 @@ from django.conf import settings
 
 from records.models import Record
 
+from accounts.models import CustomerAccount
+
 
 class Order(models.Model):
     """
@@ -22,6 +24,10 @@ class Order(models.Model):
     all customer orders.
     """
     order_number = models.CharField(max_length=32, null=False, editable=False)
+    customer_account = models.ForeignKey(
+        CustomerAccount, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='orders'
+    )
     customer_full_name = models.CharField(
         max_length=50, null=False, blank=False
     )
@@ -53,7 +59,9 @@ class Order(models.Model):
         null=False, default=0
     )
     original_cart = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default=''
+    )
 
     def _gen_order_number(self):
         """
