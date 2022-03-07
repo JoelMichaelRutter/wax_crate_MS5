@@ -104,6 +104,26 @@ checkoutForm.addEventListener('submit', function(ev) {
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: cardElement,
+            billing_details: {
+                name: $.trim(checkoutForm.customer_full_name.value),
+                email: $.trim(checkoutForm.customer_email.value),
+                address: {
+                    line1: $.trim(checkoutForm.customer_street_address1.value),
+                    line1: $.trim(checkoutForm.customer_street_address2.value),
+                    city: $.trim(checkoutForm.customer_town_or_city.value),
+                    state: $.trim(checkoutForm.customer_county.value),
+                }
+            }
+        },
+        shipping: {
+            name: $.trim(checkoutForm.customer_full_name.value),
+            address: {
+                line1: $.trim(checkoutForm.customer_street_address1.value),
+                line1: $.trim(checkoutForm.customer_street_address2.value),
+                city: $.trim(checkoutForm.customer_town_or_city.value),
+                postal_code: $.trim(checkoutForm.customer_postcode.value),
+                state: $.trim(checkoutForm.customer_county.value),
+            }
         }
     }).then(function(result) {
         if (result.error) {

@@ -4,17 +4,23 @@ in rendering templates. Import goo404 for locating db entries.
 2 - Importing messages framework from django for use in views.
 3 - Importing settings so that stripe keys can be accessed securely
 from environment variables.
-4 - Importing stripe from site packages to call out to API.
-5 - Importing Cart context processor so that current cart can be
+4 - Importing require post decorator for use in cache_checkout_data view.
+5 - Importing Http Response to use in cache_checkout_data view.
+6 - Importing stripe from site packages to call out to API.
+7 - Importing Cart context processor so that current cart can be
 accessed within the view to set payment amount.
-6 - Importing Record model so that records can be located in views.
-7 - Importing Order and LinesInOrder models to use in views.
-6 - Importing checkout form from forms.py to render in template.
+8 - Importing Record model so that records can be located in views.
+9 - Importing Order and LinesInOrder models to use in views.
+10 - Importing checkout form from forms.py to render in template.
 """
+
+import json
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
 import stripe
 
@@ -22,6 +28,43 @@ from cart.contexts import cart_items
 from records.models import Record
 from .models import Order, LinesInOrder
 from .forms import CheckoutForm
+
+
+@require_POST
+def cache_checkout_data(request):
+    """
+    This view caches the data in the checkout form
+    so that if the user ticks the button to save info,
+    we can access the information and store it in the
+    users account.
+    """
+    try:
+        # From the post reqeust in the checkout form data, obtain the stripe
+        # payment intent id and split it to get just the client_secret.
+        pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        # Setting up stripe package and passing in secret key from settings.
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        # Modify payment intent by calling stripe.PI.modify and passing in the
+        # payment intent id. Second parameter is the metadata which takes
+        # a dictionary of data containing the cart from the session, the
+        # boolean value from the save-info field on the checkout form and
+        # finally the username of the user submitting the form via
+        # the request.
+        stripe.PaymentIntent.modify(
+            pay_intent_id,
+            metadata={
+                'cart': json.dumps(request.get('cart', {})),
+                'save_info': request.POST.get['save-info'],
+                'username': request.user,
+            })
+        return HttpResponse(status=200)
+    except Exception as error:
+        messages.error(
+            request,
+            "We can't process your payment right now. \
+                Please try again later!"
+            )
+        return HttpResponse(content=error, status=400)
 
 
 def checkout(request):
@@ -46,8 +89,10 @@ def checkout(request):
         checkout_form_data = {
             'customer_full_name': request.POST['customer_full_name'],
             'customer_email': request.POST['customer_email'],
-            'customer_street_address1': request.POST['customer_street_address1'],
-            'customer_street_address2': request.POST['customer_street_address2'],
+            'customer_street_address1':
+                request.POST['customer_street_address1'],
+            'customer_street_address2':
+                request.POST['customer_street_address2'],
             'customer_town_or_city': request.POST['customer_town_or_city'],
             'customer_postcode': request.POST['customer_postcode'],
             'customer_county': request.POST['customer_county'],

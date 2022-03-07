@@ -33,7 +33,7 @@ class StripeWebHookHandler:
             status=200
         )
 
-    def handle_pay_intent_unsuccessful(self, event):
+    def handle_pay_intent_failed(self, event):
         """
         Handle specific payment intent failure event
         from stripe and provide unsuccessful response.
