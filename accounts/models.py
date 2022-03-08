@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from records.models import Genre
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -25,6 +26,7 @@ class CustomerAccount(models.Model):
         max_length=80, null=True, blank=True
     )
     account_county = models.CharField(max_length=80, null=True, blank=True)
+    favoured_genre = models.ForeignKey(Genre, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return str(self.user.username)
@@ -40,4 +42,4 @@ def create_or_amend_account(sender, instance, created, **kwargs):
     """
     if created:
         CustomerAccount.objects.create(user=instance)
-    instance.CustomerAccount.save()
+    # instance.User.save()

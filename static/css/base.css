@@ -558,15 +558,22 @@ input[type=number] {
     margin-top: 33%;
 }
 
+.account-info-p {
+    margin-top: 4rem;
+}
+
 .account-login-field {
     width: 100%;
     border-radius: 0;
 }
 
-#id_login,
-#id_password {
+#id_login, #id_password,
+#id_email, #id_email2,
+#id_username, #id_password1,
+#id_password2 {
     display: block;
-    margin-top: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
     height: 40px;
     border-top: none;
     border-right: none;
@@ -574,6 +581,44 @@ input[type=number] {
     font-family: 'Roboto Mono';
     border-bottom: 1px solid black;
     border-radius: 0;
+}
+
+#id_remember {
+    border-radius: none;
+}
+
+.form-check-input[type=checkbox] {
+    border-radius: 0;
+}
+
+#id_email, #id_email2,
+#id_username, #id_password1,
+#id_password2 {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    height: 40px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-family: 'Roboto Mono';
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+.verified, .unverified,
+.primary, .registered-email {
+    font-size: 0.7rem;
+}
+
+.red-cta-button {
+    background-color: #a13b2c;
+    color: #fff;
+}
+
+.red-cta-button:hover {
+    background-color: #a13b2c;
+    color: #fff;
 }
 
 
