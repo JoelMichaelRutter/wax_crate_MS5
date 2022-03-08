@@ -1,3 +1,22 @@
 from django.contrib import admin
+from .models import CustomerAccount
 
-# Register your models here.
+
+class CustomerAccountAdmin(admin.ModelAdmin):
+    """
+    Class to work with user account model within the
+    admin site.
+    """
+    readonly_fields = (
+        'user',
+        'account_street_address1',
+        'account_street_address2',
+        'account_postcode',
+        'account_county',
+    )
+
+
+admin.site.register(
+    CustomerAccount,
+    CustomerAccountAdmin
+)
