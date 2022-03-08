@@ -544,6 +544,43 @@ input[type=number] {
 /* -------------------------------------------------------------------- */
 
 
+/* ALL AUTH TEMPLATE STYLINGS */
+
+.auth-hero-image {
+    background-image: url('/media/account-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 90vh;
+}
+
+.account-form-container {
+    margin-top: 33%;
+}
+
+.account-login-field {
+    width: 100%;
+    border-radius: 0;
+}
+
+#id_login,
+#id_password {
+    display: block;
+    margin-top: 1rem;
+    height: 40px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-family: 'Roboto Mono';
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+
+/* END OF ALL AUTH TEMPLATE STYLING */
+
+
+
 /* MEDIA QUERIES */
 
 @media only screen and (min-width: 600px)  {
