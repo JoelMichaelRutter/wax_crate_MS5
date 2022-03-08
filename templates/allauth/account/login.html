@@ -15,13 +15,13 @@
 
   <form class="login text-start roboto-mono-font" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
-    {{form|crispy}}
+    {{ form|crispy }}
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
     <div class="text-start">
-      <a class="button secondaryAction roboto-mono-font mt-4 btn alt-cta-button rounded-0 hvr-float text-decoration-none" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-      <button class="primaryAction btn dark-cta-button rounded-0 mt-4 hvr-grow-shadow" type="submit">{% trans "Sign In" %}</button>
+      <a class="button secondaryAction roboto-mono-font mt-4 btn alt-cta-button rounded-0 hvr-float text-decoration-none" aria-label="Click here to go to the reset your password page" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      <button class="primaryAction btn dark-cta-button rounded-0 mt-4 hvr-grow-shadow" aria-label="Click this button to submit your login credentials" type="submit">{% trans "Sign In" %}</button>
     </div>
   </form>
 
@@ -33,6 +33,10 @@
     $(document).ready(function(){
       let labels = $('.requiredField')
       labels.addClass('d-none')
+      // Set aria labels on rendered form elements.
+      $('#id_login').attr('aria-label', 'Enter your username or email in this field.')
+      $('#id_password').attr('aria-label', 'Enter your password into this field.')
+      $('#id_remember').attr('aria-label', 'Tick this box to remember your details')
     });
   </script>
 {% endblock %}

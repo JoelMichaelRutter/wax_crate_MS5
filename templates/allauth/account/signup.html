@@ -16,16 +16,23 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn dark-cta-button roboto-mono-font rounded-0 mt-4 hvr-grow-shadow mb-4" type="submit">Register</button>
+  <button class="btn dark-cta-button roboto-mono-font rounded-0 mt-4 hvr-grow-shadow mb-4" aria-label="Hit enter on this button to register" type="submit">Register</button>
 </form>
 
 {% endblock %}
 
 {% block postload_js %}
+  {{ block.super }}
   <script type="text/javascript">
     $(document).ready(function(){
       let labels = $('.requiredField')
       labels.addClass('d-none')
+      // Add aria-labels to rendered inputs for accessability purposes as form labels are hidden
+      $('#id_email').attr('aria-label', "Enter your email address here.")
+      $('#id_email2').attr('aria-label', "Confirm your email address here.")
+      $('#id_username').attr('aria-label', "Enter your desired username here.")
+      $('#id_password1').attr('aria-label', "Enter your desired password here.")
+      $('#id_password2').attr('aria-label', "Reconfirm your password here.")
     });
   </script>
 {% endblock %}
