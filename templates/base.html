@@ -80,7 +80,7 @@
                         </li>
                         <li class="nav-item hvr-float">
                             <a class="nav-link roboto-mono-font text-dark" href="{% url 'records' %}"><i
-                                    class="fa-solid fa-record-vinyl"></i> All Records</a>
+                                    class="fa-solid fa-record-vinyl"></i> Records</a>
                         </li>
                         <li class="nav-item hvr-float">
                             <a class="nav-link roboto-mono-font text-dark"
@@ -103,7 +103,7 @@
                             <a class="nav-link dropdown-toggle roboto-mono-font text-dark" href="#"
                                 id="navbaraccountDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <i class="fa-solid fa-user-gear"></i> My Account
+                                <i class="fa-solid fa-user-gear"></i> Account
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if request.user.is_authenticated %}
@@ -112,7 +112,7 @@
                                             class="fa-solid fa-gear"></i> Back Office</a></li>
                                 {% endif %}
                                 <li><a class="dropdown-item roboto-mono-font text-dark" href="{% url 'your_account' %}"><i
-                                            class="fa-solid fa-circle-user"></i> My Account</a></li>
+                                            class="fa-solid fa-circle-user"></i> Account</a></li>
                                 <li><a class="dropdown-item text-dark" href="{% url 'account_logout' %}"><i
                                             class="fa-solid fa-door-open"></i> Sign out</a></li>
                                 {% else %}
