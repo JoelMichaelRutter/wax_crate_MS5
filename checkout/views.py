@@ -25,9 +25,10 @@ from django.http import HttpResponse
 import stripe
 
 from cart.contexts import cart_items
-from records.models import Record
-from .models import Order, LinesInOrder
 from accounts.models import CustomerAccount
+from records.models import Record
+from accounts.forms import CustomerAccountForm
+from .models import Order, LinesInOrder
 from .forms import CheckoutForm
 
 
@@ -233,12 +234,35 @@ def checkout_success(request, order_number):
     # Get the order number from the Order table using the order
     # number as a key.
     order = get_object_or_404(Order, order_number=order_number)
-    if request.user.is_authenticated():
+
+    # Check if user is authenticated and if true, attach order to account.
+    if request.user.is_authenticated:
         # Get the customers account from the customer accoutn model.
         customer_account = CustomerAccount.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.customer_account = customer_account
         order.save()
+
+    # Check if save info is in post data.
+    if save_info:
+        # If true, assign checkout form data to
+        # fields on customer account model
+        customer_account_data = {
+            'account_street_address1': order.customer_street_address1,
+            'account_street_address2': order.customer_street_address2,
+            'account_town_or_city': order.customer_town_or_city,
+            'account_postcode': order.customer_postcode,
+            'account_county': order.customer_county,
+        }
+        # Create instance of CustomerAccountForm and
+        # dictate to update the customer account obtained above.
+        customer_account_form = CustomerAccountForm(
+            customer_account_data,
+            instance=customer_account
+        )
+        # Check that form is valid and if it is, save.
+        if customer_account_form.is_valid():
+            customer_account_form.save()
     # Send success message to the user.
     messages.success(
         request,
