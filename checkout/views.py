@@ -27,6 +27,7 @@ import stripe
 from cart.contexts import cart_items
 from records.models import Record
 from .models import Order, LinesInOrder
+from accounts.models import CustomerAccount
 from .forms import CheckoutForm
 
 
@@ -232,6 +233,11 @@ def checkout_success(request, order_number):
     # Get the order number from the Order table using the order
     # number as a key.
     order = get_object_or_404(Order, order_number=order_number)
+    # Get the customers account from the customer accoutn model.
+    customer_account = CustomerAccount.objects.get(user=request.user)
+    # Attach the user's profile to the order
+    order.customer_account = customer_account
+    order.save()
     # Send success message to the user.
     messages.success(
         request,

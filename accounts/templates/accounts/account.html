@@ -15,6 +15,63 @@
             <div class="row">
                 <div class="col wax-crate-grey-font wax-crate-navy-bg">
                     <h1 class="major-mono text-lowercase mt-2">Your Account</h1>
+                    <div class="col-lg-7 remove-padding">
+                        <!-- SMALLER SCREEN ORDER SUMMARY ACCORDION -->
+                        <div class="accordion mb-2 d-block d-lg-none " id="orderSummaryAccordion">
+                            <div class="accordion-item order-history-accordion-item">
+                                <h2 class="accordion-header" id="orderHistoryAccordionHeader">
+                                    <button
+                                        class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-purple-bg wax-crate-grey-font"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#orderHistoryAccordionBody"
+                                        aria-expanded="false" aria-controls="Collapses and expands the order summary">
+                                        <i class="fa-solid fa-clock-rotate-left fa-xl mr-3"></i><span class="ms-3">View your order history</span>
+                                    </button>
+                                </h2>
+                                <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
+                                    aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
+                                    <div class="accordion-body text-dark text-start roboto-mono-font mobile-accordion-body-text">
+                                        <div class="accordion-body text-start text-dark roboto-mono-font mobile-accordion-body-text">
+                                            {% for order in orders %}
+                                                <div class="mobile-order-history-grid-parent">
+                                                    <div class="mobile-order-num-container">
+                                                        <p class="mb-1 text-decoration-underline roboto-bold">
+                                                            Order#:
+                                                        </p>
+                                                        <div class="div">
+                                                            <a class="d-block"href="#" title="{{ order.order_number }}">
+                                                                {{ order.order_number|truncatechars:8 }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mobile-order-date-container">
+                                                        <p class="mb-1 text-decoration-underline roboto-bold">
+                                                            Date:
+                                                        </p>
+                                                        {{ order.order_date|date:'d/m/Y' }}
+                                                    </div>
+                                                    <div class="pt-2 mobile-order-lines-container">
+                                                        <p class="mb-1 text-decoration-underline roboto-bold">
+                                                            Records purchased:
+                                                        </p>
+                                                        <ul class="list-unstyled">
+                                                            {% for record in order.order_lines.all %}
+                                                                <li class="">{{ record.record.title }} / Qty:{{record.quantity}}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mobile-order-total-container ">
+                                                        <p class="mb-1 text-decoration-underline roboto-bold">
+                                                            Total:
+                                                        </p>
+                                                        £{{ order.order_total }}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -44,8 +101,31 @@
                         </h2>
                         <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
                             aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
-                            <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
-                                {{ orders }}
+                            <div class="accordion-body text-center roboto-mono-font mobile-accordion-body-text">
+                                <div class="order-history-heading-parent">
+                                    <div class="order-number-heading-container roboto-bold text-decoration-underline">Order#</div>
+                                    <div class="order-date-heading-container roboto-bold text-decoration-underline">Date</div>
+                                    <div class="order-lines-heading-container roboto-bold text-decoration-underline">Records Purchased</div>
+                                    <div class="order-total-heading-continer roboto-bold text-decoration-underline">Order total</div>
+                                </div>
+                                {% for order in orders %}
+                                    <div class="order-history-data-parent">
+                                        <div class="order-number-data-container roboto-mono-font wax-crate-purple-font text-decoration-underline">
+                                            <a href="#" title="{{ order.order_number }}">
+                                                {{ order.order_number|truncatechars:8 }}
+                                            </a>
+                                        </div>
+                                        <div class="order-date-data-container roboto-mono-font">{{ order.order_date|date:'d/m/Y' }}</div>
+                                        <div class="order-lines-data-container roboto-mono-font">
+                                            <ul class="list-unstyled">
+                                                {% for record in order.order_lines.all %}
+                                                    <li class="">{{ record.record.title }} / Qty:{{record.quantity}}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <div class="order-total-data-continer roboto-mono-font">£{{ order.order_total }}</div>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
