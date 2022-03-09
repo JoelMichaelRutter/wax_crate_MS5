@@ -12,6 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <section class="col-12 col-md-10 offset-md-1 offset-lg-0 col-lg-5 text-center">
+            <!-- HEADER ROW -->
             <div class="row">
                 <div class="col wax-crate-grey-font wax-crate-navy-bg">
                     <h1 class="major-mono text-lowercase mt-2">Your Account</h1>
@@ -38,7 +39,7 @@
                                                             Order#:
                                                         </p>
                                                         <div class="div">
-                                                            <a class="d-block"href="#" title="{{ order.order_number }}">
+                                                            <a class="d-block"href="{% url 'order_details' order.order_number %}" title="{{ order.order_number }}">
                                                                 {{ order.order_number|truncatechars:8 }}
                                                             </a>
                                                         </div>
@@ -67,6 +68,7 @@
                                                     </div>
                                                 </div>
                                             {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -74,13 +76,14 @@
                     </div>
                 </div>
             </div>
+            <!-- FORM AND CONTENT ROW -->
             <div class="row">
                 <div class="col-12 col-lg-10 offset-lg-1">
                     <p class="roboto-bold mt-5">You can use the form below to manage your account information.</p>
                     <form class="mt-2 text-start" action="{% url 'your_account' %}" method="POST" id="account-details-form">
                         {% csrf_token %}
                         {{ account_form|crispy }}
-                        <button type="submit" class="mt-4 dark-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-grow-shadow">Update Account Information</button>
+                        <button type="submit" class="mt-4 mb-4 dark-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-grow-shadow">Update Account Information</button>
                     </form>
                 </div>
             </div>
@@ -110,20 +113,20 @@
                                 </div>
                                 {% for order in orders %}
                                     <div class="order-history-data-parent">
-                                        <div class="order-number-data-container roboto-mono-font wax-crate-purple-font text-decoration-underline">
-                                            <a href="#" title="{{ order.order_number }}">
+                                        <div class="order-number-data-container roboto-mono-font text-decoration-underline d-flex align-items-center justify-content-center">
+                                            <a class="wax-crate-purple-font" href="{% url 'order_details' order.order_number %}" title="{{ order.order_number }}">
                                                 {{ order.order_number|truncatechars:8 }}
                                             </a>
                                         </div>
-                                        <div class="order-date-data-container roboto-mono-font">{{ order.order_date|date:'d/m/Y' }}</div>
-                                        <div class="order-lines-data-container roboto-mono-font">
-                                            <ul class="list-unstyled">
+                                        <div class="order-date-data-container roboto-mono-font d-flex align-items-center justify-content-center">{{ order.order_date|date:'d/m/Y' }}</div>
+                                        <div class="order-lines-data-container d-flex align-items-center justify-content-center roboto-mono-font">
+                                            <ul class="list-unstyled mt-2 mb-2">
                                                 {% for record in order.order_lines.all %}
                                                     <li class="">{{ record.record.title }} / Qty:{{record.quantity}}</li>
                                                 {% endfor %}
                                             </ul>
                                         </div>
-                                        <div class="order-total-data-continer roboto-mono-font">£{{ order.order_total }}</div>
+                                        <div class="order-total-data-continer roboto-mono-font d-flex align-items-center justify-content-center">£{{ order.order_total }}</div>
                                     </div>
                                 {% endfor %}
                             </div>

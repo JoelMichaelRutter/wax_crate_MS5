@@ -86,10 +86,15 @@
                             </div>
                         </div>
                     </div>
-                    <p class="roboto-bold text-start mt-2">Your record(s) will be dispatched within three working days.</p>
-                    <p class="roboto-bold text-start">Looking for your next favourite record?</p>
-                    <a class="listen-button btn btn-large dark-cta-button hvr-float rounded-0 w-100 roboto-mono-font mb-2"
-                    href="{% url 'records' %}?hot_picks={{ record.hot_pick }}"><i class="fa-solid fa-fire-flame-curved"></i> Take a look at the latest hot picks!</a>
+                    {% if from_account %}
+                        <a class="listen-button mt-4 btn btn-large dark-cta-button hvr-float rounded-0 w-100 roboto-mono-font mb-2"
+                        href="{% url 'your_account' %}"><i class="fa-solid fa-circle-user"></i> Back to your account</a>
+                    {% else %}
+                        <p class="roboto-bold text-start mt-2">Your record(s) will be dispatched within three working days.</p>
+                        <p class="roboto-bold text-start">Looking for your next favourite record?</p>
+                        <a class="listen-button btn btn-large dark-cta-button hvr-float rounded-0 w-100 roboto-mono-font mb-2"
+                        href="{% url 'records' %}?hot_picks={{ record.hot_pick }}"><i class="fa-solid fa-fire-flame-curved"></i> Take a look at the latest hot picks!</a>
+                    {% endif %}
                 </div>
             </div>
         </section>

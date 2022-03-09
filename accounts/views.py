@@ -6,6 +6,8 @@ from .models import CustomerAccount
 
 from .forms import CustomerAccountForm
 
+from checkout.models import Order
+
 
 def show_customer_account(request):
     """
@@ -42,6 +44,31 @@ def show_customer_account(request):
     context = {
         'account_form': account_form,
         'orders': orders,
+    }
+
+    return render(request, template, context)
+
+
+def order_details(request, order_number):
+    """
+    Function to display order in the same
+    fashion as the checkout success page from
+    the order history on the customers account.
+    """
+    # Get the order from the order table using the
+    # order number parameter
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.info(
+        request,
+        f"You're looking at the past order confirmation for \
+        {order_number}"
+    )
+
+    template = 'checkout/checkout_success.html'
+
+    context = {
+        'order': order,
+        'from_account': True,
     }
 
     return render(request, template, context)
