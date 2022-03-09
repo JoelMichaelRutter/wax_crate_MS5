@@ -200,7 +200,37 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        checkout_form = CheckoutForm()
+        # Check if user is authenticated and if so,
+        # pull the account information from the User and
+        # account models into the checkout form.
+        if request.user.is_authenticated:
+            try:
+                customer_account = CustomerAccount.objects.get(
+                    user=request.user
+                )
+                checkout_form = CheckoutForm(initial={
+                    'customer_full_name': (
+                        customer_account.user.get_full_name()
+                    ),
+                    'customer_email': customer_account.user.email,
+                    'customer_street_address1': (
+                        customer_account.account_street_address1
+                    ),
+                    'customer_street_address2': (
+                        customer_account.account_street_address2
+                    ),
+                    'customer_town_or_city': (
+                        customer_account.account_town_or_city
+                    ),
+                    'customer_postcode': customer_account.account_postcode,
+                    'customer_county': customer_account.account_county,
+                })
+            # Render empty form if account doesnt exist
+            except CustomerAccount.DoesNotExist:
+                checkout_form = CheckoutForm()
+        else:
+            # Render empty form if user is unauthenticated.
+            checkout_form = CheckoutForm()
 
     # Checks if stripe public key is false and renders warning message to
     # admin to state the stripe public key is missing.
