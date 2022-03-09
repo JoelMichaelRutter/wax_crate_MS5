@@ -19,7 +19,12 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 offset-lg-1">
-                    {{ customer_account }}
+                    <p class="roboto-bold mt-5">You can use the form below to manage your account information.</p>
+                    <form class="mt-2 text-start" action="{% url 'your_account' %}" method="POST" id="account-details-form">
+                        {% csrf_token %}
+                        {{ account_form|crispy }}
+                        <button type="submit" class="mt-4 dark-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-grow-shadow">Update Account Information</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -40,7 +45,7 @@
                         <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
                             aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
                             <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
-                                
+                                {{ orders }}
                             </div>
                         </div>
                     </div>

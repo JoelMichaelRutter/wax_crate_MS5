@@ -13,17 +13,17 @@ class CustomerAccount(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='customer_account'
     )
-    account_postcode = models.CharField(
-        max_length=20, null=True, blank=True
-    )
-    account_town_or_city = models.CharField(
-        max_length=40, null=True, blank=True
-    )
     account_street_address1 = models.CharField(
         max_length=80, null=True, blank=True
     )
     account_street_address2 = models.CharField(
         max_length=80, null=True, blank=True
+    )
+    account_town_or_city = models.CharField(
+        max_length=40, null=True, blank=True
+    )
+    account_postcode = models.CharField(
+        max_length=20, null=True, blank=True
     )
     account_county = models.CharField(max_length=80, null=True, blank=True)
 
