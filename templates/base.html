@@ -108,7 +108,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item roboto-mono-font text-dark" aria-current="page" href="#"><i
+                                <li><a class="dropdown-item roboto-mono-font text-dark" aria-current="page" href="{% url 'back_office' %}"><i
                                             class="fa-solid fa-gear"></i> Back Office</a></li>
                                 {% endif %}
                                 <li><a class="dropdown-item roboto-mono-font text-dark" href="{% url 'your_account' %}"><i

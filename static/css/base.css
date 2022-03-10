@@ -385,14 +385,11 @@ a:hover {
 
 .record-form-field {
     display: block;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     height: 35px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
     font-family: 'Roboto Mono', monospace;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     border-radius: 0;
 }
 
@@ -651,6 +648,16 @@ input[type=number] {
 
 /* END OF ALL AUTH TEMPLATE STYLING */
 
+/* BACK OFFICE STYLINGS */
+
+.add-record-bg {
+    background-color: #4d4b6e45;
+}
+
+.record-form-font {
+    font-size: x-small;
+}
+/* END OF BACK OFFICE STYLINGS */
 
 
 /* MEDIA QUERIES */

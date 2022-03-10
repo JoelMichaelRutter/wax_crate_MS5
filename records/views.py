@@ -1,8 +1,19 @@
+"""
+1 - Importing login required decorator to secure CRUD functionality.
+2 - Importing render, GOO404, redirect and reverse shortcuts for us in views.
+3 - Importing messages framework
+4 - Importing Q for database querying within all records view.
+5 - Importing lower function for use in all records view.
+6 - Importing Record and Genre models for accessing db entries.
+7 - Importing record form from forms.py to add to context.
+"""
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Record, Genre
+from .forms import RecordForm
 
 
 def all_records(request):
@@ -82,3 +93,27 @@ def show_record_details(request, slug):
         'record': record,
     }
     return render(request, 'records/record_details.html', context)
+
+@login_required
+def back_office(request):
+    """
+    This view uses the record form class to create
+    a pre-rendered form for admins to add records
+    and add and delete genres on db without using
+    django admin.
+    """
+    record_form = RecordForm()
+    template = 'records/back_office.html'
+
+    context = {
+        'record_form': record_form,
+    }
+    return render(request, template, context)
+
+
+def add_record(request):
+    """
+    This view takes the data submitted by
+    the record form in the back office.
+    """
+    
