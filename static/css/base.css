@@ -621,6 +621,19 @@ input[type=number] {
     color: #fff;
 }
 
+.current-password {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    height: 40px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-family: 'Roboto Mono';
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
 
 /* END OF ALL AUTH TEMPLATE STYLING */
 

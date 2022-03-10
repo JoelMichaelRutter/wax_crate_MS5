@@ -85,6 +85,16 @@
                         {{ account_form|crispy }}
                         <button type="submit" class="mt-4 mb-4 dark-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-grow-shadow">Update Account Information</button>
                     </form>
+                    <h4 class="roboto-bold text-start">Manage your account details</h4>
+                    <p class="roboto-mono-font text-start">You can manage your account details by using the links below:</p>
+                    <div class="d-flex justify-content-around flex-wrap mb-4">
+                        <a href="{% url 'account_email' %}" class="roboto-mono-font mt-2 btn alt-cta-button rounded-0 hvr-float text-decoration-none wax-crate-navy-font">
+                            <i class="fa-solid fa-at"></i> Manage Email Addresses
+                        </a>
+                        <a href="{% url 'account_change_password' %}" class="roboto-mono-font mt-2 btn dark-cta-button rounded-0 hvr-float text-decoration-none wax-crate-navy-font">
+                            <i class="fa-solid fa-lock"></i> Change Password
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
