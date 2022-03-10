@@ -1,12 +1,25 @@
 """
-1 - Importing http response to use in webhook handlers.
+1 - Importing json to use in webhooks
+2 - Importing time to sleep program when checking for orders.
+3 - Importing HTTP response shortcut to communicate with stripe.
+4 - Importing send_mail method from django to send conf emails.
+5 - Importing render to string from django to ensure emails are sent correctly
+6 - Importing settings file to access mail backend.
+4 - Importing record model so that webhook can identify records in cart
+5 - Importing CustomerAccount model so that webhooks can attach info to
+accounts.
+5 - Importing Order and Order lines so that webhooks can create orders in db
 """
 import json
 import time
 
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 from records.models import Record
+from accounts.models import CustomerAccount
 from .models import Order, LinesInOrder
 
 
@@ -16,8 +29,29 @@ class StripeWebHookHandler:
     incoming webhooks from stripe.
     """
     def __init__(self, request):
-
         self.request = request
+
+    def _send_confirmation_email(self, order):
+        """Send the user a confirmation email"""
+        # Get customer email from order
+        customer_email = order.customer_email
+        # Render text file to string and pass in order as context
+        subject = render_to_string(
+            'checkout/conf_emails/confirmation_email_subject.txt',
+            {'order': order}
+        )
+        # Render txt body file to string and pass order and
+        # business email from settings in as context.
+        body = render_to_string(
+            'checkout/conf_emails/confirmation_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+        )
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [customer_email]
+        )
 
     def handle_event(self, event):
         """
@@ -56,6 +90,35 @@ class StripeWebHookHandler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update the customers account if save_info is checked and order
+        # is created by webhook.
+
+        # Setting account to none to ensure correct starting value and allow
+        # anonymous users to checkout.
+        account = None
+        # Get username from payment intent metadata
+        username = intent.metadata.username
+        # Check if user name not anonymous and if true, get customer account.
+        if username != 'AnonymousUser':
+            account = CustomerAccount.objects.get(
+                user__username=username
+            )
+            # Check that the save info boolean is true and if so
+            # assign the account model fields the shipping
+            # save the account with the information assigned.
+            if save_info:
+                account.account_street_address1 = (
+                    shipping_details.address.line1
+                )
+                account.account_street_address2 = (
+                    shipping_details.address.line2
+                )
+                account.account_postcode = shipping_details.address.postal_code
+                account.account_town_or_city = shipping_details.address.city
+                account.account_county = shipping_details.address.state
+                # Save the account object.
+                account.save()
 
         # Init a variable to false for existing order, this is
         # changed further down the script based on DB data.
@@ -102,6 +165,7 @@ class StripeWebHookHandler:
         # response and do not save
         # the order to the database.
         if order_exists:
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'WH Received: {event["type"]} ORDER SUCCESSFUL',
                 status=200
@@ -112,6 +176,7 @@ class StripeWebHookHandler:
             try:
                 order = Order.objects.create(
                     customer_full_name=shipping_details.name,
+                    customer_account=account,
                     customer_email=billing_details.email,
                     customer_postcode=shipping_details.address.postal_code,
                     customer_town_or_city=shipping_details.address.city,
@@ -141,6 +206,8 @@ class StripeWebHookHandler:
                     content=f'WH Received: {event["type"]} ERROR: {error}',
                     status=500
                 )
+            # Send conf email as payment and order successfully created by WH.
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'WH Received: {event["type"]} ORDER CREATED BY WH',
                 status=200

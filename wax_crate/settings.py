@@ -201,6 +201,8 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
+DEFAULT_FROM_EMAIL = 'waxcrate_recordshop@example.co.uk'
+
 if 'USE_AWS' in os.environ:
     # File caching control settings
     AWS_S3_OBJECT_PARAMETERS = {

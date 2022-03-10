@@ -1,0 +1,26 @@
+Salutations!
+
+Thanks so much for your order, we hope you love your records.
+
+This is a confirmation email for your order:
+
+Order Number: {{ order.order_number }}
+Order placed on: {{  order.order_date }}
+
+Total cost of your purchases: £{{ order.purchase_total_cost }}
+Delivery Charges: £{{ order.delivery_charge }}
+
+Order Total: £{{ order.order_total }}
+
+Shipping Address:
+{{ order.customer_street_address1 }}
+{{ order.customer_town_or_city }}
+{{ order.customer_postcode }}
+
+We received the email address to contact you when you checked out as {{ order.customer_email }}, so we'll contact you there if there are any problems.
+
+If you have any questions, you can reach us at {{ contact_email }}.
+
+Thanks again, and happy digging!
+
+WAX CRATE
