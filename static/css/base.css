@@ -382,6 +382,21 @@ select.record-sort-field > option {
 a:hover {
     color: #262533;
 }
+
+.record-form-field {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 35px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-family: 'Roboto Mono', monospace;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+
 /* END RECORDS PAGE STYLING */
 
 /* ----------------------------------------------------------- */
@@ -633,7 +648,6 @@ input[type=number] {
     border-bottom: 1px solid black;
     border-radius: 0;
 }
-
 
 /* END OF ALL AUTH TEMPLATE STYLING */
 
