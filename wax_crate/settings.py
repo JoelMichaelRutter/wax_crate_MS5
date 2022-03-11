@@ -233,8 +233,10 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# These code snippets were taken from the summernote docs
+# https://github.com/summernote/django-summernote
 SUMMERNOTE_THEME = 'bs5'
-
+# Customised the summernote widgets.
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode, default
     'iframe': True,

@@ -36,6 +36,7 @@
                             <div>{{ record_form.release_year | as_crispy_field }}</div>
                             <div>{{ record_form.condition | as_crispy_field }}</div>
                         </div>
+                        <div>{{ record_form.tracklist | as_crispy_field }}</div>
                     </fieldset>
                     <fieldset class="mb-3">
                         <legend class="roboto-bold">
@@ -50,12 +51,8 @@
                                 Please use the share album link from the media on spotify in the link to music field.
                             </p>
                         </div>
-                        <div class="d-block d-md-flex flex-wrap align-items-center">
-                            <div class="text-start col-12 col-lg-6">
-                                {{ record_form.tracklist | as_crispy_field }}
-                            </div>
-                            <div class="text-start col-12 col-lg-6">{{ record_form.description | as_crispy_field }}</div>
-                        </div>
+                        <div class="text-start">{{ record_form.description | as_crispy_field }}</div>
+                        
                     </fieldset>
                     <div class="d-flex justify-content-between mb-3">
                         <button class="alt-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-float" type="reset">

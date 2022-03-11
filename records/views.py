@@ -10,6 +10,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.db import IntegrityError
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Record, Genre
@@ -94,6 +95,7 @@ def show_record_details(request, slug):
     }
     return render(request, 'records/record_details.html', context)
 
+
 @login_required
 def back_office(request):
     """
@@ -111,9 +113,32 @@ def back_office(request):
     return render(request, template, context)
 
 
+@login_required
 def add_record(request):
     """
     This view takes the data submitted by
     the record form in the back office.
     """
-    
+    if request.method == 'POST':
+        record_form = RecordForm(request.POST, request.FILES)
+        try:
+            if record_form.is_valid():
+                record_form.save()
+                messages.success(
+                    request,
+                    "Record added succesfully"
+                )
+                return redirect('back_office')
+            else:
+                messages.error(
+                    request,
+                    f'{record_form.errors}'
+                )
+                return redirect('back_office')
+        except IntegrityError as error:
+            messages.error(
+                request,
+                f'The record you are trying to add already exists \
+                    {error}'
+            )
+            return redirect('back_office')

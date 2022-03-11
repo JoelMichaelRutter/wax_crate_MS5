@@ -26,8 +26,8 @@ import stripe
 
 from cart.contexts import cart_items
 from accounts.models import CustomerAccount
-from records.models import Record
 from accounts.forms import CustomerAccountForm
+from records.models import Record
 from .models import Order, LinesInOrder
 from .forms import CheckoutForm
 
