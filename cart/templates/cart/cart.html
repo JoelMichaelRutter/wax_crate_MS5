@@ -22,8 +22,13 @@
                                 <div class="card-grid-parent">
                                     <!-- IMAGE GRID CONTAINER -->
                                     <div class="cart-image-grid-container align-items-center d-flex">
+                                        {% if record.record.image %}
                                         <img class="img-fluid rounded-0 my-auto" src="{{ record.record.image.url }}"
                                             alt="{{ record.title }}">
+                                        {% else %}
+                                        <img class="img-fluid rounded-0 my-auto" src="{{ MEDIA_URL }}no-image-available.jpg"
+                                            alt="No image available">
+                                        {% endif %}
                                     </div>
                                     <!-- RECORD INFO GRID CONTAINER -->
                                     <div class="record-info-grid-container text-start">

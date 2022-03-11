@@ -128,17 +128,17 @@ def add_record(request):
                     request,
                     "Record added succesfully"
                 )
-                return redirect('back_office')
+                return redirect(reverse('back_office'))
             else:
                 messages.error(
                     request,
                     f'{record_form.errors}'
                 )
-                return redirect('back_office')
+                return redirect(reverse('back_office'))
         except IntegrityError as error:
             messages.error(
                 request,
                 f'The record you are trying to add already exists \
                     {error}'
             )
-            return redirect('back_office')
+            return redirect(reverse('back_office'))
