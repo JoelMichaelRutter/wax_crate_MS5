@@ -191,3 +191,18 @@ def edit_record(request, record_id):
     }
 
     return render(request, template, context)
+
+@login_required
+def delete_record(request, record_id):
+    """
+    View to remove records from the database
+    This is triggered via a modal on the records
+    page.
+    """
+    record = get_object_or_404(Record, pk=record_id)
+    record.delete()
+    messages.success(
+        request,
+        "Record deleted successfully."
+    )
+    return redirect(reverse('records'))

@@ -393,6 +393,31 @@ a:hover {
     border-radius: 0;
 }
 
+.admin-action-container {
+    /* padding: 1rem 1rem; */
+    background-color: #fff;
+    text-align: center;
+}
+
+.edit-btn,
+.delete-record-btn {
+    width: 50%;
+    color: #f8f9fa;
+}
+
+.delete-record-btn {
+    background-color: #a13b2c;
+}
+
+.edit-btn,
+.delete-record-btn:hover {
+    color: #f8f9fa!important;
+}
+
+.modal-button:hover {
+    color: #f8f9fa;
+}
+
 
 /* END RECORDS PAGE STYLING */
 
@@ -657,6 +682,7 @@ input[type=number] {
 .record-form-font {
     font-size: x-small;
 }
+
 /* END OF BACK OFFICE STYLINGS */
 
 
