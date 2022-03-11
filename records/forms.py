@@ -1,14 +1,23 @@
+from django_summernote.widgets import SummernoteWidget
 from django import forms
 from .models import Genre, Record
-from django_summernote.widgets import SummernoteWidget
 
-# class GenreForm(forms.ModelForm):
-#     class Meta:
-#         model = Genre
-#         fields = '__all__'
 
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
+class GenreForm(forms.ModelForm):
+    """
+    Form for adding genres via the genre model.
+    """
+    class Meta:
+        """
+        Meta class to describe which model.
+        """
+        model = Genre
+        fields = ('genre',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['genre'].widget.attrs.update({'class': 'record-form-field'})
 
 
 class RecordForm(forms.ModelForm):

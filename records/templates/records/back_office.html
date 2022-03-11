@@ -120,8 +120,84 @@
                 {% endif %}
             </div>
         </section>
+        <!-- GENRE FORM SECTION -->
+        <section class="col-12 col-md-6 add-genre-bg">
+            <div class="row text-center">
+                <div class="col wax-crate-grey-font wax-crate-pink-bg">
+                    <h1 class="major-mono text-lowercase mt-2">Genre Management</h1>
+                </div>
+            </div>
+            <div class="row text-start">
+                <p class="roboto-bold">
+                    If you need to add a record where the genre does not already exist, you can use the form below to add the genre.
+                </p>
+                <form action="{% url 'genre_add' %}" method="POST" class="text-start">
+                    {% csrf_token %}
+                    <fieldset class="mb-3">
+                        <legend class="roboto-bold">
+                            Add Genre
+                        </legend>
+                        <div>{{ genre_form.genre | as_crispy_field }}</div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <button class="dark-cta-button btn btn-large rounded-0 mt-2 roboto-mono-font hvr-grow-shadow" type="submit">
+                            <i class="fa-solid fa-circle-check"></i> Add Genre
+                        </button>
+                    </div>
+                </form>
+                <h4 class="roboto-bold">Manage Existing Genres</h4>
+                <p>You should only ever remove a genre if there are no records left in the store under that genre.
+                    Removing genres when records exist under that genre will set the records genre to null and will
+                    be inaccessible via the genre filter.
+                </p>
+                <div class="genre-card-container">
+                    {% for genre in genres %}
+                        <div class="card mb-2 text-start">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <h3 class="roboto-bold">
+                                    {{ genre }}
+                                </h3>
+                                <button type="button" class="wax-crate-red-bg wax-crate-grey-font roboto-mono-font btn btn-sm hvr-grow rounded-0 delete-genre-btn" data-toggle="modal" data-target="#delete-genre-{{ genre.id }}">
+                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
     </div>
 </div>
+{% for genre in genres %}
+    <div class="modal fade" id="delete-genre-{{genre.id}}" tabindex="-1" role="dialog" aria-labelledby="Delete-genre-{{ genre.genre }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content roboto-mono-font">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Delete-record-{{ record.genre }}">Delete {{ record.title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete:</p>
+                    <div class="d-flex">
+                        <div class="text-dark text-start">
+                            <h4 class="roboto-mono-font mb-3"><strong>{{ genre.genre }}</strong></h4>
+                            <p class="roboto-mono-font mb-1">Doing this could affect the integrity of the store.</p>
+                            <p class="roboto-mono-font mb-1">Please make sure that no records remain on the database under this genre.</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <h3>This cannot be undone!</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="card-link wax-crate-grey-font roboto-mono-font btn btn-sm hvr-grow rounded-0 wax-crate-pink-bg modal-button" data-dismiss="modal">Cancel</button>
+                    <a type="button" href="{% url 'delete_genre' genre.id %}" class="wax-crate-grey-font wax-crate-red-bg roboto-mono-font btn btn-sm hvr-grow rounded-0 modal-button"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% endblock %}
 
 {% block postload_js %}

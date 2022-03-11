@@ -8,7 +8,7 @@ class Genre(models.Model):
     where the genre doesnt already exist, the admin will
     need to add the genre first prior to adding the record.
     """
-    genre = models.CharField(max_length=254)
+    genre = models.CharField(max_length=254, unique=True)
 
     def __str__(self):
         return str(self.genre)
@@ -20,12 +20,12 @@ class Record(models.Model):
     the data required to show a new record in the store.
     """
     CONDITION_CHOICES = (
-        ('mint', 'M'),
-        ('near_mint', 'NM'),
-        ('very_good', 'VG'),
-        ('good', 'G'),
-        ('fair', 'F'),
-        ('poor', 'P'),
+        ('M', 'mint'),
+        ('NM', 'near_mint'),
+        ('VG', 'very_good'),
+        ('G', 'good'),
+        ('F', 'fair'),
+        ('P', 'poor'),
     )
     genre = models.ForeignKey(
         'Genre', null=True, blank=False, on_delete=models.SET_NULL

@@ -14,7 +14,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Record, Genre
-from .forms import RecordForm
+from .forms import RecordForm, GenreForm
 
 
 def all_records(request):
@@ -112,12 +112,73 @@ def back_office(request):
         )
         return redirect(reverse('home'))
     record_form = RecordForm()
+    genre_form = GenreForm()
     template = 'records/back_office.html'
 
     context = {
         'record_form': record_form,
+        'genre_form': genre_form,
     }
     return render(request, template, context)
+
+@login_required
+def add_genre(request):
+    """
+    View to add additional genres to the
+    genre table without accessing admin.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        genre_form = GenreForm(request.POST)
+        try:
+            if genre_form.is_valid():
+                genre_form.save()
+                messages.success(
+                    request,
+                    "Genre added succesfully"
+                )
+                return redirect(reverse('back_office'))
+            else:
+                messages.error(
+                    request,
+                    f'{genre_form.errors}'
+                )
+                return redirect(reverse('back_office'))
+        except IntegrityError as error:
+            messages.error(
+                request,
+                f'The genre you are trying to add already exists \
+                    {error}'
+            )
+            return redirect(reverse('back_office'))
+
+@login_required
+def delete_genre(request, genre_id):
+    """
+    View to remove records from the database
+    This is triggered via a modal on the records
+    page.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
+    genre = get_object_or_404(Genre, pk=genre_id)
+    genre.delete()
+    messages.success(
+        request,
+        "Genre deleted successfully."
+    )
+    return redirect(reverse('back_office'))
 
 
 @login_required

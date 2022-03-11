@@ -679,8 +679,21 @@ input[type=number] {
     background-color: #4d4b6e45;
 }
 
+.add-genre-bg {
+    background-color: #a35a6f67;
+}
+
 .record-form-font {
     font-size: x-small;
+}
+
+.genre-card-container {
+    height: 500px;
+    overflow: auto;
+}
+
+.delete-genre-btn {
+    color: #f8f9fa;
 }
 
 /* END OF BACK OFFICE STYLINGS */
