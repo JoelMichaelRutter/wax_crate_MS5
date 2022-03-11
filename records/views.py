@@ -142,3 +142,52 @@ def add_record(request):
                     {error}'
             )
             return redirect(reverse('back_office'))
+
+
+def edit_record(request, record_id):
+    """
+    This view renders the edit record
+    template and pre loads the selected
+    data into the record form.
+    """
+    # Get record from database
+    record = get_object_or_404(Record, pk=record_id)
+
+    if request.method == 'POST':
+        updated_record_form = RecordForm(
+            request.POST,
+            request.FILES,
+            instance=record
+        )
+        if updated_record_form.is_valid():
+            updated_record_form.save()
+            messages.success(
+                request,
+                f'{record.title} updated successfully'
+            )
+            return redirect('records')
+        else:
+            messages.error(
+                request,
+                "Record update failed, please check the form data."
+            )
+    else:
+        # Instantiate an instance of record form with the
+        # record just obtained from the database.
+        edit_record_form = RecordForm(instance=record)
+        messages.info(
+            request,
+            f'You are editing {record.title}'
+        )
+    template = 'records/back_office.html'
+    # Send edit form into back office template
+    # with additional context variable from this
+    # view to dictate which content and form gets
+    # loaded into the back office template.
+    context = {
+        'edit_record_form': edit_record_form,
+        'record': record,
+        'from_edit': True,
+    }
+
+    return render(request, template, context)

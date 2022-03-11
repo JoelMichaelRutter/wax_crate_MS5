@@ -8,61 +8,116 @@
         <section class="col-12 col-md-6">
             <div class="row text-center">
                 <div class="col wax-crate-grey-font wax-crate-navy-bg">
-                    <h1 class="major-mono text-lowercase mt-2">Add a record</h1>
+                    {% if from_edit %}
+                    <h1 class="major-mono text-lowercase mt-2">Edit record</h1>
+                    {% else %}
+                        <h1 class="major-mono text-lowercase mt-2">Add a record</h1>
+                    {% endif %} 
                 </div>
             </div>
             <div class="row text-start add-record-bg">
-                <p class="roboto-bold">
-                    You can use the form below to add new records to the store. Please adhere to
-                    the guidelines within the form to preserve the layout of the store.
-                </p>
-                <form action="{% url 'add_record' %}" method="POST" class="text-sm-center text-md-start" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <fieldset class="mb-3">
-                        <legend class="roboto-bold">
-                            Record Details
-                        </legend>
-                        <div>{{ record_form.genre | as_crispy_field }}</div>
-                        <div>{{ record_form.image | as_crispy_field }}</div>
-                        <p class="roboto-mono-font record-form-font">Images must be at least 287 by 287px and no more than 100kb in size.
-                            Please use this <a href="https://resizeimage.net/" target="_blank">image compressor and resizer</a> to amend
-                            any record images inline with the guidelines. Please also ensure that images file names are formatted as follows:
-                            artistname-record-title-split-with-dashes-all-in-lowercase.
-                        </p>
-                        <div class="d-block d-md-flex justify-content-between flex-wrap">
-                            <div>{{ record_form.title | as_crispy_field }}</div>
-                            <div>{{ record_form.artist | as_crispy_field }}</div>
-                            <div>{{ record_form.record_label | as_crispy_field }}</div>
-                            <div>{{ record_form.release_year | as_crispy_field }}</div>
-                            <div>{{ record_form.condition | as_crispy_field }}</div>
-                        </div>
-                        <div>{{ record_form.tracklist | as_crispy_field }}</div>
-                    </fieldset>
-                    <fieldset class="mb-3">
-                        <legend class="roboto-bold">
-                            Wax Crate Record Information
-                        </legend>
-                        <div class="d-block d-md-flex justify-content-between flex-wrap align-items-center">
-                            <div>{{ record_form.price | as_crispy_field }}</div>
-                            <div class="text-start">{{ record_form.hot_pick | as_crispy_field }}</div>
-                            <div class="text-start">{{ record_form.has_link | as_crispy_field }}</div>
-                            <div>{{ record_form.link_to_music | as_crispy_field }}</div>
-                            <p class="roboto-mono-font">
-                                Please use the share album link from the media on spotify in the link to music field.
+                {% if from_edit %}
+                    <p class="roboto-bold">
+                        You can use the form below to edit existing records. Please adhere to
+                        the guidelines within the form to preserve the layout of the store.
+                    </p>
+                    <form action="{% url 'edit_record' record.id %}" method="POST" class="text-sm-center text-md-start" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="mb-3">
+                            <legend class="roboto-bold">
+                                Record Details
+                            </legend>
+                            <div>{{ edit_record_form.genre | as_crispy_field }}</div>
+                            <div>{{ edit_record_form.image | as_crispy_field }}</div>
+                            <p class="roboto-mono-font record-form-font">Images must be at least 287 by 287px and no more than 100kb in size.
+                                Please use this <a href="https://resizeimage.net/" target="_blank">image compressor and resizer</a> to amend
+                                any record images inline with the guidelines. Please also ensure that images file names are formatted as follows:
+                                artistname-record-title-split-with-dashes-all-in-lowercase.
                             </p>
+                            <div class="d-block d-md-flex justify-content-between flex-wrap">
+                                <div>{{ edit_record_form.title | as_crispy_field }}</div>
+                                <div>{{ edit_record_form.artist | as_crispy_field }}</div>
+                                <div>{{ edit_record_form.record_label | as_crispy_field }}</div>
+                                <div>{{ edit_record_form.release_year | as_crispy_field }}</div>
+                                <div>{{ edit_record_form.condition | as_crispy_field }}</div>
+                            </div>
+                            <div>{{ edit_record_form.tracklist | as_crispy_field }}</div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <legend class="roboto-bold">
+                                Wax Crate Record Information
+                            </legend>
+                            <div class="d-block d-md-flex justify-content-between flex-wrap align-items-center">
+                                <div>{{ edit_record_form.price | as_crispy_field }}</div>
+                                <div class="text-start">{{ edit_record_form.hot_pick | as_crispy_field }}</div>
+                                <div class="text-start">{{ edit_record_form.has_link | as_crispy_field }}</div>
+                                <div>{{ edit_record_form.link_to_music | as_crispy_field }}</div>
+                                <p class="roboto-mono-font">
+                                    Please use the share album link from the media on spotify in the link to music field.
+                                </p>
+                            </div>
+                            <div class="text-start">{{ edit_record_form.description | as_crispy_field }}</div>
+                            
+                        </fieldset>
+                        <div class="d-flex justify-content-between mb-3">
+                            <button class="dark-cta-button btn btn-large rounded-0 mt-2 roboto-mono-font hvr-grow-shadow" type="submit">
+                                <i class="fa-solid fa-circle-check"></i> Update Record
+                            </button>
                         </div>
-                        <div class="text-start">{{ record_form.description | as_crispy_field }}</div>
-                        
-                    </fieldset>
-                    <div class="d-flex justify-content-between mb-3">
-                        <button class="alt-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-float" type="reset">
-                            <i class="fa-solid fa-delete-left"></i> Reset Form
-                        </button>
-                        <button class="dark-cta-button btn btn-large rounded-0 mt-2 roboto-mono-font hvr-grow-shadow" type="submit">
-                            <i class="fa-solid fa-circle-check"></i> Add Record
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                {% else %}
+                    <p class="roboto-bold">
+                        You can use the form below to add new records to the store. Please adhere to
+                        the guidelines within the form to preserve the layout of the store.
+                    </p>
+                    <form action="{% url 'add_record' %}" method="POST" class="text-sm-center text-md-start" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="mb-3">
+                            <legend class="roboto-bold">
+                                Record Details
+                            </legend>
+                            <div>{{ record_form.genre | as_crispy_field }}</div>
+                            <div>{{ record_form.image | as_crispy_field }}</div>
+                            <p class="roboto-mono-font record-form-font">Images must be at least 287 by 287px and no more than 100kb in size.
+                                Please use this <a href="https://resizeimage.net/" target="_blank">image compressor and resizer</a> to amend
+                                any record images inline with the guidelines. Please also ensure that images file names are formatted as follows:
+                                artistname-record-title-split-with-dashes-all-in-lowercase.
+                            </p>
+                            <div class="d-block d-md-flex justify-content-between flex-wrap">
+                                <div>{{ record_form.title | as_crispy_field }}</div>
+                                <div>{{ record_form.artist | as_crispy_field }}</div>
+                                <div>{{ record_form.record_label | as_crispy_field }}</div>
+                                <div>{{ record_form.release_year | as_crispy_field }}</div>
+                                <div>{{ record_form.condition | as_crispy_field }}</div>
+                            </div>
+                            <div>{{ record_form.tracklist | as_crispy_field }}</div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <legend class="roboto-bold">
+                                Wax Crate Record Information
+                            </legend>
+                            <div class="d-block d-md-flex justify-content-between flex-wrap align-items-center">
+                                <div>{{ record_form.price | as_crispy_field }}</div>
+                                <div class="text-start">{{ record_form.hot_pick | as_crispy_field }}</div>
+                                <div class="text-start">{{ record_form.has_link | as_crispy_field }}</div>
+                                <div>{{ record_form.link_to_music | as_crispy_field }}</div>
+                                <p class="roboto-mono-font">
+                                    Please use the share album link from the media on spotify in the link to music field.
+                                </p>
+                            </div>
+                            <div class="text-start">{{ record_form.description | as_crispy_field }}</div>
+                            
+                        </fieldset>
+                        <div class="d-flex justify-content-between mb-3">
+                            <button class="alt-cta-button btn rounded-0 mt-2 roboto-mono-font hvr-float" type="reset">
+                                <i class="fa-solid fa-delete-left"></i> Reset Form
+                            </button>
+                            <button class="dark-cta-button btn btn-large rounded-0 mt-2 roboto-mono-font hvr-grow-shadow" type="submit">
+                                <i class="fa-solid fa-circle-check"></i> Add Record
+                            </button>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </section>
     </div>
