@@ -1,3 +1,5 @@
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
 from django.contrib import messages
@@ -8,7 +10,7 @@ from .forms import CustomerAccountForm
 
 from checkout.models import Order
 
-
+@login_required
 def show_customer_account(request):
     """
     Show the customers account template, form and order history.

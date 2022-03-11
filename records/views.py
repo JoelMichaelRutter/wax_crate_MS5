@@ -104,6 +104,13 @@ def back_office(request):
     and add and delete genres on db without using
     django admin.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area"
+        )
+        return redirect(reverse('home'))
     record_form = RecordForm()
     template = 'records/back_office.html'
 
@@ -119,6 +126,13 @@ def add_record(request):
     This view takes the data submitted by
     the record form in the back office.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
     if request.method == 'POST':
         record_form = RecordForm(request.POST, request.FILES)
         try:
@@ -143,13 +157,20 @@ def add_record(request):
             )
             return redirect(reverse('back_office'))
 
-
+@login_required
 def edit_record(request, record_id):
     """
     This view renders the edit record
     template and pre loads the selected
     data into the record form.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
     # Get record from database
     record = get_object_or_404(Record, pk=record_id)
 
@@ -199,6 +220,13 @@ def delete_record(request, record_id):
     This is triggered via a modal on the records
     page.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
     record = get_object_or_404(Record, pk=record_id)
     record.delete()
     messages.success(
