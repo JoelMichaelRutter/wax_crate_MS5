@@ -96,36 +96,12 @@ def show_record_details(request, slug):
     return render(request, 'records/record_details.html', context)
 
 
-@login_required
-def back_office(request):
+@login_required()
+def load_back_office(request):
     """
-    This view uses the record form class to create
-    a pre-rendered form for admins to add records
-    and add and delete genres on db without using
-    django admin.
-    """
-    if not request.user.is_superuser:
-        messages.error(
-            request,
-            f"Sorry, {request.user}, you aren't an admin \
-            so you cant access this area"
-        )
-        return redirect(reverse('home'))
-    record_form = RecordForm()
-    genre_form = GenreForm()
-    template = 'records/back_office.html'
-
-    context = {
-        'record_form': record_form,
-        'genre_form': genre_form,
-    }
-    return render(request, template, context)
-
-@login_required
-def add_genre(request):
-    """
-    View to add additional genres to the
-    genre table without accessing admin.
+    A view to load the back office template
+    and relevant forms. The post handlers for
+    these forms are in different views.
     """
     if not request.user.is_superuser:
         messages.error(
@@ -134,51 +110,17 @@ def add_genre(request):
             so you cant access this area."
         )
         return redirect(reverse('home'))
-    if request.method == 'POST':
-        genre_form = GenreForm(request.POST)
-        try:
-            if genre_form.is_valid():
-                genre_form.save()
-                messages.success(
-                    request,
-                    "Genre added succesfully"
-                )
-                return redirect(reverse('back_office'))
-            else:
-                messages.error(
-                    request,
-                    f'{genre_form.errors}'
-                )
-                return redirect(reverse('back_office'))
-        except IntegrityError as error:
-            messages.error(
-                request,
-                f'The genre you are trying to add already exists \
-                    {error}'
-            )
-            return redirect(reverse('back_office'))
+    else:
+        add_record_form = RecordForm()
+        add_genre_form = GenreForm()
 
-@login_required
-def delete_genre(request, genre_id):
-    """
-    View to remove records from the database
-    This is triggered via a modal on the records
-    page.
-    """
-    if not request.user.is_superuser:
-        messages.error(
-            request,
-            f"Sorry, {request.user}, you aren't an admin \
-            so you cant access this area."
-        )
-        return redirect(reverse('home'))
-    genre = get_object_or_404(Genre, pk=genre_id)
-    genre.delete()
-    messages.success(
-        request,
-        "Genre deleted successfully."
-    )
-    return redirect(reverse('back_office'))
+        template = 'records/back_office.html'
+        context = {
+            'add_record_form': add_record_form,
+            'add_genre_form': add_genre_form,
+        }
+
+        return render(request, template, context)
 
 
 @login_required
@@ -195,21 +137,21 @@ def add_record(request):
         )
         return redirect(reverse('home'))
     if request.method == 'POST':
-        record_form = RecordForm(request.POST, request.FILES)
+        add_record_form = RecordForm(request.POST, request.FILES)
         try:
-            if record_form.is_valid():
-                record_form.save()
+            if add_record_form.is_valid():
+                add_record_form.save()
                 messages.success(
                     request,
                     "Record added succesfully"
                 )
-                return redirect(reverse('back_office'))
+                return redirect(reverse('records'))
             else:
                 messages.error(
                     request,
-                    f'{record_form.errors}'
+                    f'{add_record_form.errors}'
                 )
-                return redirect(reverse('back_office'))
+                return redirect(reverse('add_record'))
         except IntegrityError as error:
             messages.error(
                 request,
@@ -218,12 +160,12 @@ def add_record(request):
             )
             return redirect(reverse('back_office'))
 
+
 @login_required
-def edit_record(request, record_id):
+def add_genre(request):
     """
-    This view renders the edit record
-    template and pre loads the selected
-    data into the record form.
+    This view takes the data submitted by
+    the genre form in the back office.
     """
     if not request.user.is_superuser:
         messages.error(
@@ -232,47 +174,66 @@ def edit_record(request, record_id):
             so you cant access this area."
         )
         return redirect(reverse('home'))
-    # Get record from database
-    record = get_object_or_404(Record, pk=record_id)
-
     if request.method == 'POST':
-        updated_record_form = RecordForm(
-            request.POST,
-            request.FILES,
-            instance=record
-        )
-        if updated_record_form.is_valid():
-            updated_record_form.save()
-            messages.success(
+        add_genre_form = GenreForm(request.POST)
+        try:
+            if add_genre_form.is_valid():
+                add_genre_form.save()
+                messages.success(
+                    request,
+                    "Genre added succesfully"
+                )
+                return redirect(reverse('back_office'))
+            else:
+                messages.error(
+                    request,
+                    f'{add_genre_form.errors}'
+                )
+                return redirect(reverse('back_office'))
+        except IntegrityError as error:
+            messages.error(
                 request,
-                f'{record.title} updated successfully'
+                f'The genre you are trying to add already exists \
+                    {error}'
             )
-            return redirect('records')
+            return redirect(reverse('back_office'))
+
+
+@login_required
+def edit_record(request, record_id):
+    """ Edit a product in the store """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
+
+    record = get_object_or_404(Record, pk=record_id)
+    if request.method == 'POST':
+        edit_record_form = RecordForm(request.POST, request.FILES, instance=record)
+        if edit_form.is_valid():
+            edit_record_form.save()
+            messages.success(request, 'Record updated successfully')
+            return redirect(reverse('records'))
         else:
             messages.error(
                 request,
-                "Record update failed, please check the form data."
+                'Looks like some funky values in your data, please check them and try again.'
             )
     else:
-        # Instantiate an instance of record form with the
-        # record just obtained from the database.
         edit_record_form = RecordForm(instance=record)
-        messages.info(
-            request,
-            f'You are editing {record.title}'
-        )
-    template = 'records/back_office.html'
-    # Send edit form into back office template
-    # with additional context variable from this
-    # view to dictate which content and form gets
-    # loaded into the back office template.
+        messages.info(request, f'You are editing {record.title}')
+
+    template = 'records/edit_record.html'
     context = {
         'edit_record_form': edit_record_form,
         'record': record,
-        'from_edit': True,
     }
 
     return render(request, template, context)
+
 
 @login_required
 def delete_record(request, record_id):
@@ -295,3 +256,26 @@ def delete_record(request, record_id):
         "Record deleted successfully."
     )
     return redirect(reverse('records'))
+
+
+@login_required
+def delete_genre(request, genre_id):
+    """
+    View to remove genres from the database
+    This is triggered via a modal on the back office
+    page.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            f"Sorry, {request.user}, you aren't an admin \
+            so you cant access this area."
+        )
+        return redirect(reverse('home'))
+    genre = get_object_or_404(Genre, pk=genre_id)
+    genre.delete()
+    messages.success(
+        request,
+        "Genre deleted successfully."
+    )
+    return redirect(reverse('back_office'))

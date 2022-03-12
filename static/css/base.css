@@ -699,6 +699,16 @@ input[type=number] {
 /* END OF BACK OFFICE STYLINGS */
 
 
+.edit-hero-image {
+    background-image: url('/media/edit-page-hero-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    min-height: 90vh;
+}
+
+
 /* MEDIA QUERIES */
 
 @media only screen and (min-width: 600px)  {
