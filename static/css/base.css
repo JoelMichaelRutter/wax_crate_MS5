@@ -238,6 +238,16 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     margin: 0 auto;
 }
 
+.mobile-company-info {
+    position: relative;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    background-color: #262533c0;
+    padding: 10px;
+    color: #f8f9fa;
+}
+
 .remove-padding {
     padding: 0!important;
 }
