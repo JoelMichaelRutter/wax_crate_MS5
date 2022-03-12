@@ -277,7 +277,6 @@ footer {
 
 .facebook-section {
     height: 100px;
-    background-color: white;
 }
 
 .mailchimp-section {
@@ -286,10 +285,38 @@ footer {
 }
 
 
+#mc_embed_signup label {
+    font-weight: 400!important;
+}
+
 #mc_embed_signup {
-    background: #fff;
+    background: #4d4b6e;
     clear: left;
     font-family: 'Roboto-Mono', monospace;
+}
+
+#mc_embed_signup input.email {
+    font-family: 'Roboto Mono', monospace!important;
+}
+
+#mce-EMAIL {
+    background-color: #4d4b6e;
+    border-radius: 0px!important;
+    color: #f8f9fa;
+    border-top: none!important;
+    border-right: none!important;
+    border-top: 1px solid #f8f9fa;
+    border-left: none!important;
+}
+
+#mc_embed_signup input.email::placeholder {
+    font-family: 'Roboto Mono', monospace!important;
+    color: #f8f9fa!important;
+}
+
+#mc_embed_signup .button {
+    background-color: #A35A6F!important;
+    font-family: 'Roboto Mono', monospace!important;
 }
 
 .footer-holddown {
@@ -698,6 +725,7 @@ input[type=number] {
 
 /* END OF BACK OFFICE STYLINGS */
 
+/* EDIT RECORD PAGE STYLINGS */
 
 .edit-hero-image {
     background-image: url('/media/edit-page-hero-image.jpg');
@@ -708,9 +736,10 @@ input[type=number] {
     min-height: 90vh;
 }
 
+/* END OF EDIT RECORD PAGE STYLINGS */
+
 
 /* MEDIA QUERIES */
-
 @media only screen and (min-width: 600px)  {
     .logo {
         margin-left: 1rem;
