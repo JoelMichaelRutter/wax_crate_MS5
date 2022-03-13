@@ -1,6 +1,6 @@
 .checkout-image {
     background-image: url('/media/checkout-page-image.jpg');
-    height: 100vh;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
@@ -78,4 +78,10 @@
     height: 100%;
 }
 
-
+/* TABLET SIZE (MD) AND DOWNWARDS MEDIA QUERIES */
+@media only screen and (max-width: 768px) {
+    #id_customer_town_or_city,
+    #id_customer_postcode {
+        border-right: 0;
+    }
+}

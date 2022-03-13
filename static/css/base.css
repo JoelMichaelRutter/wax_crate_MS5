@@ -535,7 +535,7 @@ input[type=number] {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    min-height: 90vh;
+    height: 100%;
 }
 
 .cart-card {
@@ -766,7 +766,10 @@ input[type=number] {
     }
 }
 
-
+/* TABLET SIZE (MD) AND DOWNWARDS MEDIA QUERIES */
+@media only screen and (max-width: 768px) {
+    
+}
 
 
 @media only screen and (min-width: 600px)  {
@@ -781,9 +784,6 @@ input[type=number] {
         height: 250px;
     }
 
-    .cart-items-container {
-        height: 480px;
-    }
 }
 
 /* Mobile & Tablet Combined corrective media queries */
@@ -800,4 +800,9 @@ input[type=number] {
         min-height: 356px;
         background-color: #4d4b6e;
     }
+}
+
+/* LAPTOP CORRECTIVE MEDIA QUERIES */
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+
 }
