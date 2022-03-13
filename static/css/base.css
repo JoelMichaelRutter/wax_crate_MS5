@@ -184,6 +184,13 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     box-shadow: none;
 }
 
+.modal-close {
+    border: none;
+    font-size: 2rem;
+    width: 2rem;
+    padding: 0;
+}
+
 /* END BOOTSTRAP OVERRIDES */
 
 /* ------------------------------------------------------- */
@@ -738,6 +745,10 @@ input[type=number] {
 }
 
 .delete-genre-btn {
+    color: #f8f9fa;
+}
+
+.delete-genre-btn:hover {
     color: #f8f9fa;
 }
 
