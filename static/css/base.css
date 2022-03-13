@@ -765,15 +765,12 @@ input[type=number] {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
-    footer {
-        min-height: 180px;
-        background-color: #4d4b6e;
+    .tracklist-container {
+        height: 250px;
     }
 }
 
-
-
-/* Mobile & Tablet Combined media queries */
+/* Mobile & Tablet Combined corrective media queries */
 @media only screen and (max-width:992px) { 
 	.logo {
         font-size: 1.5rem;
