@@ -408,6 +408,7 @@ footer {
     padding-top: 0.375rem;
     padding-right: 0.75rem;
     padding-bottom: 0.375rem;
+    background-color: white;
 }
 
 select.record-sort-field > option {
@@ -758,15 +759,30 @@ input[type=number] {
 
 
 /* MEDIA QUERIES */
+/* SMALL DEVICE MEDIA QUERIES FOR VIEWPORT WIDTHS LESS THAN 576PX */
+@media only screen and (max-width: 576px) {
+    .cart-items-container {
+        height: 345px;
+    }
+}
+
+
+
+
 @media only screen and (min-width: 600px)  {
     .logo {
         margin-left: 1rem;
     }
 }
 
+/* CORRECTIVE STYLING BETWEEN LARGE AND XL SCREENS */
 @media screen and (min-width: 992px) and (max-width: 1200px) {
     .tracklist-container {
         height: 250px;
+    }
+
+    .cart-items-container {
+        height: 480px;
     }
 }
 

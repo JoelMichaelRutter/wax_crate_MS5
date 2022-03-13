@@ -84,9 +84,9 @@
                     </div>
                     {% else %}
                     <div>
-                        <h3 class="roboto-mono-font">You have nothing in your cart!</h3>
+                        <h3 class="roboto-mono-font mt-5 mb-5">You have nothing in your cart!</h3>
                         <a href="{% url 'records' %}"
-                            class="dark-cta-button btn btn-large rounded-0 mt-4 roboto-mono-font hvr-grow-shadow"><i
+                            class="dark-cta-button btn btn-large rounded-0 mt-5 mb-5 roboto-mono-font hvr-grow-shadow"><i
                                 class="fa-solid fa-compact-disc"></i> Back to the shop</a>
                     </div>
                     {% endif %}
@@ -110,7 +110,7 @@
                         <h6 class="roboto-mono-font">Delivery: £ {{ delivery_charge|floatformat:2 }}</h6>
                         <h6 class="roboto-mono-font">Order Total: £ {{ order_total|floatformat:2 }}</h6>
                     <!-- NEXT STEPS BUTTON CONTAINER -->
-                    <div class="next-step-button-continer">
+                    <div class="next-step-button-continer mb-3">
                         <a href="{% url 'records' %}"
                             class="roboto-mono-font mt-2 btn alt-cta-button rounded-0 hvr-float text-decoration-none wax-crate-navy-font"><i
                                 class="fa-solid fa-compact-disc"></i> Back to shop
