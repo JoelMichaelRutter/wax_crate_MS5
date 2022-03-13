@@ -230,13 +230,12 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
-    height: calc(100vh - 200px);
+    height: 100vh;
 }
 
 .company-info {
     width: 90%;
     margin: 0 auto;
-    font-size: 0.9rem;
 }
 
 .mobile-company-info {
@@ -782,6 +781,14 @@ input[type=number] {
 @media screen and (min-width: 992px) and (max-width: 1200px) {
     .tracklist-container {
         height: 250px;
+    }
+
+    .nav-link {
+        font-size: 0.84rem;
+    }
+
+    .search-form-custom {
+        width: 80px;
     }
 
 }
