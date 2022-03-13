@@ -213,7 +213,7 @@ def edit_record(request, record_id):
     record = get_object_or_404(Record, pk=record_id)
     if request.method == 'POST':
         edit_record_form = RecordForm(request.POST, request.FILES, instance=record)
-        if edit_form.is_valid():
+        if edit_record_form.is_valid():
             edit_record_form.save()
             messages.success(request, 'Record updated successfully')
             return redirect(reverse('records'))

@@ -193,7 +193,7 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
 /* BASE.HTML CUSTOM STYLES */
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .hvr-float {
@@ -236,6 +236,7 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
 .company-info {
     width: 90%;
     margin: 0 auto;
+    font-size: 0.9rem;
 }
 
 .mobile-company-info {
@@ -246,6 +247,10 @@ https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstr
     background-color: #262533c0;
     padding: 10px;
     color: #f8f9fa;
+}
+
+.mobile-info {
+    font-size: 0.8rem;
 }
 
 .remove-padding {
@@ -294,6 +299,9 @@ footer {
     background-color: white;
 }
 
+#mc_embed_signup form {
+    padding: 0!important;
+}
 
 #mc_embed_signup label {
     font-weight: 400!important;
@@ -753,5 +761,30 @@ input[type=number] {
 @media only screen and (min-width: 600px)  {
     .logo {
         margin-left: 1rem;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    footer {
+        min-height: 180px;
+        background-color: #4d4b6e;
+    }
+}
+
+
+
+/* Mobile & Tablet Combined media queries */
+@media only screen and (max-width:992px) { 
+	.logo {
+        font-size: 1.5rem;
+    }
+
+    .navbar-brand {
+        margin-right: 0;
+    }
+
+    footer {
+        min-height: 356px;
+        background-color: #4d4b6e;
     }
 }
