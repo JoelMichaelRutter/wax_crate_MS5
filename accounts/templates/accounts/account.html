@@ -18,18 +18,18 @@
                     <h1 class="major-mono text-lowercase mt-2">Your Account</h1>
                     <div class="col-lg-7 remove-padding">
                         <!-- SMALLER SCREEN ORDER SUMMARY ACCORDION -->
-                        <div class="accordion mb-2 d-block d-lg-none " id="orderSummaryAccordion">
+                        <div class="accordion mb-2 d-block d-lg-none " id="orderHistorySmallAccordion">
                             <div class="accordion-item order-history-accordion-item">
-                                <h2 class="accordion-header" id="orderHistoryAccordionHeader">
+                                <h2 class="accordion-header" id="orderHistorySmallAccordionHeader">
                                     <button
                                         class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-purple-bg wax-crate-grey-font"
-                                        type="button" data-bs-toggle="collapse" data-bs-target="#orderHistoryAccordionBody"
-                                        aria-expanded="false" aria-controls="Collapses and expands the order summary">
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#orderHistorySmallAccordionBody"
+                                        aria-expanded="false" aria-controls="orderHistorySmallAccordionBody">
                                         <i class="fa-solid fa-clock-rotate-left fa-xl mr-3"></i><span class="ms-3">View your order history</span>
                                     </button>
                                 </h2>
-                                <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
-                                    aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
+                                <div id="orderHistorySmallAccordionBody" class="accordion-collapse collapse order-summary-accordion"
+                                    aria-labelledby="orderHistorySmallAccordionHeader" data-bs-parent="#orderHistorySmallAccordionHeader">
                                     <div class="accordion-body text-dark text-start roboto-mono-font mobile-accordion-body-text">
                                         <div class="accordion-body text-start text-dark roboto-mono-font mobile-accordion-body-text">
                                             {% for order in orders %}
@@ -102,18 +102,18 @@
         <div class="d-none d-md-none d-lg-block col-lg-7 remove-padding">
             <div class="account-hero-image">
                 <!-- LARGER SCREEN ORDER SUMMARY ACCORDION -->
-                <div class="accordion mb-2 d-md-none d-lg-block" id="orderSummaryAccordion">
+                <div class="accordion mb-2 d-md-none d-lg-block" id="orderHistoryLargeAccordion">
                     <div class="accordion-item order-history-accordion-item">
-                        <h2 class="accordion-header" id="orderHistoryAccordionHeader">
+                        <h2 class="accordion-header" id="orderHistoryLargeAccordionHeader">
                             <button
                                 class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-purple-bg wax-crate-grey-font"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#orderHistoryAccordionBody"
-                                aria-expanded="false" aria-controls="Collapses and expands the order summary">
+                                type="button" data-bs-toggle="collapse" data-bs-target="#orderHistoryLargeAccordionBody"
+                                aria-expanded="false" aria-controls="orderHistoryLargeAccordionBody">
                                 <i class="fa-solid fa-clock-rotate-left fa-xl mr-3"></i><span class="ms-3">View your order history</span>
                             </button>
                         </h2>
-                        <div id="orderHistoryAccordionBody" class="accordion-collapse collapse order-summary-accordion"
-                            aria-labelledby="orderHistoryAccordionHeader" data-bs-parent="#orderHistoryAccordionBody">
+                        <div id="orderHistoryLargeAccordionBody" class="accordion-collapse collapse order-summary-accordion"
+                            aria-labelledby="orderHistoryLargeAccordionHeader" data-bs-parent="#orderHistoryLargeAccordionHeader">
                             <div class="accordion-body text-center roboto-mono-font mobile-accordion-body-text">
                                 <div class="order-history-heading-parent">
                                     <div class="order-number-heading-container roboto-bold text-decoration-underline">Order#</div>
