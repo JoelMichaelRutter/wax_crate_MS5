@@ -13,6 +13,9 @@ class GenreForm(forms.ModelForm):
         """
         model = Genre
         fields = ('genre',)
+        widgets = {
+            'genre': forms.TextInput(attrs={'id': 'add-genre'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

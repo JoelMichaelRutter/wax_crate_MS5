@@ -155,11 +155,11 @@
 </div>
 <!-- BOOTSTRAP MODALS - DEFENSIVE PROGRAMMING FOR DELETION OF RECORDS -->
 {% for record in records %}
-    <div class="modal fade" id="delete-record-{{record.id}}" tabindex="-1" role="dialog" aria-labelledby="Delete-record-{{ record.title }}" aria-hidden="true">
+    <div class="modal fade" id="delete-record-{{record.id}}" tabindex="-1" role="dialog" aria-labelledby="Delete-record-{{ record.id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content roboto-mono-font">
                 <div class="modal-header wax-crate-navy-bg wax-crate-grey-font">
-                    <h5 class="modal-title" id="Delete-record-{{ record.title }}">Delete "{{ record.title }}"?</h5>
+                    <h5 class="modal-title" id="Delete-record-{{ record.id }}">Delete "{{ record.title }}"?</h5>
                     <button type="button" class="modal-close wax-crate-navy-bg wax-crate-grey-font" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -179,7 +179,7 @@
                             <h6 class="roboto-mono-font mb-3 ms-2"><strong>{{ record.title }}</strong></h6>
                             <h6 class="roboto-mono-font mb-3 ms-2 text-muted"><strong>by</strong></h6>
 
-                            <h6 class="roboto-mono-font mb-3 ms-2"><strong><strong>{{ record.artist }}</strong></h6>
+                            <h6 class="roboto-mono-font mb-3 ms-2"><strong>{{ record.artist }}</strong></h6>
                             <p class="roboto-mono-font mb-0 ms-2">Price per unit: £{{ record.price }}</p>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="card-link wax-crate-grey-font roboto-mono-font btn btn-sm hvr-grow rounded-0 wax-crate-pink-bg modal-button" data-dismiss="modal">Cancel</button>
-                    <a type="button" href="{%url 'delete_record' record.id%}" class="wax-crate-grey-font wax-crate-red-bg roboto-mono-font btn btn-sm hvr-grow rounded-0 modal-button"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                    <a href="{%url 'delete_record' record.id%}" class="wax-crate-grey-font wax-crate-red-bg roboto-mono-font btn btn-sm hvr-grow rounded-0 modal-button"><i class="fa-solid fa-trash-can"></i> Delete</a>
                 </div>
             </div>
         </div>

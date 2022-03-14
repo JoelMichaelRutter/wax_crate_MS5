@@ -531,6 +531,10 @@ input[type=number] {
 
 /* CART PAGE STYLINGS */
 
+.nothing-in-cart-container {
+    height: 600px;
+}
+
 .cart-items-container {
     height: 515px;
     overflow: auto;

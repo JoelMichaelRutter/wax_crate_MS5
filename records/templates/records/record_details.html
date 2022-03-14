@@ -15,14 +15,14 @@
                     <h6 class="roboto-mono-font text-center"><em>{{ record.artist }}</em></h6>
                 </header>
                 <!-- RECORD LABEL AND CONDITION CONTAINER -->
-                <section class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
                     <div class="roboto-mono-font">
                         <p><strong>Label:</strong> {{ record.record_label }}</p>
                     </div>
                     <div class="roboto-mono-font">
                         <p><strong>Condition:</strong> {{ record.condition }}</p>
                     </div>
-                </section>
+                </div>
             </div>
             <!-- RECORD IMAGE CONTAINER -->
             <div class="img-container">
@@ -39,14 +39,14 @@
                 {% endif %}
             </div>
             <!-- PRICE & RELEASE YEAR CONTAINER -->
-            <section class="d-flex justify-content-between mt-2">
+            <div class="d-flex justify-content-between mt-2">
                 <div class="roboto-mono-font">
                     <p class="mb-0"><strong>Price:</strong> £{{ record.price }}</p>
                 </div>
                 <div class="roboto-mono-font">
                     <p class="mb-0"><strong>Release Year:</strong> {{ record.release_year }}</p>
                 </div>
-            </section>
+            </div>
             <!-- GENRE & HOT PICK CONTAINER -->
             <div class="d-flex justify-content-between mt-2">
                 <div class="roboto-mono-font">
@@ -101,12 +101,12 @@
                             <button
                                 class="accordion-button rounded-0 collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font white-border-bottom-seperator"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#tracklistAccordionBody"
-                                aria-expanded="false" aria-controls="collapseTwo">
+                                aria-expanded="false" aria-controls="tracklistAccordionBody">
                                 Tracklist
                             </button>
                         </h2>
                         <div id="tracklistAccordionBody" class="accordion-collapse collapse"
-                            aria-labelledby="headingTwo" data-bs-parent="#tracklistDescListenAccordion">
+                            aria-labelledby="tracklistAccordionHeader" data-bs-parent="#tracklistDescListenAccordion">
                             <div class="accordion-body text-left roboto-mono-font mobile-accordion-body-text">
                                 {{ record.tracklist | safe }}
                             </div>
@@ -117,7 +117,7 @@
                             <button
                                 class="accordion-button rounded-0 collapsed accordion-button collapsed roboto-mono-font wax-crate-navy-bg wax-crate-grey-font"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#descriptionBody"
-                                aria-expanded="false" aria-controls="collapseThree">
+                                aria-expanded="false" aria-controls="descriptionBody">
                                 Description
                             </button>
                         </h2>

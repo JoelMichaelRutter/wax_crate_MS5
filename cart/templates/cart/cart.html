@@ -83,7 +83,7 @@
                         {% endfor %}
                     </div>
                     {% else %}
-                    <div>
+                    <div class="nothing-in-cart-container">
                         <h3 class="roboto-mono-font mt-5 mb-5">You have nothing in your cart!</h3>
                         <a href="{% url 'records' %}"
                             class="dark-cta-button btn btn-large rounded-0 mt-5 mb-5 roboto-mono-font hvr-grow-shadow"><i
@@ -135,7 +135,7 @@
 {% block postload_js %}
     {{ block.super }}
     {% include 'records/includes/qty-input-script.html' %}
-    <script type="text/javascript">
+    <script>
         // Update the quantity on the cart line when edit button is clicked.
         $('.edit-qty-button').click(function(e) {
             let form = $('.edit-qty-remove-form');

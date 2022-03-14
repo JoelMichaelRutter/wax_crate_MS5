@@ -113,11 +113,11 @@
     </div>
 </div>
 {% for genre in genres %}
-    <div class="modal fade" id="delete-genre-{{genre.id}}" tabindex="-1" role="dialog" aria-labelledby="Delete-genre-{{ genre.genre }}" aria-hidden="true">
+    <div class="modal fade" id="delete-genre-{{genre.id}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content roboto-mono-font">
                 <div class="modal-header wax-crate-navy-bg wax-crate-grey-font">
-                    <h5 class="modal-title" id="Delete-record-{{ record.genre }}">Delete "{{ genre.genre }}"?</h5>
+                    <h5 class="modal-title">Delete "{{ genre.genre }}"?</h5>
                     <button type="button" class="modal-close wax-crate-navy-bg wax-crate-grey-font" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="card-link wax-crate-grey-font roboto-mono-font btn btn-sm hvr-grow rounded-0 wax-crate-pink-bg modal-button" data-dismiss="modal">Cancel</button>
-                    <a type="button" href="{% url 'delete_genre' genre.id %}" class="wax-crate-grey-font wax-crate-red-bg roboto-mono-font btn btn-sm hvr-grow rounded-0 modal-button"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                    <a href="{% url 'delete_genre' genre.id %}" class="wax-crate-grey-font wax-crate-red-bg roboto-mono-font btn btn-sm hvr-grow rounded-0 modal-button"><i class="fa-solid fa-trash-can"></i> Delete</a>
                 </div>
             </div>
         </div>
@@ -147,16 +147,22 @@
 
 {% block postload_js %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
         $(document).ready(function(){
             // Apply site font to labels once rendered.
-            $('label').addClass('roboto-mono-font')
+            $('label').addClass('roboto-mono-font');
             // Remove troublesome form class from checkboxes
-            $('#id_hot_pick, #id_has_link').removeClass('record-form-field')
+            $('#id_hot_pick, #id_has_link').removeClass('record-form-field');
             // Add digit regex pattern to release year field post render.
             /*Thanks to r92 for the regex pattern here on this stack overflow thread
             https://stackoverflow.com/questions/4374185/regular-expression-match-to-test-for-a-valid-year*/
             $('#id_release_year').attr('pattern', '^(19|20)\\d{2}$')
+            // Remove duplicate ids from DOM due to forms sitting side by side.
+            /* Thanks to Spencer Wieczorek here on this Stack overflow thread:
+            https://stackoverflow.com/questions/39539967/make-duplicate-ids-unique-using-jquery */
+            $("div[id='div_id_genre']").each(function(i){
+                $(this).attr('id', $(this).attr('id') + i);
+            });
         });
     </script>
 {% endblock %}

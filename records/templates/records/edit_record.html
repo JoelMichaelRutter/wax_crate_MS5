@@ -66,15 +66,15 @@
                 </div>
             </section>
             <!-- HERO IMAGE CONTAINER -->
-            <section class="d-none d-lg-block col-lg-6 edit-hero-image">  
-            </section>
+            <div class="d-none d-lg-block col-lg-6 edit-hero-image">  
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block postload_js %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
         $(document).ready(function(){
             // Apply site font to labels once rendered.
             $('label').addClass('roboto-mono-font')
