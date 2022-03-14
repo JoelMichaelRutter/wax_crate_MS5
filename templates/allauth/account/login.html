@@ -31,12 +31,12 @@
   {{ block.super }}
   <script type="text/javascript">
     $(document).ready(function(){
-      let labels = $('.requiredField')
-      labels.addClass('d-none')
+      let labels = $('.requiredField');
+      labels.addClass('d-none');
       // Set aria labels on rendered form elements.
-      $('#id_login').attr('aria-label', 'Enter your username or email in this field.')
-      $('#id_password').attr('aria-label', 'Enter your password into this field.')
-      $('#id_remember').attr('aria-label', 'Tick this box to remember your details')
+      $('#id_login').attr('aria-label', 'Enter your username or email in this field.');
+      $('#id_password').attr('aria-label', 'Enter your password into this field.');
+      $('#id_remember').attr('aria-label', 'Tick this box to remember your details');
     });
   </script>
 {% endblock %}
