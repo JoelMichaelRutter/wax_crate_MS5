@@ -20,7 +20,9 @@ class GenreForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['genre'].widget.attrs.update({'class': 'record-form-field'})
+        self.fields['genre'].widget.attrs.update(
+            {'class': 'record-form-field'}
+        )
 
 
 class RecordForm(forms.ModelForm):
@@ -59,7 +61,6 @@ class RecordForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        genres = Genre.objects.all()
 
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'record-form-field'

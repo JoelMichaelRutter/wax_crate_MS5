@@ -212,7 +212,9 @@ def edit_record(request, record_id):
 
     record = get_object_or_404(Record, pk=record_id)
     if request.method == 'POST':
-        edit_record_form = RecordForm(request.POST, request.FILES, instance=record)
+        edit_record_form = RecordForm(
+            request.POST, request.FILES, instance=record
+        )
         if edit_record_form.is_valid():
             edit_record_form.save()
             messages.success(request, 'Record updated successfully')
@@ -220,7 +222,8 @@ def edit_record(request, record_id):
         else:
             messages.error(
                 request,
-                'Looks like some funky values in your data, please check them and try again.'
+                'Looks like some funky values in your data, please check \
+                them and try again.'
             )
     else:
         edit_record_form = RecordForm(instance=record)

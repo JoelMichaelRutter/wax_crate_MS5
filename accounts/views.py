@@ -1,14 +1,23 @@
-
+"""
+1 - Importing login required decorator to secure admin views.
+2 - Importing render and GOO404 to use in views.
+3 - Importing messages framework.
+4 - Importing order model to assign orders to accounts.
+5 - Importing CustomerAccount model.
+6 - Importing Customer Account form to render into page.
+7 - Importing order model to assign orders to accounts.
+"""
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
 from django.contrib import messages
 
+from checkout.models import Order
+
 from .models import CustomerAccount
 
 from .forms import CustomerAccountForm
 
-from checkout.models import Order
 
 @login_required
 def show_customer_account(request):

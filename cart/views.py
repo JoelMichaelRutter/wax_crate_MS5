@@ -1,4 +1,11 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+"""
+1 - Importing render, redirect, reverse, HTTP response and GOO404
+2 - Importing messages framework
+3 - Importing record model from records app.
+"""
+from django.shortcuts import (
+    render, redirect, reverse, HttpResponse, get_object_or_404
+)
 from django.contrib import messages
 from records.models import Record
 
@@ -48,8 +55,8 @@ def add_record_to_cart(request, record_id):
                 request,
                 f'You added an additional copy of {record.title} to the cart'
             )
-    # This else block handles adding a record to the cart where it doesn't already
-    # exist in the cart.
+    # This else block handles adding a record to the cart
+    # where it doesn't already exist in the cart.
     else:
         cart[record_id] = quantity
         messages.success(
@@ -80,7 +87,8 @@ def amend_cart(request, record_id):
         cart[record_id] = quantity
         messages.info(
             request,
-            f'You changed the quantity of "{record.title}" in your cart to {quantity}.'
+            f'You changed the quantity of "{record.title}" in your cart \
+            to {quantity}.'
         )
     # If quantity is not greater than 0, pop method removes
     # the record from the bag.
@@ -116,10 +124,10 @@ def remove_from_cart(request, record_id):
             f'You removed "{record.title}" from the cart.'
         )
         return HttpResponse(status=200)
-    except Exception as e:
+    except Exception as error:
         messages.error(
             request,
             f'We encountered an error removing the item from the cart: \
-                {e}'
+                {error}'
         )
         return HttpResponse(status=500)

@@ -677,7 +677,7 @@ input[type=number] {
 }
 
 #id_remember {
-    border-radius: none;
+    border-radius: 0;
 }
 
 .form-check-input[type=checkbox] {

@@ -1,3 +1,7 @@
+"""
+1 - Importing admin from django (default)
+2 - Importing Customer Account model to register in admin.
+"""
 from django.contrib import admin
 from .models import CustomerAccount
 

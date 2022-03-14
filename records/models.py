@@ -1,3 +1,9 @@
+"""
+1 - Importing models (default)
+2 - Importing slugify to slugify title on save when
+adding records from web interface.
+"""
+
 from django.db import models
 from django.utils.text import slugify
 
@@ -31,8 +37,12 @@ class Record(models.Model):
         'Genre', null=True, blank=False, on_delete=models.SET_NULL
         )
     image = models.ImageField(null=True, blank=True)
-    title = models.CharField(max_length=254, null=False, unique=True, blank=False)
-    slug = models.SlugField(max_length=254, null=False, unique=True, blank=False)
+    title = models.CharField(
+        max_length=254, null=False, unique=True, blank=False
+    )
+    slug = models.SlugField(
+        max_length=254, null=False, unique=True, blank=False
+    )
     artist = models.CharField(max_length=254, null=False, blank=False)
     record_label = models.CharField(max_length=254, null=False, blank=False)
     release_year = models.CharField(max_length=4, null=False, blank=False)
