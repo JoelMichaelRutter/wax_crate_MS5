@@ -199,12 +199,12 @@
 
 {% block postload_js %}
 {{ block.super }}
-    <script type="text/javascript">
+    <script>
         $('#back-to-top').click(function(e) {
             window.scrollTo(0,0);
         });
     </script>
-    <script type="text/javascript">
+    <script>
         $('#sort-selection-field').change(function () {
             let selector = $(this);
             let currentUrl = new URL(window.location);
