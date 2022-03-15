@@ -5,10 +5,10 @@
         let disableReduceButton = currentQty < 2;
         let disableIncreaseButton = currentQty > 9;
         let decreaseButton = $(`#decrease-qty-${recordId}`);
-        let increaseButton = $(`#increase-qty-${recordId}`)
+        let increaseButton = $(`#increase-qty-${recordId}`);
         $(decreaseButton).prop('disabled', disableReduceButton);
-        $(increaseButton).prop('disabled', disableIncreaseButton)
-    };
+        $(increaseButton).prop('disabled', disableIncreaseButton);
+    }
 
     let allQtyControl = $('.qty-control');
     for(let i = 0; i < allQtyControl.length; i++){
