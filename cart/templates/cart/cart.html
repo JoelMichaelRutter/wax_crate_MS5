@@ -144,15 +144,14 @@
 
         // Removes the record from the cart when remove button is clicked.
         $('.delete-from-bag-button').click(function(e) {
-            let csrfToken = "{{ csrf_token }}"
+            let csrfToken = "{{ csrf_token }}";
             let recordId = $(this).attr('id').split('remove_')[1];
             let url =`/cart/remove/${recordId}/`;
             let data ={'csrfmiddlewaretoken': csrfToken};
-            console.log(url)
             $.post(url, data)
             .done(function() {
                  location.reload();
-             })
+             });
         });
     </script>   
 {% endblock %}
