@@ -50,7 +50,7 @@ class Record(models.Model):
     condition = models.CharField(
         max_length=9, choices=CONDITION_CHOICES,
         default='mint', blank=False, null=False
-        )
+    )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     tracklist = models.TextField()
     description = models.TextField()

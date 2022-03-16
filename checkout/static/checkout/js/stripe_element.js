@@ -102,9 +102,9 @@ checkoutForm.addEventListener('submit', function(ev) {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save-info': saveInfo,
-    }
+    };
     // Creating cache url
-    var url = '/checkout/cache_checkout_data/'
+    var url = '/checkout/cache_checkout_data/';
     // Posting the cached data to the view.
     // Once data has posted execute call back to complete payment,
     $.post(url, postData).done(function() {
@@ -167,12 +167,12 @@ checkoutForm.addEventListener('submit', function(ev) {
                 if (result.paymentIntent.status === 'succeeded') {
                     checkoutForm.submit();
                 }
-            };
+            }
         });
     }).fail(function() {
         // Failure function for if cache_checkout_data gives a 400 error.
         // Reloads page and error message from view displays.
-        location.reload()
+        location.reload();
     });
 });
 

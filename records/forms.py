@@ -56,7 +56,8 @@ class RecordForm(forms.ModelForm):
 
         labels = {
             'tracklist': 'Tracklist - UNORDERED LIST',
-            'description': 'Description - BOLD KEY WORDS'
+            'description': 'Description - BOLD KEY WORDS',
+            'release_year': 'Release Year - 4 digits only!',
         }
 
     def __init__(self, *args, **kwargs):
