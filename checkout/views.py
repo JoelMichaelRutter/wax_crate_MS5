@@ -68,7 +68,6 @@ def cache_checkout_data(request):
             "We can't process your payment right now. \
                 Please try again later!"
         )
-        print(error)
         return HttpResponse(content=error, status=400)
 
 

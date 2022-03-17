@@ -1,3 +1,8 @@
+"""
+Importing forms
+Importing order model to create form.
+"""
+
 from django import forms
 
 from .models import Order
