@@ -65,7 +65,6 @@ def add_record_to_cart(request, record_id):
         )
 
     request.session['cart'] = cart
-    print(cart[record_id])
     return redirect(redirect_url)
 
 
