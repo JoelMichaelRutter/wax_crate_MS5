@@ -106,7 +106,7 @@ def load_back_office(request):
     if not request.user.is_superuser:
         messages.error(
             request,
-            f"Sorry, {request.user}, you aren't an admin \
+            f"Sorry {request.user}, you aren't an admin \
             so you cant access this area."
         )
         return redirect(reverse('home'))

@@ -1,10 +1,12 @@
 """
 1 - TestCase default import.
-2 - Importing record form to test it.
+2 - Importing genre model to create test genres.
+3 - Importing both forms to test.
 """
 from django.test import TestCase
 from .models import Genre
 from .forms import RecordForm, GenreForm
+# 21 Tests - All passing.
 
 
 class TestGenreForm(TestCase):
