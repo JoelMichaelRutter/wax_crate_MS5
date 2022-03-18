@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-lg">
+    <div class="row h-100 my-auto">
+        <div class="col text-center">
+            <h1 class="roboto-bold">
+                <i class="fas fa-exclamation-triangle mt-5"></i> Error 400!
+            </h1>
+            <h3 class="roboto-font-bolder">
+                That's a bad request I'm afraid.
+            </h3>
+            <a href="{% url 'home' %}" class="text-decoration-none mt-5">
+                <h4 class="roboto-bold wax-crate-navy-font">
+                    Let's get you home <i class="fas fa-home"></i>
+                </h4>
+            </a>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
