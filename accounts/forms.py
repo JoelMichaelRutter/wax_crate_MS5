@@ -1,3 +1,8 @@
+"""
+1 - Importing Forms from django
+2 - Importing customer account model to render form.
+"""
+
 from django import forms
 
 from .models import CustomerAccount
