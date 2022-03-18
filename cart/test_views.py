@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+
 class TestViews(TestCase):
     """
     A class to test the cart views.
