@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container-lg">
-        <div class="row h-100 my-auto">
+    <div class="container-lg footer-holddown">
+        <div class="row">
             <div class="col text-center">
                 <h1 class="roboto-bold">
                     <i class="fas fa-exclamation-triangle mt-5"></i> Error 404!
                 </h1>
-                <h3 class="roboto-font-bolder">
+                <h3 class="roboto-mono-font">
                     That means we can't find the page you're looking for :(
                 </h3>
-                <a href="{% url 'home' %}" class="text-decoration-none mt-5">
-                    <h4 class="roboto-bold wax-crate-navy-font">
+                <a href="{% url 'records' %}" class="text-decoration-none mt-5">
+                    <h4 class="roboto-bold wax-crate-purple-font mt-4">
                         Let's get you home <i class="fas fa-home"></i>
                     </h4>
                 </a>
