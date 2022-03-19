@@ -656,7 +656,8 @@ input[type=number] {
 }
 
 .account-info-p {
-    margin-top: 4rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
 }
 
 .account-login-field {
