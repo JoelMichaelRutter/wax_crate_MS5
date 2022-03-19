@@ -19,7 +19,7 @@
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-    <div class="text-start">
+    <div class="text-start mb-4">
       <a class="button secondaryAction roboto-mono-font mt-4 btn alt-cta-button rounded-0 hvr-float text-decoration-none" aria-label="Click here to go to the reset your password page" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
       <button class="primaryAction btn dark-cta-button rounded-0 mt-4 hvr-grow-shadow" aria-label="Click this button to submit your login credentials" type="submit">{% trans "Sign In" %}</button>
     </div>
