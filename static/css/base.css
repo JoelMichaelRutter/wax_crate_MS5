@@ -300,6 +300,10 @@ footer {
     height: 100px;
 }
 
+.fb-link:hover {
+    color: #f8f9fa;
+}
+
 .mailchimp-section {
     height: 100px;
     background-color: white;
