@@ -43,7 +43,7 @@
     <div class="row">
         <!-- SORT SELECTOR COLUMN -->
         <div class="col-10 col-md-5 offset-1 offset-md-1">
-            <select id="sort-selection-field" class="record-sort-field rounded-0 roboto-mono-font">
+            <select id="sort-selection-field" class="record-sort-field mt-2 rounded-0 roboto-mono-font">
                 <option value="reset" {% if current_sorting == 'None_None' %} selected {% endif %}>Sort by...</option>
                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                 <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>

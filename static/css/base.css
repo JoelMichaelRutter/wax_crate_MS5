@@ -812,6 +812,10 @@ input[type=number] {
         width: 80px;
     }
 
+    .account-hero-image {
+        min-height: 100%;
+    }
+
 }
 
 /* Mobile & Tablet Combined corrective media queries */
