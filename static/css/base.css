@@ -811,11 +811,6 @@ input[type=number] {
     .search-form-custom {
         width: 80px;
     }
-
-    .account-hero-image {
-        min-height: 100%;
-    }
-
 }
 
 /* Mobile & Tablet Combined corrective media queries */
