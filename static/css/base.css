@@ -841,4 +841,8 @@ input[type=number] {
     .login {
         height: 340px;
     }
+
+    .laptop-height {
+        height: 100vh;
+    }
 }
