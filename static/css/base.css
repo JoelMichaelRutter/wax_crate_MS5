@@ -837,4 +837,8 @@ input[type=number] {
     .password_change {
         height: 400px;
     }
+
+    .login {
+        height: 340px;
+    }
 }
