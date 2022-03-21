@@ -833,4 +833,8 @@ input[type=number] {
     .auth-hero-image {
         min-height: 100%;
     }
+
+    .password_change {
+        height: 368px;
+    }
 }
