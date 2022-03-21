@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_title %}- {{  record.title }}{% endblock%}
+{% block extra_meta_tags %}
+  <meta name="description" content="View the details for {{ record.title }} by {{ record.artist }} here.">
+{% endblock %}
+
+{% block extra_title %}- {{ record.title }}{% endblock%}
 
 {% block content %}
 <div class="container-lg">

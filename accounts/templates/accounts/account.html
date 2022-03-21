@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_meta_tags %}
+  <meta name="description" content="You can access and make changes to your Wax Crate account here!">
+{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 {% endblock %}
