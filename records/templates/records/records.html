@@ -69,12 +69,12 @@
                         {% if record.image %}
                         <a href="{% url 'show_record_details' record.slug %}">
                             <img class="card-img-top img-fluid rounded-0" src="{{ record.image.url }}"
-                                alt="{{ record.title }}">
+                                alt="Click here to see more info about {{ record.title }}">
                         </a>
                         {% else %}
                         <a href="{% url 'show_record_details' record.slug %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image-available.jpg"
-                                alt="No image available">
+                                alt="No image available, but click here to see more information about {{ record.title }}">
                         </a>
                         {% endif %}
                         <div class="card-body">
