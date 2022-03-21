@@ -829,6 +829,12 @@ input[type=number] {
     }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1440px) {
+    .auth-hero-image {
+        min-height: 100%;
+    }
+}
+
 /* LAPTOP CORRECTIVE MEDIA QUERIES */
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
 
