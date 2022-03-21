@@ -834,8 +834,3 @@ input[type=number] {
         min-height: 100%;
     }
 }
-
-/* LAPTOP CORRECTIVE MEDIA QUERIES */
-@media screen and (min-width: 1200px) and (max-width: 1400px) {
-
-}
