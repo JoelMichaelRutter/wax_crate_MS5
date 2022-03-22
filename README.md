@@ -158,40 +158,88 @@ Now I had an idea of which technologies I would be using and what functionality 
 </details>
 
 
-
 # **Design Features**
 ## **Colour Choices**
 Below I will outline my colour choices for the project:
-<img src="readme-images/wax-crate-colour-palette.png" alt="Colour palette for the application" width="1000"/>  
+
+<img src="readme-images/wax-crate-colour-palette.png" alt="Colour palette for the application" width="600"/>  
 
 In terms of tools, I used when it came to colours, I used:  
-* **[ColourSpace](https://mycolor.space/)** to get complimentary colours for my main green colour.
+* **[ColourSpace](https://mycolor.space/)** to get complimentary alternate colours for my two main purple and navy background colours.
 
-## **Imagery**	
+## **Imagery**
+When it comes to Imagery, I used a variety of different sources.
+
+### Hero Images
+I obtained the hero images from the site from two different sources:
+##### **Shutterstock**
+* **Cart Hero Image** - This image can be found at this [link](https://www.shutterstock.com/image-photo/dj-studio-puts-needle-on-record-195717536)
+* **Checkout Hero Image** - This image can be found at this [link](https://www.shutterstock.com/image-photo/professional-dj-turntable-on-flight-case-456251227)
+* **Checkout Success Hero Image** - This image can be found at this [link](https://www.shutterstock.com/image-photo/young-man-vinyl-record-store-1996324145)
+* **Account/Authorisation Image** - This image can be found at this [link](https://www.shutterstock.com/image-photo/womens-hands-browsing-records-vinyl-record-1099762547)
+
+##### **Pexels**
+* **Home Page Hero Image** - This image can be found at this [link](https://www.pexels.com/photo/person-in-red-and-white-plaid-shirt-checking-the-vinyl-record-6862369/)
+* **Edit Record Page** - This image can be found at this [link](https://www.pexels.com/photo/people-vintage-school-music-8533552/)
+
+### Record Images
+In terms of the record images themselves, I sourced these from the relevant record pages on [Discogs](https://www.discogs.com/) which is a crowdsourced marketplace where users upload the artwork of the records they are selling publicly.
+
+Just as a disclaimer, I do not own the rights to any of these images. They are being used for educational purposes only.
 
 ## **Iconography**	
 In terms of iconography for the rest of the site, I used Font Awesome’s free library which is inserted via CDN in the base template head. You can find more information on how to sign up and use the service [here](https://fontawesome.com/).  
 In terms of the specific icons, they can be located in the code within the classes of all "i" elements. 
 
 ## **Fonts**	
-I chose my font to pair with Bootstraps standard font, I knew I wanted some sort of Mono font, so I auditioned using Google Fonts. I eventually settled on **Roboto Mono** as my custom font which is used throughout the project for headings buttons and text for visual accents. I used three font weights which I will detail in the screenshots below.  
+I chose two fonts for this project. I really wanted to stick to the themes I developed during my strategy planning, so I needed my fonts to be cool, hip, minimal and mono.
 
-![roboto-mono-400](readme-files/images/readme/10-font-400.png)
+I used google fonts to find my fonts and I settled on the following two:
 
-# **<a id="functional-features"></a>Functional Features, Code Breakdown and Explanation**
-Within this section, I will break down the structure of the application. As this application is a django project, it's probably best for me to go app by app and explain it inline with the nature of the framework where for each app I will cover "Model -> View -> Template". I'll relate all of the relevant functionality back to my user stories to show you how they have been met. My code is commented up so I wont labour any points to much this will be a general breakdown of each app. If you want a more detailed view, please go to the code files references within where you can follow the flow and comments.
+#### **Major Mono**
+This was mainly used as my logo font but I did use it for some headings throughout the site.
+![major-mono-font-demo](readme-images/major-mono.PNG)
+
+#### **Major Mono**
+This font was used as my main content font but I did use for some headings throughout the site.
+To ensure that I had some versatility to play with, when importing Roboto Mono from Google Fonts, I used a few different weights ranging from 200 italic to 700 bold.
+
+![roboto-mono-400](readme-images/roboto-mono.PNG)
+
+Once I had settled on these fonts, I added them as some helper classes at the top of my CSS file so that I could be really specific with my styling.
+# **<a id="functional-features"></a>Functional Features**
+Within this section, I will break down the functions of the application. In the interests of brevity, I will show the front end and discuss what the backend is doing. If you want to take a more detailed look at the back end code, it is all commented up so its very clear what is happening as the flow progresses. I'll relate all of the relevant functionality back to my user stories to show you how they have been met. 
+
+## **Base Template**
 
 ## **Home App**
 
 ## **Records App**
 
+### **Records**
+
+### **Record Details**
+
+### **Back Office**
+
+### **Edit Record**
+
+
 ## **Cart App**
+### **Cart**
+
 
 ## **Checkout App**
 
-## **Accounts App**
+### **Checkout**
 
-## **Admin**
+### **Checkout Success**
+
+
+## **Accounts App**
+##
+
+
 
 ## **Additional Functionality**
 ### **Authentication**
@@ -200,11 +248,7 @@ there is customer data contained within the system so no unauthorised parties sh
 version of the application is deployed in Heroku, in a real-world scenario, no one in the public domain would be able to access this application due to its business focused
 nature. As a result, this would be hosted internally on a secure business network. The three user stories which contain specifications requiring authentication are:
 
-* **User Story: Register** - As a **user** I should be able to **register for an Alli_cator account** so that I **can access the functionality of the application**.
-* **User Story: Sign In** - As a **User**, I should be able to **sign in upon accessing the application** so that **I can see the complaints I have allocated to me**.
-* **User Story: Sign out** - As a **User**, whilst authenticated, **I should be able to sign out of the application so that I can ensure nothing happens to my complaints when I am not using the application.**
-
-To implement authorisation functionality, I installed the Django all-auth library. I’ve detailed a full explanation of the installation and implementation procedure in the [deployment document](preperation-and-deployment.md).
+* **User Story:**
 
 To summarise, allauth installs the back-end functionality and additional templates which are used to sign in, register and sign out of the application. All of the validation and backend functionality is handled by Django. I pulled these templates from their location within the allauth directory into my custom templates directory and added my own custom CSS and bootstrap classes.
 
@@ -241,7 +285,6 @@ Below I will list the variety of technology I used during the development proces
 * **[Green Unicorn](https://gunicorn.org/)** - This is a Web Services Gateway Interface HTTP server which is commonly used to run Python web applications. 
 * **[Dj-database-url](https://pypi.org/project/dj-database-url/)** - This Django library allows us to connect to an external database which in our case will be hosted on Heroku.
 * **[psycopg2](https://pypi.org/project/psycopg2/)** - This package is one of the most popular database adapters for the python programming language which allows us to utilise a PostgreSQL database.
-* **[Amazon Web Services S3]()** - This Django package allows Django to integrate with the Cloudinary cloud hosting service and allows for the storage and serving of static and media files once the project is deployed.
 * **[PostgreSQL](https://www.postgresql.org/)** - The relational database management system used within this application.
 #### Front end 
 * **[Bootstrap]( https://getbootstrap.com/)** - a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.
@@ -254,7 +297,7 @@ Below I will list the variety of technology I used during the development proces
 * **[GitHub](https://en.wikipedia.org/wiki/GitHub)** - was used as a code repository.
 ### **Deployment**
 * **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
-* **[Cloudinary](https://en.wikipedia.org/wiki/Cloudinary)** - A cloud storage service for media, imagery and static files which serves said files to my deployed project on Heroku.
+* **[Amazon Web Services S3]()** - 
 ### **Other**
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
