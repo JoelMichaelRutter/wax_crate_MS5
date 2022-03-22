@@ -83,7 +83,8 @@
             <!-- FORM AND CONTENT ROW -->
             <div class="row">
                 <div class="col-12 col-lg-10 offset-lg-1">
-                    <p class="roboto-bold mt-5">You can use the form below to manage your account information.</p>
+                    <p class="roboto-mono-font mt-5">You are currently signed in as <span class="roboto-bold">{{ user.username }}</span></p>
+                    <p class="roboto-bold mt-1">You can use the form below to manage your account information.</p>
                     <form class="mt-2 text-start" action="{% url 'your_account' %}" method="POST" id="account-details-form">
                         {% csrf_token %}
                         {{ account_form|crispy }}

@@ -33,15 +33,6 @@
 /* END FONT HELPER CLASSES */
 
 /* PAGE LAYOUT HELPER STYLES */
-
-#page-container {
-    position: relative;
-    min-height: calc(100vh - 180px);
-}
-
-#content-wrap {
-    padding-bottom: 100px;    /* Footer height */
-}
   
 footer {
     height: 180px;
@@ -474,7 +465,6 @@ a:hover {
     color: #f8f9fa;
 }
 
-
 /* END RECORDS PAGE STYLING */
 
 /* ----------------------------------------------------------- */
@@ -790,7 +780,6 @@ input[type=number] {
 @media only screen and (max-width: 768px) {
     
 }
-
 
 @media only screen and (min-width: 600px)  {
     .logo {

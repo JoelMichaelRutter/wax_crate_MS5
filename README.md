@@ -1,11 +1,10 @@
 # **[Wax Crate](https://wax-crate-ms5.herokuapp.com/)**
-Wax Crate is a business to consumer full stack e-commerce application that sells products (vinyl records). It offers the user a single payment transaction when they checkout. It’s a hip and cool online record shop. It specialises in bringing excellent music (specifically dance music and hip hop) to the masses.
+Wax Crate is a business to consumer full stack e-commerce application that sells products (vinyl records). It offers the user a single payment transaction when they checkout. It’s a hip and cool online record shop. It specialises in bringing excellent music (specifically dance music such as house and techno and hip hop) to the masses.
 
-It’s going to be of value to users who love vinyl, collecting records and crate digging to find new music. It will almost be hybrid and serve as a sort of music blog/shop as the product details will have personalised descriptions from the store owner about the product on sale. 
+It’s going to be of value to users who love vinyl, collecting records and crate digging to find new music. It will almost be hybrid and serve as a sort of music blog/shop as the product details will have personalised descriptions from the store owner about the product on sale with track reccomendations.
 
 The user will be able to land on the site, view some information about what the business is about and then there will call to action button contained within the landing page enticing the user in.
 
-When the user enters the site, they should see an alphabetised list of the records on sale through the store in cards with some basic information (title, artist, genre & price). The user can then click a button on the cards to see more information such as a description, the tracklist and then if the store owner has a reputable link to some of the digital music, a link to go and listen before they buy.
 
 
 ## Table of contents
@@ -24,10 +23,8 @@ When the user enters the site, they should see an alphabetised list of the recor
 # <a id="deployed-website"></a>
 # [**Deployed Website**](https://wax-crate-ms5.herokuapp.com/)  
 By clicking the hyperlinked header above, you can access the final deployed site hosted on Heroku.
-# <a id="site-demonstration"> **Site Demonstration**
-## [Am I Responsive?](http://ami.responsivedesign.is/)
-Below you can see an image of the final site in the Am I Responsive tool which shows the fantastic level of responsivity of the site to a number of viewports. A link to the tool is attached in the header above.  
-![]()
+# <a id="site-demonstration"> **Site Demonstration**</a>  
+![An image of the site on different viewports](readme-images/responsive-demo.png)
 # <a id="user-experience"></a>**User Experience**
 In this section, I will discuss the user experience considerations I implemented during the development process.
 ## **Strategy**
@@ -74,46 +71,98 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | 24                                              | owner    | Delete records that I no longer stock                                          | customers arent dissapointed when their order is cancelled due to no stock being available.                        |
 
 
-Following the planning stage of the project, these user stories were added to Kanban boards on the GitHub repository so that I could adopt an agile approach and develop each piece of significant functionality at a time. You can access this Kanban board via the projects tab on the GitHub repository or by clicking this <a href="https://github.com/JoelMichaelRutter/wax_crate_MS5/projects" target="_blank">link</a>.
+Following the planning stage of the project, these user stories were added to Kanban boards on the GitHub repository so that I could adopt an agile approach and develop each piece of significant functionality at a time. You can access this Kanban boards via the projects tab on the GitHub repository or by clicking this <a href="https://github.com/JoelMichaelRutter/wax_crate_MS5/projects" target="_blank">link</a>.
+<details>
+<summary><b>Kanban Board Images</b></summary>
 
-![kanban-board]()
+![kanban-boards](readme-images/projects.PNG)
+![kanban board for viewing and navigating](readme-images/viewing-and-navigating.PNG)
+![kanban board for authentication and registering](readme-images/auth-and-registering.PNG)
+![kanban board for authentication and registering](readme-images/sort-search-filter.PNG)
+![kanban board for authentication and registering](readme-images/purchase-checkout.PNG)
+![kanban board for authentication and registering](readme-images/store-admin.PNG)
+
+</details>
+
 
 # **Structure Plane**  
 I started my project by thinking about my user and the business function the user needs to satisfy. The main principles behind the development of the application were:
-1. Ease of use – The application is easy to use and should be intuitive so that someone with little technical ability or exposure can pick it up straight away.
-2. Hip & Cool – The user should feel as though the shop they are using is cool and hip.
-3. Minimal – To contribute to the cool and hip feel, users should have minimal distraction, the focus should be on the music/records.
+1. **Ease of use** – The application is easy to use and should be intuitive so that someone with little technical ability or exposure can pick it up straight away.
+2. **Hip & Cool** – The user should feel as though the shop they are using is cool and hip.
+3. **Minimal & Mono** – To contribute to the cool and hip feel, users should have minimal distraction, the focus should be on the music/records.
 
+At the beginning of this project, I got all of my ideas out and created a plan with Microsoft Powerpoint. The first part of this plan consisted of a list around the technologies that I might use to develop the application. Please note, this was the planning stage and some of the technology may not have been used or more may have been added.
 
+<details>
+<summary><b>Technology List Plan</b></summary>
 
+![wax-crate-tech-plan](readme-images/tech-list.png)
 
-At the beginning of this project, I got all of my ideas out and created a plan with Microsoft Powerpoint. The first part of this plan consisted of a mind map around the technologies that I might use to develop the application to which I added the main CRUD functionality with an agile approach. Please note: this was the planning stage and some of the technologies or functionality may not have been implemented in the final version.
+</details>
 
-![wax-crate-plan-mindmap]()
+I also did some storyboarding around the types of fonts and images I would include with the site to further my planning.
+<details>
+<summary><b>Story Board</b></summary>
 
-![wax-crate-storyboard-plan]()
+![wax-crate-storyboard-plan](readme-images/story-board.PNG)
 
-I also did some storyboarding around the types of fonts and images I would include with the siteto further my skeleton planning.
+</details>
 
-From here, I developed my data model. I started again with a table to decide the data structure and where this would be presented to the user. 
-![plan-data-model]()  
-I did consider having two data models but rationalised with myself that a second data model was not required due to one of the main user considerations being a reduction of information overload . As a result, the project only has one data model and that is the Complaint model. I will touch more on this and provide a breakdown of the code later in the document. 
+Before looking at the dataschema, I had a think about the overall structure of the django application I intended to build and the functionality that should be contained within each app. I created a mind map to get my ideas out of paper.
+
+<details>
+<summary><b>Django Application Structure</b></summary>
+
+![wax-crate-storyboard-plan](readme-images/django-application-structure.PNG)
+
+</details>
+
+From here, I developed my database schema. I used a relational flowchart within Microsoft Visio to create the diagram.
+
+<details>
+<summary><b>Database Schema</b></summary>
+
+![plan-data-model](readme-images/db-schema.png)
+
+</details>
 
 # **Skeleton Plane**
-Now I had an idea of which technologies and functionality I would be using, I proceeded to create some basic UI sketches before doing some more detailed wireframes. Each of the wireframes are set out below.
-<img src="readme-files/images/readme/5-sketched-ui.png" alt="UI sketched drawing" width="400"/>  
-### **Mobile Wireframes**
-![mobile-wireframes](readme-files/images/readme/6-mobile-wireframe-ui.png)
-### **Tablet Wireframes**
-![tablet-wireframes](readme-files/images/readme/7-tablet-wireframe-ui.png)
-### **Laptop & Larger Screen Wireframes**
-![larger-screen-wireframes](readme-files/images/readme/8-largescreen-wireframe-ui.png)  
-Whilst the development largely stuck to these wireframes, there were some very slight deviations in terms of layout and functionality during the development process as well as some additional functionality added.
+Now I had an idea of which technologies I would be using and what functionality I would need to develop to fufil the user stories, I proceeded to create some detailed wireframes. Each of the wireframes are set out below.
+
+### **Wireframes**
+<details>
+<summary><b>Mobile Phone Wireframes</b></summary>
+
+![mobile-wire-frames](readme-images/mobile-wireframes-1.png)
+![mobile-wire-frames](readme-images/mobile-wireframes-2.png)
+![mobile-wire-frames](readme-images/mobile-wireframes-3.png)
+
+</details>
+
+<details>
+<summary><b>Tablet Wireframes</b></summary>
+
+![tablet-wire-frames](readme-images/tablet-wireframes-1.png)
+![tablet-wire-frames](readme-images/tablet-wireframes-2.png)
+![tablet-wire-frames](readme-images/tablet-wireframes-3.png)
+
+</details>
+
+<details>
+<summary><b>Larger Screen Wireframes</b></summary>
+
+![larger-screen-wire-frames](readme-images/larger-screen-wireframes-1.png)
+![larger-screen-wire-frames](readme-images/larger-screen-wireframes-2.png)
+![larger-screen-wire-frames](readme-images/larger-screen-wireframes-3.png)
+
+</details>
+
+
 
 # **Design Features**
 ## **Colour Choices**
-Below I will outline my colour choices for the project and discuss some of the main colours and the impact that this has on the user:
-<img src="" alt="Colour palette for the application" width="1000"/>  
+Below I will outline my colour choices for the project:
+<img src="readme-images/wax-crate-colour-palette.png" alt="Colour palette for the application" width="1000"/>  
 
 In terms of tools, I used when it came to colours, I used:  
 * **[ColourSpace](https://mycolor.space/)** to get complimentary colours for my main green colour.

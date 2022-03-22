@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /accounts/
 Disallow: /records/back_office/
 Disallow: /records/delete_record/
+Disallow: /records/edit_record/
