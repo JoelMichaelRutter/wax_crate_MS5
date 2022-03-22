@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/cart/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?hot_picks=</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?genre=House</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?genre=Techno</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?genre=Disco</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?genre=Electro</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?genre=Hip-Hop</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/tarkine-funk/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/front/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/wave-motion/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/kill-frenzy-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/bulletproof-brass-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/do-it-your-way/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/love-beyond-the-intersect/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/welcome-to-mikrosector-50/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/paling-trax-4/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/its-album-time/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/black-seawavejumper/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/day-3-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/expectations-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/the-main-ingredient/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/music-for-the-uninvited/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/rad-an1/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/peace-bird-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/persona-non-grata-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/objekt-2/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/death-peak/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/good-music/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/double-feature/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/locus-of-control-vol-3/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/higgeldy-piggeldy-ep/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/32/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/6/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/2/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/4/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/3/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/5/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/18/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/1/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/29/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/30/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/28/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/31/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/35/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/36/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/37/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/42/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/38/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/39/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/40/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/41/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/43/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/44/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/45/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=/records/delete_record/46/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?hot_picks=True</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/records/?hot_picks=False</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F32%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F6%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F2%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F4%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F3%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F5%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F18%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F1%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F29%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F30%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F28%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F31%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F35%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F36%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F37%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F42%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F38%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F39%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F40%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F41%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F43%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F44%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F45%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/signup/?next=%2Frecords%2Fdelete_record%2F46%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F32%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F6%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F2%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F4%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F3%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F5%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F18%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F1%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F29%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F30%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F28%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F31%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F35%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F36%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F37%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F42%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F38%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F39%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F40%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F41%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F43%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F44%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F45%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://wax-crate-ms5.herokuapp.com/accounts/login/?next=%2Frecords%2Fdelete_record%2F46%2F</loc>
+  <lastmod>2022-03-22T13:30:31+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
+</urlset>
