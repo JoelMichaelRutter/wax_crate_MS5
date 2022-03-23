@@ -279,7 +279,7 @@ Again there are two related models here. They are the Order model and the LinesI
 </details>
 
 <details>
-<summary><b>Checkout App</b></summary>
+<summary><b>Accounts App</b></summary>
 
 The final custom model in the application is the CustomerAccount model which creates a table to store the customer's default address.
 | CustomerAccount Model   |                                                                                       |                                  |
