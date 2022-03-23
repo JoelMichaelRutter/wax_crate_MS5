@@ -35,6 +35,13 @@ In terms of business scope, this application provides many benefits:
 * Increase the sale of records through the ability to give customers a taste of the music prior to checkout.
 * To introduce customers to new music they may like through reccomendations (hot picks).
 * To allow customers ease of use via filtering, searching and sorting.
+
+### **Marketing Strategy**
+TALK ABOUT WEB MARKETING HERE
+SOCIAL MEDIA
+EMAIL MARKETING
+SEO
+
 ### **User Stories**
 Below are the user stories that needed to be fulfilled for the project to be successful from the perspective of the user and the store owner. There are 24 user stories in total broken down into five different epics:
 | Wax Crate User Stories                          |          |                                                                                |                                                                                                                    |
@@ -56,7 +63,7 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | Sorting, filtering  and searching the site      |          |                                                                                |                                                                                                                    |
 | 12                                              | Customer | Sort the list of records                                                       | dictate the order of the records in terms of price so I can get the best deal.                                     |
 | 13                                              | Customer | filter the records based on their genre                                        | find records in the music genres I like.                                                                           |
-| 14                                              | Customer | Search for records based on title, artist and record label                     | I can find singular records I'm looking for, records by artists I like or released by a record label that I like.  |
+| 14                                              | Customer | Search for records based on title and artist.                   | I can find singular records I'm looking for, records by artists I like or released by a record label that I like.  |
 | 15                                              | Customer | See the amout of results my search/sort brought back                           | make a quick decision as to whether I want to scroll through the results.                                          |
 | Purchasing and checking out                     |          |                                                                                |                                                                                                                    |
 | 16                                              | Customer | Be able to increase and decrease the quantity of records                       | ensure that the amount of records I'm buying is actually what I want.                                              |
@@ -83,7 +90,6 @@ Following the planning stage of the project, these user stories were added to Ka
 ![kanban board for authentication and registering](readme-images/store-admin.PNG)
 
 </details>
-
 
 # **Structure Plane**  
 I started my project by thinking about my user and the business function the user needs to satisfy. The main principles behind the development of the application were:
@@ -122,7 +128,7 @@ From here, I developed my database schema. I used a relational flowchart within 
 <details>
 <summary><b>Database Schema</b></summary>
 
-![plan-data-model](readme-images/db-schema.png)
+![plan-data-model](readme-images/database-schema.png)
 
 </details>
 
@@ -207,17 +213,139 @@ To ensure that I had some versatility to play with, when importing Roboto Mono f
 ![roboto-mono-400](readme-images/roboto-mono.PNG)
 
 Once I had settled on these fonts, I added them as some helper classes at the top of my CSS file so that I could be really specific with my styling.
-# **<a id="functional-features"></a>Functional Features**
-Within this section, I will break down the functions of the application. In the interests of brevity, I will show the front end and discuss what the backend is doing. If you want to take a more detailed look at the back end code, it is all commented up so its very clear what is happening as the flow progresses. I'll relate all of the relevant functionality back to my user stories to show you how they have been met. 
+# **<a id="functional-features"></a>Data Schema & Functional Features**
+## **Data Schema**
+I'm going to take a moment to showcase the final data schema for the application in tables, app by app.
+
+<details>
+<summary><b>Records App</b></summary>
+
+So there are two models at play here which link together. They are the Genre & Record models.
+| Genre Model |                                  |                      |
+|-------------|----------------------------------|----------------------|
+| Field name  | Attributes                       | Related to           |
+| genre       | models.CharField(max_length=254) | Record (foreign key) |
+
+| Record Model  |                                                                                                    |                    |
+|---------------|----------------------------------------------------------------------------------------------------|--------------------|
+| Field name    | Attributes                                                                                         | Related to         |
+| genre         | models.ForeignKey(Genre, null=False, blank=False, on_delete=SET_NULL                               | Genre(foreign key) |
+| image         | models.ImageField(null=True, blank=True)                                                           |                    |
+| title         | models.CharField(max_length=254, unique=True, null=False, blank=False)                             |                    |
+| slug          | models.SlugField(max_length=254, unique=True)                                                      |                    |
+| artist        | models.CharField(max_length=254, null=False, blank=False)                                          |                    |
+| record_label  | models.CharField(max_length=254, null=False, blank=False)                                          |                    |
+| release_year  | models.CharField(max_length=4, null=False, blank=False)                                            |                    |
+| hot_pick      | models.BooleanField(default=False)                                                                 |                    |
+| condition     | models.CharField(max_length=2, null=False, blank=False, choices=CONDITION_CHOICES, default='mint') |                    |
+| price         | models.DecimalField(max_digits=6, decimal_places=2)                                                |                    |
+| tracklist     | models.TextField()                                                                                 |                    |
+| has_link      | models.BooleanField(default=False)                                                                 |                    |
+| link_to_music | models.URLField(max_length=1024, null=True,                                                        |                    |
+
+</details>
+
+<details>
+<summary><b>Checkout App</b></summary>
+
+Again there are two related models here. They are the Order model and the LinesInOrder model. Essentially, the order is the larger model and an instance of the LinesInOrder model is created for each seperate record the customer purchases and is responsible for calculating the the total of each line which contributes to the order_total on the Order model. There's also a foreign key field to the CustomerAccount model on the order model for associating specific orders with a customers account so that it adds to their order history. 
+| Order Model              |                                                                                                             |                 |
+|--------------------------|-------------------------------------------------------------------------------------------------------------|-----------------|
+| Field name               | Attributes                                                                                                  | Related to      |
+| order_number             | models.CharField(max_length=32, null=False, editable=False)                                                 |                 |
+| customer_account         | models.ForeignKey(CustomerAccount, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders') | CustomerAccount |
+| customer_full_name       | models.CharField, max_length=50, null=False, blank=False)                                                   |                 |
+| customer_email           | models.EmailField(max_length=254, null=False, blank=False)                                                  |                 |
+| customer_postcode        | models.CharField(max_length=20, null=False, blank=False)                                                    |                 |
+| customer_town_or_city    | models.CharField(max_length=40, null=False, blank=False)                                                    |                 |
+| customer_street_address1 | models.CharField(max_length=80, null=False, blank=False)                                                    |                 |
+| customer_street_address2 | models.CharField(max_length=80, null=True, blank=True)                                                      |                 |
+| customer_county          | models.CharField(max_length=80, null=True, blank=True)                                                      |                 |
+| order_date               | models.DateField(auto_now_add=True)                                                                         |                 |
+| purchase_total_cost      | models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)                                 |                 |
+| delivery_charge          | models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)                                 |                 |
+| order_total              | models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)                                 |                 |
+| original_cart            | models.TextField(null=False, blank=False, default='')                                                       |                 |
+| stripe_pid               | models.CharField(max_length=254, null=False, blank=False, default=””)                                       |                 |
+
+| LinesInOrder Model |                                                                                                         |            |
+|--------------------|---------------------------------------------------------------------------------------------------------|------------|
+| Field name         | Attributes                                                                                              | Related to |
+| customer_order     | models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='order_lines’) | Order      |
+| record             | models.ForeignKey(Record, null=False, blank=False, on_delete=models.CASCADE)                            | Record     |
+| quantity           | models.IntegerField(null=False, blank=False)                                                            |            |
+| line_total         | models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)            |            |
+
+</details>
+
+<details>
+<summary><b>Checkout App</b></summary>
+
+The final custom model in the application is the CustomerAccount model which creates a table to store the customer's default address.
+| CustomerAccount Model   |                                                                                       |                                  |
+|-------------------------|---------------------------------------------------------------------------------------|----------------------------------|
+| Field name              | Attributes                                                                            | Related to                       |
+| user                    | models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer_account') | User (Django default user model) |
+| account_street_address1 | models.CharField(max_length=80, null=True, blank=True)                                |                                  |
+| account_street_address2 | models.CharField(max_length=80, null=True, blank=True)                                |                                  |
+| account_town_or_city    | models.CharField(max_length=40, null=True, blank=True)                                |                                  |
+| account_postcode        | models.CharField(max_length=20, null=True, blank=True)                                |                                  |
+| account_county          | models.CharField(max_length=80, null=True, blank=True)                                |                                  |
+
+</details>
+
+## **Functional Features**
+Within this section, I will break down the functions of the application. In the interests of brevity and as there are thousands of lines of backend code, I will show the templates where the user interacts with the functionality and discuss what the backend is doing as opposed to screenshotting the back end code and talking through it. If you want to take a more detailed look at the back end code, I will reference the files in question. The backend code is all commented up so its very clear what is happening as the flow progresses. I'll relate all of the relevant functionality back to my user stories to show you how they have been met. 
 
 ## **Base Template**
+Let's kick things off with the base template. Theres actually a significant amount of functionality within the base template as it's really core to my business goals to have an easy to use and consistent site. So lots of the navigation functionality is contained within my base template. I've prepared an annotated screenshot to take a look at and I will point out the key areas of existing functionality.
+
+<img src="readme-images/base-template-features.png" width="1000" alt="An image of the wax crate base template with annotations">
+
+1. **Logo** - So this is the main logo link, clicking it directs the user back to the home screen as is the norm with many websites.
+2. **Home** - The home link does the same as above.
+3. **Records** - (Satisfies User Story 2) The records link directs the user to the records.html page via the all_records view in views.py. **Hot Picks** - (Satisfies User Story 4) The hot picks link does a similar job to the records link but this time it sends a database query down the url so that the all_records view will only display those entries which have the hot pick boolean field set to true. This allows the record shop to select their hot picks and reccomend music to customers.
+4. **Genres** - (Satisfies User Story 13) This bootstrap dropdown is populated via a context processor. You can find the logic for this in the contexts.py file in the records app. The processor gets all the objects out of the Genre table and allows all templates to access them via the "genres" template variable. In the base template, I loop through the genres template variable to create a link for each one. I also then add it to the database query within the link so that each genre pushes its respective text content into the URL to query the database. The all_records view then serves the records template but filters the entries down to those with genres matching the query.
+5. **Account** - The content is dynamic here depending on the authentication status of the user and their permissions:
+    * If the user is logged out, they'll see two links, one to sign in and one to register.
+    * If the user is signed in but they don't have super user permissions, they'll see an accounts link when they can access their account and access the all off settings and they'll also have access to the sign out button as well
+    * If the user has superuser permissions, they’ll see an additional link on top of the account link to “back office” This link will take them to a part of the apps CRUD functionality where superusers can add records and genres to the shop and also manage/delete the existing genres. it's worth noting here that the back office functionality is not only protected by the selective rendering of the HTML, it's also protected by the view serving the relevant parts of the crowd functionality asks the user isn't a super user they'll be directed back to the home screen and a message will be displayed to feedback. We’ll take a look at the back office template a bit further down the line.
+6. **Cart Link** - (Satisfies User Story 17) - The content within this link updates every time a user adds something to the cart so the total beneath the little cart icon will update. If the user clicks this, they will be taken to the cart template where they can see items that they have in their current cart. The cart is just a dictionary of the record ids and the quantities stored in the session but the site unpacks it each time the cart is accessed and displays the information in a friendly way to the user.
+7. **Search Form** - (Satisfies User Story 14) - This form allows the user to enter a custom search query to the database where the all records view will then use the django "Q" package to see if any of the database entries match in the "title" and "artist" field of the record model. It will then display any matches in the records template.
+8. **Facebook Link** - This link directs the user to the businesses facebook page. It opens in a new tab so as not to take the user away from the application completley. This is part of my web marketing strategy.
+9. **Mail Chimp Sign Up** - Another part of my marketing strategy is to sign customers up to a mailing list via this embedded mailchimp form. This again opens in a seperate tab if the user is not logged in and gets them to enter a few more details. These details can be accessed and used for marketing via the mail chimp dashboard.
 
 ## **Home App**
+This app is quite simple. Through its single view it renders the following template.
+
+<img src="readme-images/home-template.png" width="1000" alt="An image of the wax crate home template with annotations">
+
+1. **Hero Image** - I wanted customers and users to understand the purpose and context of the site straight away. What better way than with a large image of someone have a good dig through a crate of vinyl records just like they would do in a real record shop. Another word for vinyl is "Wax" hence the name "Wax Crate".
+2. **Company Info** - In terms of SEO considerations, it's really important to ensure that information about the site and who the business is readily available. Thats why on the first page, I've included some company information contained within the types of semantic HTML elements that search engines look for. To add to that, I wove the short and longtail keywords I decided on during the planning stage into this content so as not to content stuff.
+3. **Call to action button** - I wanted a definitive instruction to the user to be clear so included a call to action button to enter the site properly. This button serves the same purpose as the "records" link.
 
 ## **Records App**
+There is a fair bit of functionality here, so stick with me.
 
 ### **Records**
+The records template does quite alot of work in terms of the project. It gets rendered when all records are viewed and is responsible for displaying filtered, searched for and sorted results. I'll show the template and discuss the functionality below.
 
+<img src="readme-images/records-template.png" width="1000" alt="An image of the wax crate records template with annotations">
+
+1. **Genre Filter** - (Satisfies User Story 13) This works just like the genre dropown in the nav, it's just easier for users to use this, especially on mobile. This filters down so that when a user filters down to "House" records, the rest of the buttons disappear to indicate to the user their current filtering critera.
+2. **Filter Cancel, Record Counter & Search Query** - (Satisfies User Story 15) Over the other side of the viewport, I've provided a way for users to get back to an unfiltered view of the records in the shop. In addition to that, the amount of results returned from the filter or search query is displayed to the user. If there is a search query from the search form in the nav, the search query is displayed next to the amount of results to make it more specific to the user.
+3. **Sort Selector** - (Satisfies User Story 12) This sort selection field allows users to sort the entries that they're viewing by price (high to low and vice vera), record title (a-z and vice versa) and artist (a-z and vice versa). Theres a small piece of javascript tacked on to the end of the template listening for the change event on this field and entering the different parameters into the URL so that the view can pick up on it and reload the page with the relevant sorting criteria. You can see the sorting area of the view in the all_records view within the records directory in the views.py file from lines 37-48.
+* **Record Cards** - The record cards are really the focal point of the customer and user experience.
+
+    4. **Record Details** - (Partially Satisfies User Story 3) When the user is browsing, they can either click the image or the record details button to go to the record_details template we will look at later. These links fire the slug (generated from the title of the record) down the URL so the view can locate the relevant record details. I opted for a slug here rather than the Django ID as it's friendlier to the user and would allow them to remember the URL a little easier.
+    5. **Add to Cart** - This button allows users to quickly add a record to their cart. There is a hidden form here with a quantity input set to one. There is relevant messaging to the user when adding to the cart this way. If they add one record to the cart, and then click the button, the messaging is dynamic to show that they are adding additional copies of the record to their cart. This functionality contributes to the overall ecommerce aims of the site.
+    6. **Edit Details** - (Partially Satisfies User Story 23) This button is only rendered for superusers, it accesses the edit_record view and serves the edit record template. Theres some redundancy included here as the view checks for superuser login to ensure that this functionality cannot be accessed by using the URL pattern. It fires the record ID down the URL and then the view accesses the record in the database and instatiates a form with the records data already pre-populated. We'll look more at this functionality later.
+    7. **Delete** - (Satisfies User Story 24) Similar to the above functionality, this button is only rendered for superusers and the permissions of the user are checked within the delete_record view to ensure that the URL pattern cannot be entered by regular users to delete records from the shop. There's some defensive programming applied to this functionality. Clicking this button doesnt actually delete the record but instead triggers a modal with a warning which is demonstrated below.  
+    <img src="readme-images/delete_record.png" width="700" alt="An image of the wax crate delete record functionality with annotations">
+    1) **Header** - To let the admin know which record they are deleting, I included the title of the record in the heading. 
+    2) **Record Image & Details** - Just to be really clear, to the admin which record is being deleted, I've included the record image and details to provide further context to which record will be deleted.
+    3) **Warning** - As a warning, I've advised that this action cannot be undone.
+    4) **Cancel & Delete** - The cancel button will dismis the modal, as will the cross button and clicking anywhere other than the modal container. The real delete button is housed within the modal. This fires the record id down the URL to the delete_record view which finds the entry within the database and calls the delete function. The admin is the redirected back to the records page with a feedback message displayed.
 ### **Record Details**
 
 ### **Back Office**
@@ -288,7 +416,7 @@ Below I will list the variety of technology I used during the development proces
 * **[PostgreSQL](https://www.postgresql.org/)** - The relational database management system used within this application.
 #### Front end 
 * **[Bootstrap]( https://getbootstrap.com/)** - a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.
-* **[jQuery]( https://jquery.com/)** - This is arguably one of the most popular JavaScript libraries in use right now. I used it to toggle a class on my accordion headers when they are clicked and unclicked to signal to the user which complaints had been expanded. I used a CDN to implement the jQuery library in the base.html template.
+* **[jQuery]( https://jquery.com/)** - 
 * **[Google Fonts](https://fonts.google.com/)** - for typography
 * **[Font Awesome](https://fontawesome.com/)** - for iconography  
 
@@ -299,7 +427,7 @@ Below I will list the variety of technology I used during the development proces
 * **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
 * **[Amazon Web Services S3]()** - 
 ### **Other**
-* **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
+* **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes and database schema.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
 * **[Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word)** - I used this word processor to write the README files.
 * **[Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)** - I used this spreadsheeting tool to create and complete my manual testing spreadsheet.
