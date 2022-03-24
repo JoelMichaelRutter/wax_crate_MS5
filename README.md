@@ -357,9 +357,30 @@ The records template does quite alot of work in terms of the project. It gets re
 9. **Description** - (Satisfies User Sotry 3) I wanted to ensure that there was some character in the store by explaining the stores take on the record in question. I've included custom descriptions for each of the records based on my own perception as the true store admin. Again this all populated via a summernote field so that the relevant keywords can be bolded inside the already semantic HTML without being hard coded, and as such, improving the pages SEO rankings. Again, where possible, I've weaved the keywords from my keyword research into there descriptions so as not to content stuff.
 
 ### **Back Office**
+The Back Office serves as the main central hub for the store in terms of the CRUD functionality. Here, admins can add new records to the store, add new genres if the genre for the record they're adding doesnt exist and delete the existing genres if they are no longer needed. Below is the template (just note that I had to zoom out abit to fit it all on one screen shot). It's through this template that users can access the add_record view, the add_genre view and the delete_genre view.
+
 <img src="readme-images/backoffice.png" width="1000" alt="An image of the wax crate back office template with annotations">
 
+1. **Add Record Form** - (Satisfies User Story 22) This form is rendered directly from the Record model in the records forms.py file. Django is handling pretty much all the validation apart from on the release year, I've used some JavaScript to render a pattern attribute into the element and set its value to a regex pattern so that only digits are allowed in the field. I've used some widgets to replace the labels to provide a little more context to prospective admins about how to use the form. Also, to ensure that all the pages have a better SEO ranking without the neeed to hard code them, I've rendered in two Django Summernote widgets into tracklist and description fields respectively. You can find the documentation that I used to set up Summernote in this fashion at this GitHub repository. To summarise, I had to install summernote in the terminal, add it to the list of installed apps, add a bunch of settings which I then customised to the project level settings.py file, import the widgets at the top of the forms file and then call the widgets for those specific fields.
+
+As the title of the records needs to be unique, I've added some try/except logic within the view for adding records where a record of the same title already exists. This logic catches the database integrity error and redirects the admin back to the back office page with an error message.
+
+Provided that the form is all valid and there are no integrity/server errors, the admin will be directed to the all records page and a success messages is displayed. 
+
+2. **Add Genre Form** - I didn't actually have this in my user stories, it was just a little something extra that I threw in as it's useful. This is another model form but this time its rendered from the Genre model. Using this form allows admins to add genres to the store where they dont already exist. So if the admin gets a record in stock that they want to add but the genre doesn't exist, they can quickly add it and provided the form is valid, they are redirected back to the back office screen with a success message where the genre will then be available in the genre dropdown of the record form.
+
+3. **Delete Genre** - Again, some extra functionality that go beyond the defined user stories. Just like the delete record functionality, I've given admins the ability to remove genres from the store using this web interfact as opposed to the Django Admin. If there are records with a specific genre in the store and then the genre is deleted, those entries genres are set to null. I've added warnings and defensive programming to this. The delete genre button triggers a modal similar to the delete record funtionality. The admin is then warned that their actions could affect the integrity of the store and that the deletion cannot be undone. Then they have the delete button within the modal which fires the genre ID down the URL to the delete genre view where the genre is identified in the database and promptly deleted, the user is directed back to the back office page and a success message is displayed.
+
 ### **Edit Record**
+The edit record page is an almost carbon copy of the back office page only it doesnt have the add or delete genre functionality. The template and its functional features are demonstrated below:
+
+<img src="readme-images/edit_record.png" width="1000" alt="An image of the wax crate edit record template with annotations">
+
+In the heading, there is a link **(1)** to take the admin back to shop (in case they click the wrong link).
+
+Once accessed, the form uses the ID of the record that was selected to locate it in the database and then instantiates a record form with the instance of the record that has been located in the database. This then populates the form with the current records details so that the admin can amend them more easily **(2)**. You will notice **(3 & 4)** that any relevantly applied summernote styling is also carried across from the existing data **(4)**.
+
+Finally, there is a button at the bottom of the form to update the record. Once clicked, provided that the form is valid, the details of that database entry are overwritten with the new data and the admin is redirected back to the records page and a success message is displayed.
 
 
 ## **Cart App**
