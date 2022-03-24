@@ -138,25 +138,26 @@ def add_record(request):
         return redirect(reverse('home'))
     if request.method == 'POST':
         add_record_form = RecordForm(request.POST, request.FILES)
-        try:
-            if add_record_form.is_valid():
+        if add_record_form.is_valid():
+            try:
                 add_record_form.save()
                 messages.success(
                     request,
                     "Record added succesfully"
                 )
                 return redirect(reverse('records'))
-            else:
+            except IntegrityError as error:
+                print("Record already exists")
                 messages.error(
                     request,
-                    f'{add_record_form.errors}'
+                    f'The record you are trying to add already exists \
+                        {error}'
                 )
-                return redirect(reverse('add_record'))
-        except IntegrityError as error:
+                return redirect(reverse('back_office'))
+        else:
             messages.error(
                 request,
-                f'The record you are trying to add already exists \
-                    {error}'
+                f'{add_record_form.errors}'
             )
             return redirect(reverse('back_office'))
 
