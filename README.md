@@ -44,6 +44,7 @@ SEO
 
 ### **User Stories**
 Below are the user stories that needed to be fulfilled for the project to be successful from the perspective of the user and the store owner. There are 24 user stories in total broken down into five different epics:
+
 | Wax Crate User Stories                          |          |                                                                                |                                                                                                                    |
 |-------------------------------------------------|----------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | ID                                              | As a….   | I want to be able to….                                                         | So that I can                                                                                                      |
@@ -58,12 +59,12 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | 7                                               | User     | quickly register for an account                                                | Have my details saved                                                                                              |
 | 8                                               | User     | log in and out                                                                 | to access my account and keep my details secure.                                                                   |
 | 9                                               | User     | change my password via email                                                   | recover my account if I forget it.                                                                                 |
-| 10                                              | User     | receive confirmation when I have registered                                    | can be sure that the site is reputable and verify my actions                                                       |
-| 11                                              | User     | view my own profile                                                            | See my order history and update my account information.                |
+| 10                                              | User     | receive a confirmation email when I have registered                            | can be sure that the site is reputable and verify my actions                                                       |
+| 11                                              | User     | view my own profile                                                            | See my order history and update my information account information.                                                |
 | Sorting, filtering  and searching the site      |          |                                                                                |                                                                                                                    |
 | 12                                              | Customer | Sort the list of records                                                       | dictate the order of the records in terms of price so I can get the best deal.                                     |
 | 13                                              | Customer | filter the records based on their genre                                        | find records in the music genres I like.                                                                           |
-| 14                                              | Customer | Search for records based on title and artist.                   | I can find singular records I'm looking for, records by artists I like or released by a record label that I like.  |
+| 14                                              | Customer | Search for records based on title, artist.                                     | I can find singular records I'm looking for, records by artists I like.                                            |
 | 15                                              | Customer | See the amout of results my search/sort brought back                           | make a quick decision as to whether I want to scroll through the results.                                          |
 | Purchasing and checking out                     |          |                                                                                |                                                                                                                    |
 | 16                                              | Customer | Be able to increase and decrease the quantity of records                       | ensure that the amount of records I'm buying is actually what I want.                                              |
@@ -76,7 +77,6 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | 22                                              | owner    | Add new records to my store and categorise them accordingly                    | Any prospective customers have the most up to date music in a place where they expect to find it.                  |
 | 23                                              | owner    | Update existing records on my store                                            | change its data, decription, images and information to fix problems and generate more business if it selling well. |
 | 24                                              | owner    | Delete records that I no longer stock                                          | customers arent dissapointed when their order is cancelled due to no stock being available.                        |
-
 
 Following the planning stage of the project, these user stories were added to Kanban boards on the GitHub repository so that I could adopt an agile approach and develop each piece of significant functionality at a time. You can access this Kanban boards via the projects tab on the GitHub repository or by clicking this <a href="https://github.com/JoelMichaelRutter/wax_crate_MS5/projects" target="_blank">link</a>.
 <details>
@@ -497,6 +497,7 @@ Below I will list the variety of technology I used during the development proces
 
 * **[Python](https://en.wikipedia.org/wiki/Python_(programming_language))**
     I did use some built in packages here throughout such as json and the time packages. I used json where the cart is concerned in some of the back end functionality and I used time within the webhook handler functions to sleep the program for a second at a time for five seconds to account for checking the database for a created order before allowing stripe to create it.
+    I also used the OS module within my environment to securely pass environment variable values from my untracked env.py file to my settings file and beyond.
 * **[HTML5](https://en.wikipedia.org/wiki/HTML5)**
 * **[CSS3](https://en.wikipedia.org/wiki/CSS)**
 	* **[CSS Grid]( https://en.wikipedia.org/wiki/CSS_grid_layout)** – I used this for my data parent containers on larger screens to ensure that the layout of the application remained tidy and responsive even with variable amounts of data within the containers.
@@ -558,7 +559,7 @@ You can create a clone of the repository inside your development environment. To
 6.	In the bash terminal, enter “git clone”, then paste in the URL copied from the GitHub repository and hit enter.
 7.	A clone of all files will now be pulled into the workspace.
 
-It’s worth noting that you will also need to create your environment variables either via your IDE or an env.py file. You will also need to run the following command: pip3 install -r requirements.txt
+It’s worth noting that you will also need to create your environment variables either via your IDE or an env.py file. You will also need to run the following command: pip3 install -r requirements.txt wich will install all of the dependencies from my requirements.txt file into your workspace.
 
 The command above will download all the dependencies you need for a clone of the project in it’s current state based on the dependencies within the requirements.txt file.
 
