@@ -496,6 +496,7 @@ Below I will list the variety of technology I used during the development proces
 ### **Languages**
 
 * **[Python](https://en.wikipedia.org/wiki/Python_(programming_language))**
+    I did use some built in packages here throughout such as json and the time packages. I used json where the cart is concerned in some of the back end functionality and I used time within the webhook handler functions to sleep the program for a second at a time for five seconds to account for checking the database for a created order before allowing stripe to create it.
 * **[HTML5](https://en.wikipedia.org/wiki/HTML5)**
 * **[CSS3](https://en.wikipedia.org/wiki/CSS)**
 	* **[CSS Grid]( https://en.wikipedia.org/wiki/CSS_grid_layout)** – I used this for my data parent containers on larger screens to ensure that the layout of the application remained tidy and responsive even with variable amounts of data within the containers.
@@ -503,12 +504,16 @@ Below I will list the variety of technology I used during the development proces
 * **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)** - ES6 Syntax. I used some vanilla JavaScript to set a timeout function on my django messages.
 
 ### Ecommerce Elements
-* **[Stripe](https://stripe.com/gb)**
+* **[Stripe](https://stripe.com/gb)** - Stripe provides APIs that web developers can use to integrate payment processing into their websites and mobile applications.
+* **Gmail** - I used Gmail's SMTP server to send mail from the application whilst in the production environment.
 ### **Frameworks, Libraries & Dependencies**
 #### **Backend**
 * **[Django]( https://www.djangoproject.com/)** - This is the high-level python framework I used as the foundation of the project. It has a lot of useful pre-installed packages and shortcuts and is intended to be used for the rapid development of applications.
-    * **[Django Summernote](https://github.com/summernote/django-summernote)** - This is a Django admin library that I installed to use in my admin site to implement search, list view and filter functionality.
+    * **[Django Summernote](https://github.com/summernote/django-summernote)** - This is a Django admin library that I installed to allow admins within the site to generate content with higher semantic value to improve layout and search engine optimisation. You can read about the implementation procedure in the attached documents via the link.
     * **[Django all-auth](https://django-allauth.readthedocs.io/en/latest/overview.html)** - This is another Django library that handles the authentication and creation of users.
+    * **[Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)** - A Django package to contorl the rendering behaviour of forms, in my case to render forms with bootstrap styling. You read about the implementation procedure in the docs available via the link.
+    * **[Django Storages](https://django-storages.readthedocs.io/en/latest/)** - A collection of storage backends used for integrating django with AWS S3. You can read more about it in the documentation via the the link.
+* **[Pillow](https://pillow.readthedocs.io/en/stable/)** - This is a python image interpreter which allows the processing of image files via python code. In my case, it's required as one of the fields on my models is an image field. You can read about the implementation procedure in the docs via the link.
 * **[Green Unicorn](https://gunicorn.org/)** - This is a Web Services Gateway Interface HTTP server which is commonly used to run Python web applications. 
 * **[Dj-database-url](https://pypi.org/project/dj-database-url/)** - This Django library allows us to connect to an external database which in our case will be hosted on Heroku.
 * **[psycopg2](https://pypi.org/project/psycopg2/)** - This package is one of the most popular database adapters for the python programming language which allows us to utilise a PostgreSQL database.
@@ -524,12 +529,12 @@ Below I will list the variety of technology I used during the development proces
 * **[GitHub](https://en.wikipedia.org/wiki/GitHub)** - was used as a code repository.
 ### **Deployment**
 * **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
-* **[Amazon Web Services S3]()** - 
+* **[Amazon Web Services S3](https://aws.amazon.com/s3/)** - Amazon Simple Storage Service is a service offered by Amazon Web Services that provides object storage through a web service interface. In my case, it was used as a storage solution for my static and media files
 ### **Other**
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes and database schema.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
-* **[Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word)** - I used this word processor to write the README files.
 * **[Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)** - I used this spreadsheeting tool to create and complete my manual testing spreadsheet.
+* **[Markdown Table From Excel](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/)** - I nifty tool I've been using to save time in terms of my markdown tables. All you need to do is create your content via excel, highlight the cells and then copy them into the text field where they will be converted to markdown syntax.
 
 # **Application Testing**  
 Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
