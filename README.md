@@ -357,7 +357,7 @@ The records template does quite alot of work in terms of the project. It gets re
 9. **Description** - (Satisfies User Sotry 3) I wanted to ensure that there was some character in the store by explaining the stores take on the record in question. I've included custom descriptions for each of the records based on my own perception as the true store admin. Again this all populated via a summernote field so that the relevant keywords can be bolded inside the already semantic HTML without being hard coded, and as such, improving the pages SEO rankings. Again, where possible, I've weaved the keywords from my keyword research into there descriptions so as not to content stuff.
 
 ### **Back Office**
-The Back Office serves as the main central hub for the store in terms of the CRUD functionality. Here, admins can add new records to the store, add new genres if the genre for the record they're adding doesnt exist and delete the existing genres if they are no longer needed. Below is the template (just note that I had to zoom out abit to fit it all on one screen shot). It's through this template that users can access the add_record view, the add_genre view and the delete_genre view.
+The Back Office serves as the main central hub for the store in terms of the CRUD functionality. Here, admins can add new records to the store, add new genres if the genre for the record they're adding doesnt exist and delete the existing genres if they are no longer needed. Below is the template (just note that I had to zoom out abit to fit it all on one screen shot). It's through this template that users can access the add_record view, the add_genre view and the delete_genre view. All the CRUD functionalites are secured via login required decorators and super user conditional checks within the views.
 
 <img src="readme-images/backoffice.png" width="1000" alt="An image of the wax crate back office template with annotations">
 
@@ -444,20 +444,46 @@ Just to demonstrate that the application is successfully integrated with Stripe,
 8. **Cart** - The cart is deleted from the session so as to reset in case the customer wants to make another order.
 
 ## **Accounts App**
-##
+## **Accounts**
+If the user is registered and authenticated, they will be able to access the accounts section of the app.
+<img src="readme-images/account.png" width="1000" alt="An image of the wax crate account template with annotations">
 
+1. **Signed in as** - To provide feedback to the user, I've inserted a statement before the customer account form to advise who they are currently logged in as.
 
+2. **Customer Account Form** - (Partially satisfies User Story 11) This form allows users to enter their default information. It's rendered from the forms.py file in the accounts app. All the validation is handled by django. If the user checks the save info box during the checkout process, their checkout information is stored in the model this form is rendered from.
+
+3. **All Auth Integration** - (Partially statisfies User Story 9) I've included some more involved integration with the Django All Auth package here by providing links to the manage email address template and the change password template within the accounts app.
+
+| Manage Emails Screen                                    | Change Password                                             |
+|---------------------------------------------------------|-------------------------------------------------------------|
+| ![manage-emails-page](readme-images/manage-emails.PNG)  | ![change-password-page](readme-images/change-password.PNG)  |
+
+4. **Order History Accordion** - I've used a similar structure to the order summary here only this time rather than rendering records, I'm looping through the orders that are associated with this paticular Customer Account within the body of accordion.
+
+5. **Detailed Order History** - This link pushes the order number down the URL and renders an amended checkout success page for that paticular order in the orders table. There is a message to inform the user that they are looking at a past order confirmation. I send a new context variable into the template within the order_details view to check if the user is accessing the checkout success page from the account template and if so, render a back to account button rather than a hot picks button.
+
+## Registering, Sign In, Sign out & Account/Password Management
+The final user stories remaining are all to do with authentication. I used Django all auth for this and as a result I won't explain the functionality as you can read more about the package in the documentation [here](https://django-allauth.readthedocs.io/en/latest/).
+
+To summarise, I will detail the remaining user stories with screenshots of the customised all auth templates. I customised the templates in line with my custom accounts template to ensure visual consistency and promote familiarity within the site users. 
+
+| * **User Story 7 - As a User I want to be able to quickly register for an account so that I can have my details saved.**                                            |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![manage-emails-page](readme-images/register.PNG)                                                                                                                   |
+| **User Story 8 - As a User I want to be able to quickly Log in and out so that I can access my account and keep my details secure.**                                |
+| ![manage-emails-page](readme-images/sign-in.PNG)                                                                                                                    |
+| ![manage-emails-page](readme-images/sign-out.PNG)                                                                                                                   |
+| **User Story 9 - As a User I want to be able to change my password via email so that I can recover my account if I forget it.**                                     |
+| ![manage-emails-page](readme-images/reset-password.PNG)                                                                                                             |
+| **User Story 10 - As a User I want to receive a confirmation email when I have registered so that I can be sure that the site is reputable and verify my actions.** |
+| ![manage-emails-page](readme-images/read-me-register-for-email.PNG)                                                                                                 |
+| ![manage-emails-page](readme-images/email-conf-temp-mail.PNG)                                                                                                       |
 
 ## **Additional Functionality**
-### **Authentication**
-There are three user stories which relate to authorisation. Authentication in terms of the functionality of the application is really important as whilst limited in scope,
-there is customer data contained within the system so no unauthorised parties should be able to access it. I would also like to take this moment to note that whilst this
-version of the application is deployed in Heroku, in a real-world scenario, no one in the public domain would be able to access this application due to its business focused
-nature. As a result, this would be hosted internally on a secure business network. The three user stories which contain specifications requiring authentication are:
+Django handles a variety of errors internally using error handlers. These errors are 400, 403, 404 and 500. As Django is looking within my templates directory for my custom templates, the internal error handlers that handle the errors specified above would display a default template which is not akin to the UI that I have designed. As a result, I have added custom templates corresponding to the errors above in terms of file name (400.html, 403.html, 404.html, 500.html). As these templates are within my custom templates directory, the django error handler functions that are built in to the framework now use the custom templates rather than the blank templates. My custom templates extend from the base.html template and provide the user with the error that has occured. They also provide the user with a link back to the home page so that they don't have to use the navigation or their browser buttons to get back. The example below is for the 404 template, the template is the same for all of them apart from they are named differently according to their error type and display the relevant content for that error.
 
-* **User Story:**
+<img src="readme-images/error_template.PNG" width="1000" alt="An image of the wax crate 404 with annotations">
 
-To summarise, allauth installs the back-end functionality and additional templates which are used to sign in, register and sign out of the application. All of the validation and backend functionality is handled by Django. I pulled these templates from their location within the allauth directory into my custom templates directory and added my own custom CSS and bootstrap classes.
 
 # **Technologies Used**
 Below I will list the variety of technology I used during the development process.
@@ -476,6 +502,8 @@ Below I will list the variety of technology I used during the development proces
     * **[CSS Grid Generator]( https://cssgrid-generator.netlify.app/)** - To make things easier for myself, I used a CSS grid generator to create my grid containers.
 * **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)** - ES6 Syntax. I used some vanilla JavaScript to set a timeout function on my django messages.
 
+### Ecommerce Elements
+* **[Stripe](https://stripe.com/gb)**
 ### **Frameworks, Libraries & Dependencies**
 #### **Backend**
 * **[Django]( https://www.djangoproject.com/)** - This is the high-level python framework I used as the foundation of the project. It has a lot of useful pre-installed packages and shortcuts and is intended to be used for the rapid development of applications.
