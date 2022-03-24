@@ -59,7 +59,7 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | 8                                               | User     | log in and out                                                                 | to access my account and keep my details secure.                                                                   |
 | 9                                               | User     | change my password via email                                                   | recover my account if I forget it.                                                                                 |
 | 10                                              | User     | receive confirmation when I have registered                                    | can be sure that the site is reputable and verify my actions                                                       |
-| 11                                              | User     | view my own profile                                                            | See my order history, update my information and let the shop know what my favourite music genre is                 |
+| 11                                              | User     | view my own profile                                                            | See my order history and update my account information.                |
 | Sorting, filtering  and searching the site      |          |                                                                                |                                                                                                                    |
 | 12                                              | Customer | Sort the list of records                                                       | dictate the order of the records in terms of price so I can get the best deal.                                     |
 | 13                                              | Customer | filter the records based on their genre                                        | find records in the music genres I like.                                                                           |
@@ -322,13 +322,13 @@ This app is quite simple. Through its single view it renders the following templ
 
 1. **Hero Image** - I wanted customers and users to understand the purpose and context of the site straight away. What better way than with a large image of someone have a good dig through a crate of vinyl records just like they would do in a real record shop. Another word for vinyl is "Wax" hence the name "Wax Crate".
 2. **Company Info** - (Satisfies User Story 1) In terms of SEO considerations, it's really important to ensure that information about the site and who the business is readily available. Thats why on the first page, I've included some company information contained within the types of semantic HTML elements that search engines look for. To add to that, I wove the short and longtail keywords I decided on during the planning stage into this content so as not to content stuff.
-3. **Call to action button** - I wanted a definitive instruction to the user to be clear so included a call to action button to enter the site properly. This button serves the same purpose as the "records" link.
+3. **Call to action button** - (Partially satisfies User Story 2) I wanted a definitive instruction to the user to be clear so included a call to action button to enter the site properly. This button serves the same purpose as the "records" link.
 
 ## **Records App**
 There is a fair bit of functionality here, so stick with me.
 
 ### **Records**
-The records template does quite alot of work in terms of the project. It gets rendered when all records are viewed and is responsible for displaying filtered, searched for and sorted results. I'll show the template and discuss the functionality below.
+The records template does quite alot of work in terms of the project. It gets rendered when all records are viewed and is responsible for displaying unfiltered, filtered, searched for and sorted results. I'll show the template and discuss the functionality below. In general, all of this functionality satisfies User Story 2.
 
 <img src="readme-images/records-template.png" width="1000" alt="An image of the wax crate records template with annotations">
 
@@ -361,7 +361,7 @@ The Back Office serves as the main central hub for the store in terms of the CRU
 
 <img src="readme-images/backoffice.png" width="1000" alt="An image of the wax crate back office template with annotations">
 
-1. **Add Record Form** - (Satisfies User Story 22) This form is rendered directly from the Record model in the records forms.py file. Django is handling pretty much all the validation apart from on the release year, I've used some JavaScript to render a pattern attribute into the element and set its value to a regex pattern so that only digits are allowed in the field. I've used some widgets to replace the labels to provide a little more context to prospective admins about how to use the form. Also, to ensure that all the pages have a better SEO ranking without the neeed to hard code them, I've rendered in two Django Summernote widgets into tracklist and description fields respectively. You can find the documentation that I used to set up Summernote in this fashion at this GitHub repository. To summarise, I had to install summernote in the terminal, add it to the list of installed apps, add a bunch of settings which I then customised to the project level settings.py file, import the widgets at the top of the forms file and then call the widgets for those specific fields.
+1. **Add Record Form** - (Satisfies User Story 22) This form is rendered directly from the Record model in the records forms.py file. Django is handling pretty much all the validation apart from on the release year, I've used some JavaScript to render a pattern attribute into the element and set its value to a regex pattern so that only digits are allowed in the field. I've used some widgets to replace the labels to provide a little more context to prospective admins about how to use the form. Also, to ensure that all the pages have a better SEO ranking without the neeed to hard code them, I've rendered in two Django Summernote widgets into tracklist and description fields respectively. You can find the documentation that I used to set up Summernote in this fashion at this [GitHub](https://github.com/summernote/django-summernote) repository. To summarise, I had to install summernote in the terminal, add it to the list of installed apps, add a bunch of settings which I then customised to the project level settings.py file, import the widgets at the top of the forms file and then call the widgets for those specific fields.
 
 As the title of the records needs to be unique, I've added some try/except logic within the view for adding records where a record of the same title already exists. This logic catches the database integrity error and redirects the admin back to the back office page with an error message.
 
@@ -372,7 +372,7 @@ Provided that the form is all valid and there are no integrity/server errors, th
 3. **Delete Genre** - Again, some extra functionality that go beyond the defined user stories. Just like the delete record functionality, I've given admins the ability to remove genres from the store using this web interfact as opposed to the Django Admin. If there are records with a specific genre in the store and then the genre is deleted, those entries genres are set to null. I've added warnings and defensive programming to this. The delete genre button triggers a modal similar to the delete record funtionality. The admin is then warned that their actions could affect the integrity of the store and that the deletion cannot be undone. Then they have the delete button within the modal which fires the genre ID down the URL to the delete genre view where the genre is identified in the database and promptly deleted, the user is directed back to the back office page and a success message is displayed.
 
 ### **Edit Record**
-The edit record page is an almost carbon copy of the back office page only it doesnt have the add or delete genre functionality. The template and its functional features are demonstrated below:
+The edit record page is an almost carbon copy of the back office page only it doesnt have the add or delete genre functionality. This functionality satisfies User Story 23. The template and its functional features are demonstrated below:
 
 <img src="readme-images/edit_record.png" width="1000" alt="An image of the wax crate edit record template with annotations">
 
@@ -386,13 +386,62 @@ Finally, there is a button at the bottom of the form to update the record. Once 
 ## **Cart App**
 ### **Cart**
 
+<img src="readme-images/cart.png" width="1000" alt="An image of the wax crate edit record template with annotations">
+
+1. **Messaging** - Here is an example of the messaging framework at work throughout the site. In this paticular example, the user has changed the quantity of one of the records via the amend_cart view in the cart views.py file. The messaging across the app is dynamic and feedback to the user what actions they are taken.
+
+2. **Quantity Selector** - (Satisfies User Story 18) This quantity selector works in pretty much the same way as the record details page only in this instance the submission of the form is being handled by a small piece of JavaScript attached to the bottom of the page. I'll talk more about that next. The form has a class with the record id for the record in that specific line so that it can be matched up with the relevant button and also used to remove the relevant record from the cart dictionary in the session.
+
+3. **Update & Delete Buttons** (Satisfies User Story 18) These buttons are being listened to by some javascript at the bottom of the template. Each update button has the corresponding record id in the class. The JavaScript gets the record id by splitting the update buttons id. It then finds the form with the corresponding number at the end of the class and issues the submit command. This then fires the record id down the amend_cart URL into the corresponding view which then updates the quantity of that record id in the cart within session. For the delete button, things are slightly more complicated. As the delete button isnt technically part of the form, the JavaScript requires the CSRF token to submit data to the relevant URL. The delete buttons are all labeled up with the record IDs which is then accessed via the split method in the JavaScript. I've then created a URL that the JS form needs to submit to (which is the URL for the remove_from_cart view) and then passed in the record ID which is expected as parameter. From there, I call the submit method, passing the record id as the data and the CSRF token. Once the record has been removed, the page is reloaded via the JavaScript and the message from the view is then pushed to the user to inform them that the record has been removed.
+
+4. **Cart Item Cards** - (Satisfies User Story 17) Moving on from the Cart Link in the nav, the user gets a more detailed view of the records they have in their cart by seeing the image, the important record details and then the price per unit. These cards are contained within a container with a fixed height and an overflow set as it would quickly become tedious for a user who had a large amount of records in their cart to scroll up and down their cart. It's worth noting here that all the records in the cart are being accessed via a context processor so that the totals and records can be accessed on every template in the application. All i've done to create this list of records in the bag is loop through the records_in_cart and render a card with a quantity and delete form for each one.
+
+5. **Totals** - (Contributes to fulfillment of User Story 6) - These totals allow the user to see how much their total spend will be. There is a free delivery setting that you cant see in the example as it only renders when the user has less than £80.00 of records in the cart which informs them how much more they would need to spend to get free delivery. These totals update as record quantities are updated.
+
+6. **Back to shop** - This link is a really simple piece of functionality to take the user back to the all records page without having to use the navigation.
+
+7. **Checkout Button** - This button allows the user to advance to the checkout functionality once they are satisified with the contents of their cart.
 
 ## **Checkout App**
-
 ### **Checkout**
+<img src="readme-images/cart.png" width="1000" alt="An image of the wax crate edit record template with annotations">
+
+1. **Order Summary Accordion** - (Satisfies User Story 20) In this accordion, the records in the cart are looped through and displayed in the same fashion as in the cart only here they are accessed via the accordion. This functionality gives the user a final chance to review their purchases and quantities before they checkout.
+
+2. **Checkout Form** - This form is contributing to the whole eccomerce aim of the application. This form is rendered from the Order model via the forms.py file in the checkout app. There's alot of redundancy built into the form and functionality here which I will explain below. When this form is instantiated, it checks if the user has a customer account and if so, it grabs the instance of the customer account in question and instantiates the form with those details prepopulated.
+
+3. **Stripe Element** - (Satisifies User Story 19) This stripe element is rendered directly from stripe via the Stripe JS package. The submission of the form overall is handled by the stripe_element.js functionality. Theres tons to go through here so I will keep things as brief as I can. When the page is loaded, the Stripe element creates a "payment intent" which is essentially a dictionary of information that can be sent over to the Stripe platform to complete the payment. There are the Stripe environment variables injected into the DOM as context by the checkout which are then accessed with the JavaScript handling the form submission. hen the user enters their card informaton, and submits the form, the stripe elements js file attempts to send the information over to stripe. To ensure that the user can't duplicate the form submission, this form hanler overlays the screen with a neat loading overlay with a spinning record. If there is an error, the page is re-enabled and the error is disiplayed in the errors div directly below the stripe element. If the payment is good to go, Stripe sends out a webhook to grab the payment from the app. All of this functionality is handled by the following files: [stripe_elements.js](checkout/static/checkout/js/stripe_element.js), [webhooks.py](checkout/webhooks.py) and [webhook_handler.py](checkout/webhook_handler.py).
+
+Theres some redundancy in place in terms of stripe whereby if the user does not checkout successfully, my custom webhook handler for successful payment intents will check the Orders table in the database over a period of five seconds and if it cannot find a matching order based on the original stripe payment intent ID, order number or original cart items that created it, it will send a signal to the model to create the order based on the metadata stuffed into the stripe payment intent.
+
+Just to demonstrate that the application is successfully integrated with Stripe, you can see an order on one side and the subsequent stripe event at the webhook URL below (note the amounts):
+
+| Order Confirmation screen                                  | Stripe Payment Intent                                         |
+|------------------------------------------------------------|---------------------------------------------------------------|
+| ![order-confirmation-image](readme-images/order-conf.PNG)  | ![Stripe-payment-intent-image](readme-images/stripe-conf.PNG) |
+
+5. **Save Info** - I have a save information checkbox which is only rendered for authenticated users which is also handled by the checkout view and webhook handlers. If set to true on the form submission, it will store the information within the checkout form within the Customer Account model. I'm going to demonstrate this functionality later.
+
+6. **Order Total** - As a final confirmation before the submission button, I've got a nice contrasting banner to show the user the total that their card will be charged.
+
+7. **Back to cart** - This button allows the user to go back to amend their cart if they need to.
+
+8. **Place Order** - This button submits the checkout form and triggers the stripe elements javascript file to take over and trigger the loading overlay.
 
 ### **Checkout Success**
+<img src="readme-images/checkout_success.png" width="1000" alt="An image of the wax crate checkout success template with annotations">
 
+1. **Email Confirmation** - (Satisfies User Story 21) This functionality can't be seen in terms of the template on show above but it's handled by the private _send_confirmation_email function within the webhook_handler.py file and then executed within the handle_payment_intent_succeeded method. It takes the order instance for that order and enters the relevant information into two text files in the conf emails directory via context and uses the django send_mail function and render_to_string method to send this as an email to the customer. You can see a screenshot of an example confirmation email below.
+
+<img src="readme-images/conf-email.jpg" width="200" alt="An image of the wax crate order confirmation email">
+
+* **(2, 3, 4, 5) Order Information** - The customer is presented with their order information including order number (truncated to preserve layout), order date, records purchased, deliver & billing information and finally a dispatch message.
+
+6. **Hot Pick** - (Further contributing to User Story 4) Now that the user has checked out, they can be directed to the hot picks in the store so that they can see what the store reccomends further driving sales.
+
+7. **Message** - There is a success message displayed with the full order number and explaining that a confirmation email will be sent to the specified email address on the checkout form.
+
+8. **Cart** - The cart is deleted from the session so as to reset in case the customer wants to make another order.
 
 ## **Accounts App**
 ##
@@ -410,14 +459,6 @@ nature. As a result, this would be hosted internally on a secure business networ
 
 To summarise, allauth installs the back-end functionality and additional templates which are used to sign in, register and sign out of the application. All of the validation and backend functionality is handled by Django. I pulled these templates from their location within the allauth directory into my custom templates directory and added my own custom CSS and bootstrap classes.
 
-### **Admin**
-Within the application, I also installed some additional admin functionality. 
-#### **Summernote**
-I’ve installed the Django Summernote library to use in the admin.py file. There’s a full breakdown of the installation and implementation process for this library in the [deployment document](preperation-and-deployment.md). To summarise, I imported the SummerNoteAdmin class into the admin file and then used it in my ComplaintAdmin class to set up the functionality of the Admin site.
-#### **Export**
-The final feature I would like to talk about is additional and is not covered in any user story. It’s something I decided to add following the development of the functionality which finalised the user stories. Following a discussion at work about the application now that all other functionality was in place, a senior stakeholder asked me if it was possible to export data from the application so that it could be shared or manipulated by those without access to the admin site. This prompted me to go searching for a solution to this problem, as any good business application should have the ability to make it’s data accessible to whomever needs it. 
-
-As a result, I installed the Django import-export library. A full explanation on the installation and implementation of this library can be found within the [deployment document](preperation-and-deployment.md).
 # **Technologies Used**
 Below I will list the variety of technology I used during the development process.
 ### **Operating Systems**

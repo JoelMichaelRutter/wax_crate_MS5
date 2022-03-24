@@ -147,7 +147,6 @@ def add_record(request):
                 )
                 return redirect(reverse('records'))
             except IntegrityError as error:
-                print("Record already exists")
                 messages.error(
                     request,
                     f'The record you are trying to add already exists \

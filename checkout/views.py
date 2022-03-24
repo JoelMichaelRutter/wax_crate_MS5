@@ -164,7 +164,6 @@ def checkout(request):
                 )
             )
         else:
-            print('Invalid form')
             messages.error(
                 request,
                 "Looks like problem with what you entered into \
