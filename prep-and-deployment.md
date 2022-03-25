@@ -80,4 +80,4 @@ You can see from my example below, that I have duplicated the variables from my 
 
 At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important at me to get all of the required functionality in Heroku and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
 
-* ### [AWS Set Up](#aws-set-up)
+# **[AWS Set Up](#aws-set-up)**
