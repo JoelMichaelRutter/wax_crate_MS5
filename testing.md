@@ -30,9 +30,12 @@ A lot of these errors are the same and are being pushed by Stripe and then on th
 </details>
 
 <details>
-<summary><b>records.html</b></summary>
+<summary><b>record_details.html</b></summary>
 
 ![record-details-html-validation-errors](testing-md-files/images/record_details.png)
+
+Summernote is also placing a font element into the tracklist content but its displaying as it should, if you check my code, it isn't anything that I coded.
+![record-details-html-validation-errors](testing-md-files/images/record_details_summernote.PNG)
 
 </details>
 

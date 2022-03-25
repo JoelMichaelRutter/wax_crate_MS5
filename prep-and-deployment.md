@@ -3,7 +3,6 @@ When deploying this application, I deployed very early on in the development sta
 
 * ### [Project Set Up](#project-set-up)
 * ### [AWS Set Up](#aws-set-up)
-* ### [Home Screen Development](#home-screen-development)
 * ### [Deployment](#deploying-to-heroku)
 * ### [Stripe Set Up](#stripe-set-up-settings)
 * ### [Production Email Set Up](#production-email-set-up)
@@ -81,3 +80,83 @@ You can see from my example below, that I have duplicated the variables from my 
 At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important at me to get all of the required functionality in Heroku and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
 
 # **[AWS Set Up](#aws-set-up)**
+As the site is being deployed to Heroku, I decided to use Amazon Web Services' S3 cloud hosting service to store my static and media files. I followed the following steps to set up an account and integrate it into my project.
+## Registering and Setting Up A Bucket
+1. Go to [aws.amazon.com](https://aws.amazon.com/) and register for an account.
+2. Once registered, you will be at the management console. You need to find the S3 service in the search bar. 
+3. Once you've accessed S3, you need click "Create Bucket" button. This bucket will be the place where the static and media files will be stored.
+4. You will need to give your bucket a name, I named mine according the name of my application on Heroku.
+5. You will now need to select a region, select the one that is closest to you.
+6. Make sure that you select the radio button to enable "ACLs".
+7. Make sure that you check the radio button "Bucket Ownership preferred".
+8. Click "Create Bucket".
+9. Scroll right down to the bottom of the page and find the properties section. 
+10. In the properties section, select "Static Website Hosting" and fill in the index and error values as "index.html" and "error.html".
+11. Now go to the permissions tab.
+12. Find the CORS configuration section. Within this section, I set up the connection between the Heroku app I set up and the S3 bucket.
+13. Within the code editor on the CORS configuration page, paste in the below code.
+```python
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
+14. Within the permission section, navigate to the bucket policy section and select the "policy generator". This is used to generate a security policy for the bucket open this in a new tab so that you can easily come back to the previous page without losing your progress.
+15. In the security policy form enter the following details
+16. Policy Type - Select 23 Bucket Policy
+17. Principal - Enter a "*" to allow all principals.
+18. Actions - Select "Get object".
+19. In the ARN field, copy the ARN number from the previous page and paste it into the field.
+20. Click "Add Statement".
+21. Click "generate policy".
+22. The security policy will be generated in object format. Copy the entire policy.
+23. Return to the bucket policy screen and copy the object into the bucket policy code editor.
+24. In the object editor, look for the "Resource". The value should be set to the ARN. At the end of the value, add a "/*" to allow full access to all resources the bucket.
+25. In the permissions tab, locate the Access Control List. click edit and enable List for Everyone (public access) and accept the warning box. If the edit button is disabled you need to change the Object Ownership section to ACLs enabled.
+At this point, the S3 bucket is set up but there are a few more steps that need to be followed.
+
+## Creating a User to Access the Bucket
+All of this functionality is handled by IAM, another AWS service. Follow the steps below to set this up:
+1. Go back to the services menu on the AWS console and find IAM. 
+2. In the sidebar, select "User Groups".
+3. Click "Create a New Group".
+4. Name your group, in my case I named it "manage-wax-crate-ms5" and click the next step button until you see the "Create Group" button. Click the "Create Group" button.
+5. Navigate to the policies section in the side bar.
+6. Click the create policy button. 
+7. Navigate to the JSON tab and click the "import managed policy" link.
+8. In the form that opens, search for the "S3 Full Access" policy adn import it. 
+9. Get the ARN from the bucket policy and paste it into the resource key value field but add two values in a list format. In my case, I added the below:
+```python
+"Resource": [
+    "arn:aws:s3:::wax-crate-ms5",
+    "arn:aws:s3:::wax-crate-ms5/*"
+]
+```
+10. Click "Review policy"
+11. Give the policy a name and description, I called mine "jr-wax-crate-policy".
+12. Click "Create Policy".
+13. Navigate back to the groups section. We now need to attach the policy we just created to the group.
+14. Locate the manage group you just set up, in my case it was called "manage-wax-crate-ms5".
+15. Click attach policy.
+16. Search for the policy that was just created, in my case it was "jr-wax-crate-policy".
+17. Select the policy via the checkbox and click "Attach Policy".
+
+To create a user to put into the group, follow the below steps:
+
+1. Navigate to the users section and click "add user".
+2. Create a user, in my case I named my user "wax-crate-staticfiles-user".
+3. Ensure that the programmatic access checkbox is checked.
+4. Click the next button.
+5. Add the user to the "manage-wax-crate-ms5" group.
+6. Click through to the end and click "Create User".
+7. You will be asked to download a CSV file containing the access credentials. These are really important and can only be downloaded once so please keep them safe. They will also be required to set up the relevant AWS environment variables in Heroku.
