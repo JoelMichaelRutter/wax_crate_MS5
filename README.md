@@ -535,7 +535,7 @@ Below I will list the variety of technology I used during the development proces
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes and database schema.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
 * **[Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)** - I used this spreadsheeting tool to create and complete my manual testing spreadsheet.
-* **[Markdown Table From Excel](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/)** - I nifty tool I've been using to save time in terms of my markdown tables. All you need to do is create your content via excel, highlight the cells and then copy them into the text field where they will be converted to markdown syntax.
+* **[Markdown Table From Excel](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/)** - A nifty tool I've been using to save time in terms of my markdown tables. All you need to do is create your content via excel, highlight the cells and then copy them into the text field where they will be converted to markdown syntax.
 
 # **Application Testing**  
 Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
@@ -565,16 +565,27 @@ The command above will download all the dependencies you need for a clone of the
 
 # **Further Development Scope**
 
+There a couple of areas I would develop this further in another development cycle. 
+
+1. I would implement some sort of inventory management system by augmenting the Record model with a quantity_in_stock integer field. I would then probably use some sort of logic within the checkout/checkout success view to reduce the quantity of that record in the database by the quantity that the user just checked out with. This could include some sort of template logic on the records cards whereby the quantity in stock is rendered on the card and if it is 0, the card could gray out and the buttons would be disabled. That would probably raise some questions around the record details views and add to cart views as they would need some sort of defensive logic to ensure that users couldn't add out of stock records to the cart via the URL pattern.
+
+2. I would implement some sort of contact messaging system. My first idea regarding this would be to have a contact form and then have an extra back office area to receive these messages into. I thought about this abit more in the shower today and it would probably be entirely possible to have an almost instant messenger by adding a messages model to the Accounts app and then having some fields in that model for user and store messages and augmenting the account model to have a some sort of OneToMany field for the messages. I.E one account can have many messages back and forth from the store. No doubt, this would take a considerable amount more thinking but I'm sure you catch my drift.
 
 # **Project Reflection**
 
+This has been a really tough project for me. It has been on a scale that none of the other projects have been. I'm really pleased with how far I have come on this course. I never would have thought that I would understand the complex logic involved with this type of application when I first set out on this journey. Overall, I am really pleased with the way the project turned out and I'm excited to put these skills to use in the real world.
 
 # **Project Credits**
 ## **Code**
 In no particular order, I’d like to list the sources I pulled inspiration, code and debugging advice from.
 
+* Thanks to r92 for the regex pattern I used on my rendered release year fields on this stack overflow [thread](https://stackoverflow.com/questions/4374185/regular-expression-match-to-test-for-a-valid-year).
+* Thanks to Spencer Wieczorek here on this Stack overflow [thread](https://stackoverflow.com/questions/39539967/make-duplicate-ids-unique-using-jquery
+) for his idea on making duplicate ids unique, this helped whilst validating my Back Office html file due to the duplicated genre fields.
+* Thanks to harm manders on this stack overflow [thread](https://stackoverflow.com/questions/66335238/changing-the-color-arrow-in-bootstrap), it really helped me in terms of overriding the colour of the bootstrap accordion buttons as I recoloured all of mine to darker colours.
 
-
+* Thanks to Code Institute for their awesome content in preparing me and guiding me through this.
 # **Project Acknowledgements**
 * **Code Institute Tutor Support** - For pushing me in the right direction with tricky bugs, I would specifically like to mention James, Sheryl and Igor who were sensational.
-* **My Mentor** - As always for keeping me real, for his useful feedback and general greatness. 
+* **My Mentor** - As always for keeping me real, for his useful feedback and general greatness.
+* **My Partner** - For proof reading my work, content and her marketing genius. 
