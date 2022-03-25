@@ -521,7 +521,8 @@ Below I will list the variety of technology I used during the development proces
 * **[PostgreSQL](https://www.postgresql.org/)** - The relational database management system used within this application.
 #### Front end 
 * **[Bootstrap]( https://getbootstrap.com/)** - a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.
-* **[jQuery]( https://jquery.com/)** - 
+* **[jQuery]( https://jquery.com/)** - jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. I've used throughout the app for various tasks ranging from removing rendered objects that I didn't like from Django to changing IDs so that they are unique post render and adding aria labels to elements to increase accessibility.
+* **[Hover.css](https://ianlunn.github.io/Hover/)** - A collection of CSS3 powered hover effects to be applied to links, buttons, logos, SVG, featured images and so on.
 * **[Google Fonts](https://fonts.google.com/)** - for typography
 * **[Font Awesome](https://fontawesome.com/)** - for iconography  
 
@@ -538,7 +539,7 @@ Below I will list the variety of technology I used during the development proces
 * **[Markdown Table From Excel](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/)** - A nifty tool I've been using to save time in terms of my markdown tables. All you need to do is create your content via excel, highlight the cells and then copy them into the text field where they will be converted to markdown syntax.
 
 # **Application Testing**  
-Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
+Please click [here](TESTING.md) to see a full breakdown of all testing completed on the application.
 
 # **<a id="deploying-the-site"></a>Preparing the workspace and deploying the application**
 Please click [here](prep-and-deployment.md) to see a full explanation of the steps I took to prepare the workspace for development, how to perform an initial deployment, the integration and implementation of additional libraries as well as the final deployment of the application.
