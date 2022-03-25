@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Sets debug to the DEVELOPMENT variable value in my local env.py
+# Sets debug to the DEBUG variable value in my local env.py
 # file. In my case, its set to True but in the production environment
 # the variable isnt set so this will default to false.
 DEBUG = 'DEBUG' in os.environ
@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     # Other apps
     'storages',
     'crispy_forms',
-
 ]
 
 MIDDLEWARE = [

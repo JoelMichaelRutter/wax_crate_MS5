@@ -161,10 +161,67 @@ Largely, the errors I found were cosmetic, mostly height related when it came to
 
     * **FIX** - Where I encountered this issue, I had two fixes. Firstly, I added a media query to dictate that under 1440px, hero images should have height of 100% as then the content containers would dictate the height of the image and there would then be no space. This then gave rise to another problem in that if the content was really minimal (sign out page), the height of the container would shrink down and leave lots of space because it no longer had a fixed height on laptops. To counteract this, on the templates that had the lack of content, I added a laptop-height container around the content to ensure that the page stretched the height of the viewport. I've tested all of these fixes and they are all working as expected now.
 
-# Performance Testing
+# **Performance Testing**
 To test the performance of the website, I used Google Lighthouse inside Chrome Dev Tools. Below I will outline the applications performance via the metrics provided by Google Lighthouse:
 
-## Known Issues
+<details>
+<summary><b>index.html</b></summary>
+
+![index-lighthouse-screenshot](testing-md-files/images/index-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>records.html</b></summary>
+
+![records-lighthouse-screenshot](testing-md-files/images/records-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>records_details.html</b></summary>
+
+![record_details-lighthouse-screenshot](testing-md-files/images/record_details-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>cart.html</b></summary>
+
+![cart-lighthouse-screenshot](testing-md-files/images/cart-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>checkout.html</b></summary>
+
+![checkout-lighthouse-screenshot](testing-md-files/images/checkout-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>checkout_success.html</b></summary>
+
+![checkout-lighthouse-screenshot](testing-md-files/images/checkout-success-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>backoffice.html</b></summary>
+
+![backoffice-lighthouse-screenshot](testing-md-files/images/back-office-lighthouse.png)
+
+</details>
+
+<details>
+<summary><b>edit_record.html</b></summary>
+
+![edit-record-lighthouse-screenshot](testing-md-files/images/edit-record-lighthouse.png)
+
+</details>
+
+
+# **Known Issues**
 I have a few known issues/errors that I haven’t been able to shake. 
 1. In the workspace, I have some linter errors. I keep getting various models has no "X" objects member. This is not a valid error. I’ve tried to # noqa these so that they don’t appear, but the code is fully PEP8 compliant. These errors are just GitPod being weird. I confirmed this with tutor support.
 2. I have some intermittent console warnings coming from what I assume is Summernote in terms of non-scrolling violations.

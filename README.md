@@ -587,6 +587,6 @@ In no particular order, I’d like to list the sources I pulled inspiration, cod
 
 * Thanks to Code Institute for their awesome content in preparing me and guiding me through this.
 # **Project Acknowledgements**
-* **Code Institute Tutor Support** - For pushing me in the right direction with tricky bugs, I would specifically like to mention James, Sheryl and Igor who were sensational.
-* **My Mentor** - As always for keeping me real, for his useful feedback and general greatness.
-* **My Partner** - For proof reading my work, content and her marketing genius. 
+* **Code Institute Tutor Support** - For pushing me in the right direction with tricky bugs, I would specifically like to mention James and Scott who have been amazing.
+* **My Mentor** - Chris Quinn, as always for keeping me real, for his useful feedback and general greatness.
+* **My Partner** - Charlotte Howard, for proof reading my work, content and her marketing genius. 
