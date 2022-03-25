@@ -65,7 +65,7 @@ A lot of these errors are the same and are being pushed by Stripe and then on th
 </details>
 
 <details>
-<summary><b>account.html</b></summary>
+<summary><b>backoffice.html</b></summary>
 
 ![back-office-html-validation-errors](testing-md-files/images/backoffice.png)
 
@@ -73,9 +73,9 @@ A lot of these errors are the same and are being pushed by Stripe and then on th
 
 
 <details>
-<summary><b>account.html</b></summary>
+<summary><b>edit record.html</b></summary>
 
-![back-office-html-validation-errors](testing-md-files/images/edit-record.png)
+![edit-record-html-validation-errors](testing-md-files/images/edit-record.png)
 
 </details>
 
