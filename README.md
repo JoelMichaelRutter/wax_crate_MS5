@@ -35,7 +35,40 @@ In terms of business scope, this application provides many benefits:
 * To allow customers ease of use via filtering, searching and sorting.
 
 ### **Marketing Strategy**
-TALK ABOUT WEB MARKETING HERE
+I employed a few web marketing strategies here in a bid to bring in customers to the site.
+
+<details>
+<summary><b>Search Engine Optimisation (SEO)</b></summary>
+
+My main marketing strategy is SEO. To start the process off before development, I had a think about the type of things I would need to include in the project to increase the search engine ranking. 
+
+1. The first thing I did was some keyword research. The main words that will be searched for in context of the site in my own opinion as someone who purchases records is the artist name, the track I'm looking for, the word "vinyl" and the genres. As a result of this, I put those words to one side as they would be included within the database for the site and I focused on the content that I would have to hard code into DNA of the site. I created a table of long tail and short tail keywords that I could use within the site. Not all of them made it into the content as there was no natural way to add it in and I didn't want to content stuff as that would have a negative effect so any that I couldn't naturally weave into the content, I included within the keywords meta tag on the base template.
+
+Below is the table of keywords that I researched:
+
+| Vinyl                                | Record shop                          | Dance music records                        |
+| ------------------------------------ | ------------------------------------ | ------------------------------------------ |
+| Short Tail Keywords                  |
+| Vinyl Record                         | Record shop                          | Dance music vinyl records                  |
+| Vinyl collectors                     | Old School                           | House music records                        |
+| Vinyl collection                     | Crate Digging                        | Techno records                             |
+| Record collection                    | Crate digging online                 | Uk dance records                           |
+| 12” vinyl                            | Independent record shop              | Buy dance records                          |
+|                                      | Hip Hop record shop                  |                                            |
+|                                      | Online record shop                   |                                            |
+| Long Tail Keywords                   |
+| Buy vinyl online                     | Record shops online uk               | Dance music records for sale               |
+| Vinyl record shops online            | Record shops near me                 | buy dance music vinyl online               |
+| Gift ideas for people who like vinyl | Gift ideas for music lovers          | Dj vinyl records for sale                  |
+| Buy vinyl in the UK                  | Record shop gifts                    | Gift ideas for people who like dance music |
+| Buy vinyl records online UK          | Add to my record collection          | Gifts to buy dance music DJs               |
+|                                      | Buy records for my record collection | Dance music record collection              |
+
+2. In addition to my keyword research, I've tried to make all of the inclusion of said keywords as semantic as I can given the layout of the site. When admins add records to the shop, they are prompted to bold the keywords such as genres, artist names, and the reccomended tracks on the record as well as they main keywords from the keyword research (12" and vinyl" for example)
+
+3. One of the final ways that I've implemented SEO is by making it clear from the get go who the business is and what they do by including a paragraph about them on the first page. This is also interspersed with the keywords from the keyword research and bolded for greater semantic value.
+</details>
+
 SOCIAL MEDIA
 EMAIL MARKETING
 SEO
