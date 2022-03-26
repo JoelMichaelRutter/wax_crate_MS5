@@ -4,7 +4,6 @@ When deploying this application, I deployed very early on in the development sta
 * ### [Project Set Up](#project-set-up)
 * ### [AWS Set Up](#aws-set-up)
 * ### [Deployment](#deploying-to-heroku)
-* ### [Stripe Set Up](#stripe-set-up-settings)
 * ### [Production Email Set Up](#production-email-set-up)
 
 
@@ -79,7 +78,9 @@ You can see from my example below, that I have duplicated the variables from my 
 
 At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important at me to get all of the required functionality in Heroku and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
 
-# **[AWS Set Up](#aws-set-up)**
+N.B. - You will probably need to add a DISABLE_COLLECTSTATIC environment variable set to 1 right at the start as there are no static files to collect at the moment but we will be removing later on in the deployment process.
+
+# **<a id="aws-set-up"></a>AWS S3 Set Up**
 As the site is being deployed to Heroku, I decided to use Amazon Web Services' S3 cloud hosting service to store my static and media files. I followed the following steps to set up an account and integrate it into my project.
 ## Registering and Setting Up A Bucket
 1. Go to [aws.amazon.com](https://aws.amazon.com/) and register for an account.
@@ -160,3 +161,178 @@ To create a user to put into the group, follow the below steps:
 5. Add the user to the "manage-wax-crate-ms5" group.
 6. Click through to the end and click "Create User".
 7. You will be asked to download a CSV file containing the access credentials. These are really important and can only be downloaded once so please keep them safe. They will also be required to set up the relevant AWS environment variables in Heroku.
+
+## Connecting S3 to the Django App
+If you've followed my previous steps and used my requirements.txt file to install all the required dependencies, you shouldn't need to follow steps X below. If you haven't used my requirements file, follow all the below steps.
+
+1. Install boto3 with "pip3 install boto3" in the terminal.
+2. Install Django Storages with "pip3 install django-storages".
+3. Remember to freeze these into your own requirements.txt file. 
+4. Add storages to the list of installed apps as you can see demonstrated below.
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django_summernote',
+    'home',
+    'records',
+    'cart',
+    'checkout',
+    'accounts',
+
+    # Other apps
+    'storages', # Hey! Over here!
+    'crispy_forms',
+]
+```
+5. At this point, I added some settings into my settings.py file to set up the connection between the bucket and the application. Look at the examples belowand just note that you would have to have your own bucket and keys to get all these settings to work for you:
+
+```python
+if 'USE_AWS' in os.environ:
+    # File caching control settings
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Bucket configuration
+    AWS_STORAGE_BUCKET_NAME = 'wax-crate-ms5'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID') # Declared in Heroku
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY') # Declared in Heroku.
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static and media files locations when deployed and using S3 as storage.
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    # Creates a static folder in the s3 bucket just like in the workspace.
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    # Creates a media folder within the bucket just like in the workspace.
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override staatic and media URLs in the production environment.
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+6. Now that those settings are in, we need to go to Heroku and add the environment variables in so that when the project is deployed, it will be using the settings we just specified. Just note here, that I'm not setting any AWS variables in the env.py file because I'm using my worspace to host static and media files in the development environment.
+
+7. Go back to the settings tab in Heroku and reveal the config vars. Add the ones detailed in the screenshot below.  
+<img src="deployment-md-images/aws-heroku-vars.png" width="700">
+
+8. The two keys can be found in the CSV file you downloaded from AWS so set them accordingly and the USE_AWS variable should be set to "True" so that the above settings can be accessed when deployed to Heroku. Make sure you keep your keys safe.
+
+9. Within the application, I have CRUD functionality that takes and image file. As a result of this, I needed to make sure that in the production environment, any images added as part of the apps CRUD functionality would be stored in the AWS bucket. To do this, I created a custom_storages.py file in the root directory of the project.
+
+10. In the custom_storages.py file, I created a couple of classes to handle the static and media uploads to AWS. I've detailed the code within the file below and neccessary imports to make the file talk with the rest of the project.
+
+```python
+"""
+1 - Importing settings file to access locations.
+2 - Importing S3 storage class to access S3 on collect static.
+"""
+
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class StaticStorage(S3Boto3Storage):
+    """
+    Setting static files storages to location
+    specified in settings.
+    """
+    location = settings.STATICFILES_LOCATION
+
+
+class MediaStorage(S3Boto3Storage):
+    """
+    Setting media files storages to location
+    specified in settings.
+    """
+    location = settings.MEDIAFILES_LOCATION
+```
+11. With these settings prepared, when we deploy to Heroku, the terminal will run the Django collect static command, all the static files within the app will be collected and stored on AWS automatically. For media files that are not uploaded as part of the applications CRUD functionality, they need to be uploaded to the AWS media bucket. To do this, open the media folder on the bucket and click upload, then its just a matter of dragging and dropping the images. In my case, I had to do this with my Hero Images.
+
+12. Add and commit these changes to your repository.
+
+At this stage, I developed the base template and home app so that I had something concrete. I also uploaded the home page hero image to AWS once done so that when deployed, I would be able to ensure that my media files were being served correctly from S3. Once I had completed this small piece of development locally, I was ready to deploy the project which I will go over in the next part of the document.
+
+## **<a id="deploying-to-heroku"></a>Deploying to Heroku**
+
+### Creating a Procfile
+This file is really important and will tell Heroku how to run our application.
+
+1. In the top level of the project (the same level as the manage.py file), create a new file called “Procfile” (note that this file must be named with a capital p):
+2. Open the newly created Procfile and input the following code.
+```python
+web: gunicorn wax_crate.wsgi:application
+```
+
+Please note that in the above code, I have referenced the name of my Django project wax_crate. When completing your own project, this code would need to change to reference the name of the Django project you set up.
+
+At this stage, I saved all of my files, committed them and pushed them to GitHub ready for a first deployment attempt of the project.
+
+### Deployment
+Before attempting the deployment, if you have a DISABLE_COLLECTSTATIC environment variable within your Heroku config vars, delete it as it will prevent the application for deploying as expected as the static files wont be collected from the workspace.
+
+1. Navigate back to your application dashboard on Heroku and click the “Deploy” tab.
+2. In the deployment method section, click GitHub. If you haven’t already connected your account, you will need to connect it before you can follow the next steps.
+3. Once your account is connected, you can perform a search in the search bar for the GitHub repository you are using to store the code for the application. In my case, I searched for my repository “wax_crate_MS5”. Once you have entered your repository name, click “Search” and provided a matching repository is found, an option will appear below providing you with the button to connect the
+repository to Heroku. Click “Connect”.
+4. Scroll down to the bottom of the page, and click “Deploy branch”
+5. When deploying the application, it is good practice to view the build logs as this will allow you to identify any errors. You can do this by clicking the “View build logs” link. You can see from the build logs that the Django application has now been built in Heroku, once you see this, click the “Open app” button to open the application to check for a successful install.
+6. Provided that all the previous steps have been followed, when you open the app, you will see the home page, only if you look at the URL bar, you will see that the application is not running on a local server but instead on our Heroku platform.
+7. At this stage, I enabled automatic deployments on the deploy tab of Heroku which meant that everytime my code was pushed up to GitHub, Heroku would run the deployment again. This gave me a really stable platform to gradually develop the application. I developed the rest of the application from this point onwards. The only additional process to go over is how to get the email system working which I wil detail below.
+
+
+## **<a id="production-email-set-up"></a>Production Email Set Up**
+When running in my GitPod workspace, it isn't possible to set the application up to use a real mail server to send out emails. As mentioned previously, I developed my project fully after setting up AWS and getting the first parts deployed as doing all this work first meant I could pretty much develop the app worry free when it came to deployment as it was already done. Right at the end of the development process, prior to application testing, I set up the deployed version of the site to send emails via a free Gmail SMTP server. Let me guide you through the process I followed below:
+
+1. Sign up for a Gmail account [here](https://www.google.com/intl/en_uk/gmail/about/) or if you already have one, just sign in.
+2. Once registered or logged in, go to the account settings in the top right. 
+3. Click the "Accounts & Import" tab.
+4. Click "Other google account settings".
+5. On the next screen, in the navigation, go to "Security".
+6. Go to the "2-step Verification" setting and turn it on. Following this process will allow us to create credentials that our django application can use to send emails via the server.
+7. Click the "Get Started" button and enter your password.
+8. Then you will need to select a verification method, I chose to receive an authorisation code via text.
+9. Enter the code and turn on two step verification then click the back button until you can see the highlighted security tab in the navigation.  
+10. You will now see that under the "Signing into Google" section, there is an "app passwords" setting, click this.
+11. Enter your credentials if prompted.
+12. On the app passwords screen, select "mail" as the app. In the device type, select "Other" and then type in "Django".
+13. Click the generate button which will give you the 16 character password, copy this. 
+14. Go to the Heroku dashboard to the "settings" tab.
+15. Open the config vars and enter the following additional variables into the config vars:  
+<img src="deployment-md-images/email-heroku-vars.png" width="700" alt="Email heroku variables">
+
+16. The EMAIL_HOST_PASS needs to be assigned the 16 character code from Gmail and the EMAIL_HOST_USER variable needs to be assigned your gmail email address.
+17. Return to the settings.py file and add the following settings:
+```python
+# Deployed email settings
+# Using console emails if in development environment.
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'waxcrate_recordshop@example.co.uk'
+else:
+    # Using Gmail if in production.
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+```
+
+Once these settings have been entered, save the files, add and commit them to the repository and push them on to GitHub. Once the application has deployed, the best way to test the functionality is the register for a test account and see if you receive the confirmation email from all auth. You can use a temporary email at [temp-mail.org](https://temp-mail.org/en/) to do this multiple times if required.
+
+With that, thats all the deployment steps completed.
+
+Happy coding!
