@@ -38,7 +38,7 @@ var style = {
 to drill into the previously declared elements variable and create a new card element.
 I also pass it the style dictionary created above to ensure that the type setting
 and font size are consistent with the rest of the form.*/
-var cardElement = elements.create('card', {style, style});
+var cardElement = elements.create('card', {style: style});
 
 /*Finally, in the below line, I mount the card into the div I've created in the checkout template
 with the corresponding id.*/
@@ -175,6 +175,3 @@ checkoutForm.addEventListener('submit', function(ev) {
         location.reload();
     });
 });
-
-
-

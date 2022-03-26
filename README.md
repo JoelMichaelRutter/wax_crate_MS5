@@ -5,8 +5,6 @@ It’s going to be of value to users who love vinyl, collecting records and crat
 
 The user will be able to land on the site, view some information about what the business is about and then there will call to action button contained within the landing page enticing the user in.
 
-
-
 ## Table of contents
 * ### [Deployed Site](#deployed-website)
 * ### [Demo](#site-demonstration)

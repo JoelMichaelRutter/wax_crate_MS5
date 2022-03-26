@@ -6,7 +6,6 @@ When deploying this application, I deployed very early on in the development sta
 * ### [Deployment](#deploying-to-heroku)
 * ### [Production Email Set Up](#production-email-set-up)
 
-
 # **<a id="project-set-up"></a>Project Set Up**
 
 I used the Code Institute GitPod full template to start this project which came with a Git repository already initialised so you will need to account for that. 
