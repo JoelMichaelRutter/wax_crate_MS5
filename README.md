@@ -77,7 +77,11 @@ I'm satsified that I have implemented sufficient SEO steps as my SEO score on li
 <details>
 <summary><b>Email Marketing</b></summary>
 
+I've embedded a [Mail Chimp](https://mailchimp.com/) sign up form within the footer of my site to collect email addresses from customers.
 
+This information can be used in Mail Chimps platform to target these customers with Email marketing. I've created a mock email within their platform to bring customers attention to specific genres or records that we have in the shop. You can see a screenshot of the example below:
+
+<img src="readme-images/wax-crate-email-mail-chimp.png" width="1000" alt="an image of the wax crate mail chimp email">
 
 </details>
 
