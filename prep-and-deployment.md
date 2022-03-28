@@ -1,5 +1,5 @@
 # **Wax Crate Deployment Documentation**
-When deploying this application, I deployed very early on in the development stages to ensure that I had a solid platform to work on and to ensure that I didn’t run in to any problems towards the project submission. I also wanted to get set up on my production database as soon as possible so that I could begin to fill it with entries. If you wish to use this code as a starting point for your own project, I recommend adopting the same philosophy. The way I developed this application might seem a little backwards. I'm going to break this down into a few significant sections.
+When deploying this application, I deployed very early on in the development stages to ensure that I had a solid platform to work on and to and so I didn’t run in to any problems towards the project submission. I also wanted to get set up on my production database as soon as possible so that I could begin to fill it with entries. If you wish to use this code as a starting point for your own project, I recommend adopting the same philosophy. The way I developed this application might seem a little backwards. I'm going to break this down into a few significant sections.
 
 * ### [Project Set Up](#project-set-up)
 * ### [AWS Set Up](#aws-set-up)
@@ -75,7 +75,7 @@ You can see from my example below, that I have duplicated the variables from my 
 
 ![heroku config vars](deployment-md-images/heroku-env-starting.png)
 
-At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important to me to get all of the required functionality in Heroku, and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
+At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important to me to get all the required functionality in Heroku, and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
 
 N.B. - You will probably need to add a DISABLE_COLLECTSTATIC environment variable set to 1 right at the start as there are no static files to collect at the moment but we will be removing later on in the deployment process.
 
