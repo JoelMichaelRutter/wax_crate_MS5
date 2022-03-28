@@ -2,9 +2,9 @@
 When deploying this application, I deployed very early on in the development stages to ensure that I had a solid platform to work on and to and so I didn’t run in to any problems towards the project submission. I also wanted to get set up on my production database as soon as possible so that I could begin to fill it with entries. If you wish to use this code as a starting point for your own project, I recommend adopting the same philosophy. The way I developed this application might seem a little backwards. I'm going to break this down into a few significant sections.
 
 * ### [Project Set Up](#project-set-up)
-* ### [AWS Set Up](#aws-set-up)
+* ### [AWS Set Up](#set-up-aws)
 * ### [Deployment](#deploying-to-heroku)
-* ### [Production Email Set Up](#production-email-set-up)
+* ### [Production Email Set Up](#email-set-up)
 
 # **<a id="project-set-up"></a>Project Set Up**
 
@@ -79,7 +79,7 @@ At this stage in the process, I left Heroku alone for the time being whilst I co
 
 N.B. - You will probably need to add a DISABLE_COLLECTSTATIC environment variable set to 1 right at the start as there are no static files to collect at the moment but we will be removing later on in the deployment process.
 
-# **<a id="aws-set-up"></a>AWS S3 Set Up**
+# **<a id="set-up-aws"></a>AWS S3 Set Up**
 As the site is being deployed to Heroku, I decided to use Amazon Web Services' S3 cloud hosting service to store my static and media files. I followed the following steps to set up an account and integrate it into my project.
 ## Registering and Setting Up A Bucket
 1. Go to [aws.amazon.com](https://aws.amazon.com/) and register for an account.
@@ -291,7 +291,7 @@ repository to Heroku. Click “Connect”.
 7. At this stage, I enabled automatic deployments on the deploy tab of Heroku which meant that every time my code was pushed up to GitHub, Heroku would run the deployment again. This gave me a stable platform to gradually develop the application. I developed the rest of the application from this point onwards. The only additional process to go over is how to get the email system working which I will detail below.
 
 
-## **<a id="production-email-set-up"></a>Production Email Set Up**
+## **<a id="email-set-up"></a>Production Email Set Up**
 When running in my GitPod workspace, it isn't possible to set the application up to use a real mail server to send out emails. As mentioned previously, I developed my project fully after setting up AWS and getting the first parts deployed as doing all this work first meant I could pretty much develop the app worry free when it came to deployment as it was already done. Right at the end of the development process, prior to application testing, I set up the deployed version of the site to send emails via a free Gmail SMTP server. Let me guide you through the process I followed below:
 
 1. Sign up for a Gmail account [here](https://www.google.com/intl/en_uk/gmail/about/) or if you already have one, just sign in.
