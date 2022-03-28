@@ -12,7 +12,7 @@ I used the Code Institute GitPod full template to start this project which came 
 
 Also, rather than having to go and install the dependencies yourself manually, you should ensure that you have a copy of my requirements.txt file as then you can just issue the following command in the terminal "pip3 install -r requirements.txt" which will install all the dependencies you need to get started. Once all the project packages and dependencies have been installed you will be able to follow my processes outlined below.
 
-Also, if you do add to this project in terms of the dependencies and libraries used, you will need to freeze those libraries into the requirements.txt file by issuing the following command to the terminal "pip3 freeze --local > requirements.txt". Failure to do this will mean that when the app is deployed to Heroku, it wont be able to download and install the dependencies the app needs to run.
+Also, if you do add to this project in terms of the dependencies and libraries used, you will need to freeze those libraries into the requirements.txt file by issuing the following command to the terminal "pip3 freeze --local > requirements.txt". Failure to do this will mean that when the app is deployed to Heroku, it won’t be able to download and install the dependencies the app needs to run.
 
 Once I had all my dependencies installed, I started the development of my app by issuing the following command to in the terminal "django-admin startproject wax_crate". This created my project level directory, off which the rest of the app is supported.
 
@@ -20,7 +20,7 @@ Now that I had the project started, I created the first app within the project (
 
 ![installed apps list](deployment-md-images/installed_apps.PNG)
 
-Any time that a new app is added or any time that a data model is changed there are few commands that you will need to issue. As a genreal rule of thumb, I like to run a few extra commands just to make sure anything I'm migrating to the database is correct. Just before I detail the commands, if you switch databases and you haven't made the migrations on the new database, you will have to run the migrations again. The commands are:
+Any time that a new app is added or any time that a data model is changed there are few commands that you will need to issue. As a general rule of thumb, I like to run a few extra commands just to make sure anything I'm migrating to the database is correct. Just before I detail the commands, if you switch databases and you haven't made the migrations on the new database, you will have to run the migrations again. The commands are:
 
 1. python3 manage.py makemigrations --dry-run - This shows a dry run of the creation of the migrations script without actually making the migrations, this allows you to check that the migrations are within the scope that you require. 
 
@@ -39,7 +39,7 @@ To check that Django is installed correctly, type python3 manage.py runserver in
 7. Click the “Create App” button at the bottom of the form.
 8. Once the app is created, select it by clicking the application name.
 ### **Application Dashboard**
-At this stage, I installed some add ons into the application to serve as the database. 
+At this stage, I installed some addons into the application to serve as the database. 
 ### **Resources Tab**
 1. In the application dashboard, select the resources tab.
 2. In the resources tab, in the search bar type “Heroku Postgres”. When it appears as an option in the drop down, select it.
@@ -58,24 +58,24 @@ We have completed the necessary steps in the “Resources” tab now. Once the a
 
 ## **Creating an env.py file**
 
-Now that the Heroku app is set up and the PostgreSQL database has been added, I created an env.py file within my workspace. I will show a screenshot of my env.py file below but I've redacted the variable values so as to keep my application secure. The env.py file is an untracked file so it wont appear in the GitHub repository. In my case, it was included in my gitignore file so you would need to consider doing something similar. I'm going to show you the completed env.py file from my project but just to be super clear, I built these variables up over the course of a few weeks of development.
+Now that the Heroku app is set up and the PostgreSQL database has been added, I created an env.py file within my workspace. I will show a screenshot of my env.py file below but I've redacted the variable values to keep my application secure. The env.py file is an untracked file, so it won’t appear in the GitHub repository. In my case, it was included in my gitignore file so you would need to consider doing something similar. I'm going to show you the completed env.py file from my project but just to be super clear, I built these variables up over the course of a few weeks of development.
 
 ![wax-crate-env-file](deployment-md-images/env-1.PNG)
 
-I've imported the os module at the top of the file to set the variables in the environment. Using the module allows for the values of my environment variables to be passed through the operating systems between tracked and non tracked files and hidden by the variable name as opposed to hard coding them.
+I've imported the os module at the top of the file to set the variables in the environment. Using the module allows for the values of my environment variables to be passed through the operating systems between tracked and non-tracked files and hidden by the variable name as opposed to hard coding them.
 
 1. DEBUG & DEVELOPMENT - These two variables are responsible for switching key settings such as switching DEBUG to False in production and changing the email back end from the Gmail account in production to the console version in development.
-2. I've created a DATABASE_URL variable and given it the value I copied from Heroku. I then access this variable in the settings.py file and using dj_database_url, connect to the external database. Theres a conditional check involved in this to see whether the DATABASE_URL is True in the environment. If true, I'm using my external database and if false, Im using the SQL lite database that comes with django. 
+2. I've created a DATABASE_URL variable and given it the value I copied from Heroku. I then access this variable in the settings.py file and using dj_database_url, connect to the external database. There’s a conditional check involved in this to see whether the DATABASE_URL is True in the environment. If true, I'm using my external database and if false, I’m using the SQL lite database that comes with django. 
 3. SECRET_KEY - I set this myself as an alpha numeric string and pulled it into the settings.py file to set the SECRET_KEY setting via the environment variable using the os.environ.get() method.
-4. STRIPE KEYS - To access these values, you need to go and sign up for a Stripe account and then in the developer dashboard you will be able to access your "publishable key" which you should assign to the STRIPE_PUBLIC_KEY variable, the secret key, which you should assign to the STRIPE_SECRET_KEY environment variable and finally the two webhook signing secrets. You can only access these by setting up a webhook endpoint in the stripe developer dashboard. You will notice that I have two that was becuase I set up two webhook endpoints, one for my development environment (which required its own webhook signing secret) and my deployed version. One tip I would give with this is watch the URL that your local development site is on as it will sometimes change slightly and as a result, if you try to process a payment via Stripe and the URL of the local running version of the server has changed, it will give you a 500 response on stripe. Fortunatley, the Heroku webhook endpoint is completley static and does not change. 
+4. STRIPE KEYS - To access these values, you need to go and sign up for a Stripe account and then in the developer dashboard you will be able to access your "publishable key" which you should assign to the STRIPE_PUBLIC_KEY variable, the secret key, which you should assign to the STRIPE_SECRET_KEY environment variable and finally the two webhook signing secrets. You can only access these by setting up a webhook endpoint in the stripe developer dashboard. You will notice that I have two that was because I set up two webhook endpoints, one for my development environment (which required its own webhook signing secret) and my deployed version. One tip I would give with this is watch the URL that your local development site is on as it will sometimes change slightly and as a result, if you try to process a payment via Stripe and the URL of the local running version of the server has changed, it will give you a 500 response on stripe. Fortunately, the Heroku webhook endpoint is completely static and does not change. 
 
 Once you have created your env.py file, you need to replicate it within the Heroku config vars as the env.py file will not be accessible when the site is deployed.
 
-You can see from my example below, that I have duplicated the variables from my env.py file and their values (redacted) into the Heroku config vars (for the STRIPE_WH_SECRET i used the specific key generated when I set up my Heroku webhook endpoint). Just note, there are some environment variables for AWS and the production email client in there, just ignore them for the moment and focus on the database url, the secret key, and the stripe keys for now:
+You can see from my example below, that I have duplicated the variables from my env.py file and their values (redacted) into the Heroku config vars (for the STRIPE_WH_SECRET I used the specific key generated when I set up my Heroku webhook endpoint). Just note, there are some environment variables for AWS and the production email client in there, just ignore them for the moment and focus on the database URL, the secret key, and the stripe keys for now:
 
 ![heroku config vars](deployment-md-images/heroku-env-starting.png)
 
-At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important at me to get all of the required functionality in Heroku and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
+At this stage in the process, I left Heroku alone for the time being whilst I completed some additional steps towards setting up my AWS bucket and a very small piece of development in the home screen of the app prior to deploying. It was important to me to get all of the required functionality in Heroku, and AWS set up to build on as a solid foundation. I'm going to talk you through the AWS set up process and then the final Heroku steps I took to get the fledgling version of the app up and running.
 
 N.B. - You will probably need to add a DISABLE_COLLECTSTATIC environment variable set to 1 right at the start as there are no static files to collect at the moment but we will be removing later on in the deployment process.
 
@@ -85,7 +85,7 @@ As the site is being deployed to Heroku, I decided to use Amazon Web Services' S
 1. Go to [aws.amazon.com](https://aws.amazon.com/) and register for an account.
 2. Once registered, you will be at the management console. You need to find the S3 service in the search bar. 
 3. Once you've accessed S3, you need click "Create Bucket" button. This bucket will be the place where the static and media files will be stored.
-4. You will need to give your bucket a name, I named mine according the name of my application on Heroku.
+4. You will need to give your bucket a name, I named mine according to the name of my application on Heroku.
 5. You will now need to select a region, select the one that is closest to you.
 6. Make sure that you select the radio button to enable "ACLs".
 7. Make sure that you check the radio button "Bucket Ownership preferred".
@@ -122,11 +122,11 @@ As the site is being deployed to Heroku, I decided to use Amazon Web Services' S
 22. The security policy will be generated in object format. Copy the entire policy.
 23. Return to the bucket policy screen and copy the object into the bucket policy code editor.
 24. In the object editor, look for the "Resource". The value should be set to the ARN. At the end of the value, add a "/*" to allow full access to all resources the bucket.
-25. In the permissions tab, locate the Access Control List. click edit and enable List for Everyone (public access) and accept the warning box. If the edit button is disabled you need to change the Object Ownership section to ACLs enabled.
+25. In the permissions tab, locate the Access Control List. click edit and enable List for Everyone (public access) and accept the warning box. If the edit button is disabled, you need to change the Object Ownership section to ACLs enabled.
 At this point, the S3 bucket is set up but there are a few more steps that need to be followed.
 
 ## Creating a User to Access the Bucket
-All of this functionality is handled by IAM, another AWS service. Follow the steps below to set this up:
+All this functionality is handled by IAM, another AWS service. Follow the steps below to set this up:
 1. Go back to the services menu on the AWS console and find IAM. 
 2. In the sidebar, select "User Groups".
 3. Click "Create a New Group".
@@ -134,7 +134,7 @@ All of this functionality is handled by IAM, another AWS service. Follow the ste
 5. Navigate to the policies section in the side bar.
 6. Click the create policy button. 
 7. Navigate to the JSON tab and click the "import managed policy" link.
-8. In the form that opens, search for the "S3 Full Access" policy adn import it. 
+8. In the form that opens, search for the "S3 Full Access" policy and import it. 
 9. Get the ARN from the bucket policy and paste it into the resource key value field but add two values in a list format. In my case, I added the below:
 ```python
 "Resource": [
@@ -159,7 +159,7 @@ To create a user to put into the group, follow the below steps:
 4. Click the next button.
 5. Add the user to the "manage-wax-crate-ms5" group.
 6. Click through to the end and click "Create User".
-7. You will be asked to download a CSV file containing the access credentials. These are really important and can only be downloaded once so please keep them safe. They will also be required to set up the relevant AWS environment variables in Heroku.
+7. You will be asked to download a CSV file containing the access credentials. These are important and can only be downloaded once so please keep them safe. They will also be required to set up the relevant AWS environment variables in Heroku.
 
 ## Connecting S3 to the Django App
 If you've followed my previous steps and used my requirements.txt file to install all the required dependencies, you shouldn't need to follow steps X below. If you haven't used my requirements file, follow all the below steps.
@@ -192,7 +192,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 ```
-5. At this point, I added some settings into my settings.py file to set up the connection between the bucket and the application. Look at the examples belowand just note that you would have to have your own bucket and keys to get all these settings to work for you:
+5. At this point, I added some settings into my settings.py file to set up the connection between the bucket and the application. Look at the examples below and just note that you would have to have your own bucket and keys to get all these settings to work for you:
 
 ```python
 if 'USE_AWS' in os.environ:
@@ -217,7 +217,7 @@ if 'USE_AWS' in os.environ:
     # Creates a media folder within the bucket just like in the workspace.
     MEDIAFILES_LOCATION = 'media'
 
-    # Override staatic and media URLs in the production environment.
+    # Override static and media URLs in the production environment.
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 ```
@@ -230,7 +230,7 @@ if 'USE_AWS' in os.environ:
 
 9. Within the application, I have CRUD functionality that takes and image file. As a result of this, I needed to make sure that in the production environment, any images added as part of the apps CRUD functionality would be stored in the AWS bucket. To do this, I created a custom_storages.py file in the root directory of the project.
 
-10. In the custom_storages.py file, I created a couple of classes to handle the static and media uploads to AWS. I've detailed the code within the file below and neccessary imports to make the file talk with the rest of the project.
+10. In the custom_storages.py file, I created a couple of classes to handle the static and media uploads to AWS. I've detailed the code within the file below and necessary imports to make the file talk with the rest of the project.
 
 ```python
 """
@@ -257,7 +257,7 @@ class MediaStorage(S3Boto3Storage):
     """
     location = settings.MEDIAFILES_LOCATION
 ```
-11. With these settings prepared, when we deploy to Heroku, the terminal will run the Django collect static command, all the static files within the app will be collected and stored on AWS automatically. For media files that are not uploaded as part of the applications CRUD functionality, they need to be uploaded to the AWS media bucket. To do this, open the media folder on the bucket and click upload, then its just a matter of dragging and dropping the images. In my case, I had to do this with my Hero Images.
+11. With these settings prepared, when we deploy to Heroku, the terminal will run the Django collect static command, all the static files within the app will be collected and stored on AWS automatically. For media files that are not uploaded as part of the applications CRUD functionality, they need to be uploaded to the AWS media bucket. To do this, open the media folder on the bucket and click upload, then it’s just a matter of dragging and dropping the images. In my case, I had to do this with my Hero Images.
 
 12. Add and commit these changes to your repository.
 
@@ -288,7 +288,7 @@ repository to Heroku. Click “Connect”.
 4. Scroll down to the bottom of the page, and click “Deploy branch”
 5. When deploying the application, it is good practice to view the build logs as this will allow you to identify any errors. You can do this by clicking the “View build logs” link. You can see from the build logs that the Django application has now been built in Heroku, once you see this, click the “Open app” button to open the application to check for a successful install.
 6. Provided that all the previous steps have been followed, when you open the app, you will see the home page, only if you look at the URL bar, you will see that the application is not running on a local server but instead on our Heroku platform.
-7. At this stage, I enabled automatic deployments on the deploy tab of Heroku which meant that everytime my code was pushed up to GitHub, Heroku would run the deployment again. This gave me a really stable platform to gradually develop the application. I developed the rest of the application from this point onwards. The only additional process to go over is how to get the email system working which I wil detail below.
+7. At this stage, I enabled automatic deployments on the deploy tab of Heroku which meant that every time my code was pushed up to GitHub, Heroku would run the deployment again. This gave me a stable platform to gradually develop the application. I developed the rest of the application from this point onwards. The only additional process to go over is how to get the email system working which I will detail below.
 
 
 ## **<a id="production-email-set-up"></a>Production Email Set Up**
@@ -311,7 +311,7 @@ When running in my GitPod workspace, it isn't possible to set the application up
 15. Open the config vars and enter the following additional variables into the config vars:  
 <img src="deployment-md-images/email-heroku-vars.png" width="700" alt="Email heroku variables">
 
-16. The EMAIL_HOST_PASS needs to be assigned the 16 character code from Gmail and the EMAIL_HOST_USER variable needs to be assigned your gmail email address.
+16. The EMAIL_HOST_PASS needs to be assigned the 16 character code from Gmail and the EMAIL_HOST_USER variable needs to be assigned your Gmail email address.
 17. Return to the settings.py file and add the following settings:
 ```python
 # Deployed email settings
@@ -332,6 +332,7 @@ else:
 
 Once these settings have been entered, save the files, add and commit them to the repository and push them on to GitHub. Once the application has deployed, the best way to test the functionality is the register for a test account and see if you receive the confirmation email from all auth. You can use a temporary email at [temp-mail.org](https://temp-mail.org/en/) to do this multiple times if required.
 
-With that, thats all the deployment steps completed.
+With that, that’s all the deployment steps completed.
 
 Happy coding!
+
