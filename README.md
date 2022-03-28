@@ -1,9 +1,9 @@
 # **[Wax Crate](https://wax-crate-ms5.herokuapp.com/)**
-Wax Crate is a business to consumer full stack e-commerce application that sells products (vinyl records). It offers the user a single payment transaction when they checkout. It’s a hip and cool online record shop. It specialises in bringing excellent music (specifically dance music such as house and techno and hip hop) to the masses.
+Wax Crate is a business to consumer full stack e-commerce application that sells products (vinyl records). It offers the user a single payment transaction when they checkout. It’s a hip and cool online record shop, specialising in bringing excellent, high-quality music (specifically dance music including house, techno, and hip hop) to the masses.
 
-It’s going to be of value to users who love vinyl, collecting records and crate digging to find new music. It will almost be hybrid and serve as a sort of music blog/shop as the product details will have personalised descriptions from the store owner about the product on sale with track recommendations.
+It’s going to be of value to users who love vinyl, collecting records and record crate digging to find new music – these users are primarily my target audience. It will be a hybrid experience and serve as a shop but with a blog feel as the product details will have personalised descriptions from the store owner about the product on sale with track recommendations – creating an engaging customer experience.
 
-The user will be able to land on the site, view some information about what the business is about and then there will call to action button contained within the landing page enticing the user in.
+The user will land on the site, view information about what the business is about and then a call to action button named ‘Get digging’ contained within the landing page - enticing the user in. 
 
 ## Table of contents
 * ### [Deployed Site](#deployed-website)
@@ -28,21 +28,22 @@ In this section, I will discuss the user experience considerations I implemented
 ## **Strategy**
 ### **Business Goals**
 In terms of business scope, this application provides many benefits:
-* To provide the user with an intuitive easy to use website.
-* To increase the sale of records through enticing content.
-* Increase the sale of records through the ability to give customers a taste of the music prior to checkout.
+* To provide the user with an intuitive easy-to-use website.
+* To increase the sale of records through appealing, relevant content. 
+* Increase the sale of records through the ability to give customers a taste of the music prior to checkout (via Spotify)
 * To introduce customers to new music they may like through recommendations (hot picks).
 * To allow customers ease of use via filtering, searching and sorting.
 
 ### **Marketing Strategy**
-I employed a few web marketing strategies here in a bid to bring in customers to the site.
+I employed web marketing strategies here in a bid to increase traffic to the site.
 
 <details>
 <summary><b>Search Engine Optimisation (SEO)</b></summary>
 
-My main marketing strategy is SEO. To start the process off before development, I had a think about the type of things I would need to include in the project to increase the search engine ranking. 
+My main marketing strategy is Search Engine Optimisation (SEO). To start the process off before development, I considered the type of information I would need to include in the project to increase the search engine ranking which would hopefully convert into increase traffic to the site and in turn record sales. 
 
-1. The first thing I did was some keyword research. The main words that will be searched for in context of the site in my own opinion as someone who purchases records is the artist name, the track I'm looking for, the word "vinyl" and the genres. As a result of this, I put those words to one side as they would be included within the database for the site and I focused on the content that I would have to hard code into DNA of the site. I created a table of long tail and short tail keywords that I could use within the site. Not all of them made it into the content as there was no natural way to add it in and I didn't want to content stuff as that would have a negative effect so any that I couldn't naturally weave into the content, I included within the keywords meta tag on the base template.
+The first thing I conducted was keyword research using my own knowledge of buying records as well as using Google search to see what competitors were doing and what was ranking highly. Using Google, I searched various terms including record shops, records for sale, vinyl stores, house music records. It was clear to me there would be some obvious search terms including the artist, the track name, the word ‘vinyl’ as well as genres. I put those words to one side as they would be included within the database, and I focused on the content that I would have to hard code into DNA of the site to aid SEO. I created a table of long tail and short tail keywords that I could use within the site. Not all of them made it into the content as there was no natural way to add them in and I didn't want to add content that would not be seamless for the user and felt disjointed that could result in them bouncing from the site, so I included them within the keywords meta tag on the base template. 
+As a long-term goal if this were a real-life business, I would consider acquiring a license to use a dedicated SEO tool, for example SEMRush, to conduct my keyword research to see how I compared to my competitors and what words I should be bidding on to increase the record shop’s ranking. Also I’d monitor Google Analytics on a regular basis to aid my SEO efforts too and gain better insight to my target audience and user demographic. This would allow me to monitor the success of the site and make changes to suit my customers’ needs in the best way and see what they aren’t interacting with and ensure content stays relevant and engaging.
 
 Below is the table of keywords that I researched:
 
@@ -66,20 +67,19 @@ Below is the table of keywords that I researched:
 
 2. In addition to my keyword research, I've tried to make the inclusion of said keywords as semantic as I can given the layout of the site. When admins add records to the shop, they are prompted to bold the keywords such as genres, artist names, and the recommended tracks on the record as well as they main keywords from the keyword research (12" and vinyl" for example)
 
-3. I've made sure that I have description meta tags throughout the site to describe each pages purpose.
+3. I've made sure that I have description meta tags throughout the site to describe each pages’ purpose.
 
-4. One of the final ways that I've implemented SEO is by making it clear from the beginning who the business is and what they do by including a paragraph about them on the first page. This is also interspersed with the keywords from the keyword research and bolded for greater semantic value.
+4. Finally, I’ve made it clear to the user from the beginning who the business is and what they do by including a paragraph about the business on the first page. This is also interspersed with the keywords from the keyword research and bolded for greater semantic value.
 
-I'm satisfied that I have implemented sufficient SEO steps as my SEO score on lighthouse is above 90 across the board. There are areas where it could be a little higher, but it would mean looking at the layout of site.
+I'm satisfied that I have implemented sufficient SEO steps as my SEO score on lighthouse is above 90 across the board. There are areas where it could be a little higher, but it would mean looking at the layout of site as a longer-term project.
 
 </details>
 
 <details>
 <summary><b>Email Marketing</b></summary>
 
-I've embedded a [Mail Chimp](https://mailchimp.com/) sign up form within the footer of my site to collect email addresses from customers.
-
-This information can be used in Mail Chimps platform to target these customers with email marketing. I've created a mock email within their platform to bring customers attention to specific genres or records that we have in the shop. You can see a screenshot of the example below:
+I've embedded a [Mail Chimp](https://mailchimp.com/) sign up form within the footer of my site to collect email addresses from users.
+This information can be used within the MailChimp platform to target these users with email marketing. I've created a mock email within the platform to bring the customers attention to specific genres or records that we have in the shop. You can see a screenshot of the example below:
 
 <img src="readme-images/wax-crate-email-mail-chimp.png" width="1000" alt="an image of the wax crate mail chimp email">
 
@@ -88,10 +88,10 @@ This information can be used in Mail Chimps platform to target these customers w
 <details>
 <summary><b>Social Media Marketing</b></summary>
 
-One of the other ways I marketed the site was to use social media. I set up a Wax Crate page on Facebook and sent out some posts relating to specific content on the site to engage customers in questions and then direct them to the relevant content on the site via a link. You can see a screenshot of the business Facebook page below with the aforementioned posts:  
+Another method I used to market the site was using social media. I set up a Wax Crate page on Facebook and deployed posts relating to specific content on the site and engaged customers by asking questions to pique their interest, as well as including a direct link to the relevant content on the site to increase sales conversion. You can see a screenshot of the business Facebook page below with the aforementioned posts:  
 <img src="readme-images/facebook-screenshot.png" width="500" alt="the wax crate Facebook page">
 
-To make this a more wide reaching strategy, this would need to be expanded to Instagram, twitter and tik-tok.
+To make this a more successful, overarching strategy – I would employ different techniques to attract new customers as well as retain existing customers with personalised content via email and I would look to expand my presence on social media using Instagram, Twitter and TikTok and create engaging content on these platforms to reach a wider audience and different demographics too. 
 
 </details>
 
@@ -107,7 +107,7 @@ Below are the user stories that needed to be fulfilled for the project to be suc
 | 1                                               | Customer | see some information about the store                                           | see whether they are trustworthy and a brand I want to purchase from.                                              |
 | 2                                               | Customer | View the records that the store offers                                         | See if there are any records I want to purchase                                                                    |
 | 3                                               | Customer | View some details about the record I've clicked on                             | understand whether the record will be to my taste.                                                                 |
-| 4                                               | Customer | Look at what the shop reccomends from their catalogue                            |  expand my musical taste and find new artists that I might like.                                                   |
+| 4                                               | Customer | Look at what the shop recommends from their catalogue and                            |  expand my musical taste and find new artists that I might like.                                                   |
 | 5                                               | Customer | be able to access some of the music digitally                                  | Check if I like the record I'm thinking of purchasing.                                                             |
 | 6                                               | Customer | see the price of records to know how much I'm potentially going to be spending | budget and prioritise what I'm purchasing where necessary                                                          |
 | Registering, Sign in & Sign out                 |          |                                                                                |                                                                                                                    |
@@ -147,12 +147,12 @@ Following the planning stage of the project, these user stories were added to Ka
 </details>
 
 # **Structure Plane**  
-I started my project by thinking about my user and the business function the user needs to satisfy. The main principles behind the development of the application were:
+I started my project thinking about my user and the business function the user needs to satisfy. The main principles behind the development of the application were:
 1. **Ease of use** – The application is easy to use and should be intuitive so that someone with little technical ability or exposure can pick it up straight away.
 2. **Hip & Cool** – The user should feel as though the shop they are using is cool and hip.
-3. **Minimal & Mono** – To contribute to the cool and hip feel, users should have minimal distraction, the focus should be on the music/records.
+3. **Minimal & Mono** – To contribute to the cool and hip feel, users should have minimal distraction, the focus should be on the music and records.
 
-At the beginning of this project, I got all my ideas out and created a plan with Microsoft PowerPoint. The first part of this plan consisted of a list around the technologies that I might use to develop the application. Please note, this was the planning stage and some of the technology may not have been used or more may have been added.
+At the beginning of this project, I wrote down all of my ideas and created a plan with Microsoft PowerPoint. The first part of this plan consisted of a list around the technologies that I might use to develop the application and what would be best suited to fulfil the brief. Please note: this was the planning stage and some of the technology may not have been used or more may have been added.
 
 <details>
 <summary><b>Technology List Plan</b></summary>
@@ -169,7 +169,7 @@ I also did some storyboarding around the types of fonts and images I would inclu
 
 </details>
 
-Before looking at the data schema, I had a think about the overall structure of the Django application I intended to build and the functionality that should be contained within each app. I created a mind map to get my ideas out of paper.
+Before looking at the data schema, I considered the overall structure of the Django application I intended to build and the functionality that should be contained within each app. I created a mind map to get my ideas out on paper.
 
 <details>
 <summary><b>Django Application Structure</b></summary>
@@ -246,14 +246,14 @@ I obtained the hero images from the site from two different sources:
 ### Record Images
 In terms of the record images themselves, I sourced these from the relevant record pages on [Discogs](https://www.discogs.com/) which is a crowdsourced marketplace where users upload the artwork of the records they are selling publicly.
 
-Just as a disclaimer, I do not own the rights to any of these images. They are being used for educational purposes only.
+Disclaimer: I do not own the rights to any of these images. They are being used for educational purposes only.
 
 ## **Iconography**	
 In terms of iconography for the rest of the site, I used Font Awesome’s free library which is inserted via CDN in the base template head. You can find more information on how to sign up and use the service [here](https://fontawesome.com/).  
 In terms of the specific icons, they can be located in the code within the classes of all "i" elements. 
 
 ## **Fonts**	
-I chose two fonts for this project. I really wanted to stick to the themes I developed during my strategy planning, so I needed my fonts to be cool, hip, minimal and mono.
+I chose two fonts for this project. I wanted to stick to the themes I developed during my strategy planning, so I needed my fonts to be cool, hip, minimal and mono.
 
 I used Google Fonts to find my fonts and I settled on the following two:
 
@@ -350,44 +350,44 @@ The final custom model in the application is the CustomerAccount model which cre
 </details>
 
 ## **Functional Features**
-Within this section, I will break down the functions of the application. In the interests of brevity and as there are thousands of lines of backend code, I will show the templates where the user interacts with the functionality and discuss what the backend is doing as opposed to screenshotting the back end code and talking through it. If you want to take a more detailed look at the back-end code, I will reference the files in question. The backend code is all commented up so it’s very clear what is happening as the flow progresses. I'll relate all the relevant functionality back to my user stories to show you how they have been met. 
+Within this section, I will break down the functions of the application. In the interests of succinctness and as there are thousands of lines of back-end code, I will show the templates where the user interacts with the functionality and discuss what the backend is doing as opposed to screenshotting the back-end code and talking through it. If you want to take a more detailed look at the back-end code, I will reference the files in question. The back-end code is clearly commented so it’s very easy to see what is happening as the flow progresses. I'll relate all the relevant functionality back to my user stories to demonstrate how they have been met. 
 
 ## **Base Template**
-Let's kick things off with the base template. There’s a significant amount of functionality within the base template as it's really core to my business goals to have an easy to use and consistent site. Lots of the navigation functionality is contained within my base template. I've prepared an annotated screenshot to take a look at and I will point out the key areas of existing functionality.
+Let's kick things off with the base template. There’s a significant amount of functionality within the base template as it's core to my business goals to have an easy-to-use and consistent site. Lots of the navigation functionality is contained within my base template. I've prepared an annotated screenshot to look at and I will point out the key areas of existing functionality.
 
 <img src="readme-images/base-template-features.png" width="1000" alt="An image of the wax crate base template with annotations">
 
-1. **Logo** - So this is the main logo link, clicking it directs the user back to the home screen as is the norm with many websites.
+1. **Logo** - This is the main logo link, clicking it directs the user back to the home screen as is the norm with many websites.
 2. **Home** - The home link does the same as above.
-3. **Records** - (Satisfies User Story 2) The records link directs the user to the records.html page via the all_records view in views.py. **Hot Picks** - (Satisfies User Story 4) The hot picks link does a similar job to the records link but this time it sends a database query down the URL so that the all_records view will only display those entries which have the hot pick Boolean field set to true. This allows the record shop to select their hot picks and recommend music to customers.
+3. **Records** - (Satisfies User Story 2) The records link directs the user to the records.html page via the all_records view in views.py. **Hot Picks** - (Satisfies User Story 4) The hot picks link does a similar job to the records link but this time it sends a database query down the URL so that the ‘all records’ view will only display those entries which have the hot pick Boolean field set to true. This allows the record shop to select their hot picks and recommend music to customers.
 4. **Genres** - (Satisfies User Story 13) This bootstrap dropdown is populated via a context processor. You can find the logic for this in the contexts.py file in the records app. The processor gets all the objects out of the Genre table and allows all templates to access them via the "genres" template variable. In the base template, I loop through the genres template variable to create a link for each one. I also then add it to the database query within the link so that each genre pushes its respective text content into the URL to query the database. The all_records view then serves the records template but filters the entries down to those with genres matching the query.
 5. **Account** - The content is dynamic here depending on the authentication status of the user and their permissions:
     * If the user is logged out, they'll see two links, one to sign in and one to register.
-    * If the user is signed in but they don't have super user permissions, they'll see an accounts link when they can access their account and access all off settings and they'll also have access to the sign out button as well
-    * If the user has superuser permissions, they’ll see an additional link on top of the account link to “back office” This link will take them to a part of the apps CRUD functionality where superusers can add records and genres to the shop as well as manage/delete the existing genres. It's worth noting here that the back office functionality is not only protected by the selective rendering of the HTML, but also by the view serving the relevant parts of the crowd functionality asks the user isn't a super user they'll be directed back to the home screen and a message will be displayed to feedback. We’ll look at the back office template further down the dcoument.
-6. **Cart Link** - (Satisfies User Story 17) - The content within this link updates every time a user adds something to the cart so the total beneath the little cart icon will update. If the user clicks this, they will be taken to the cart template where they can see items that they have in their current cart. The cart is just a dictionary of the record ids and the quantities stored in the session, but the site unpacks it each time the cart is accessed and displays the information in a friendly way to the user.
+    * If the user is signed in but they don't have superuser permissions, they'll see an accounts link when they can access their account and access the Django All Auth settings and they'll also have access to the sign out button as well.
+    * If the user has superuser permissions, they’ll see an additional link on top of the account link to “back office” This link will take them to a part of the apps CRUD functionality where superusers can add records and genres to the shop as well as manage/delete the existing genres. It's worth noting here that the back office functionality is not only protected by the selective rendering of the HTML, but also by the view serving the relevant parts of the crowd functionality asks the user isn't a super user they'll be directed back to the home screen and a message will be displayed to feedback. We’ll look at the back office template further down the document.
+6. **Cart Link** - (Satisfies User Story 17) - The content within this link updates every time a user adds something to the cart so the total cost beneath the small cart icon will update. If the user clicks this, they will be taken to the cart template where they can see the items that they have in their current cart. The cart is just a dictionary of the record ids and the quantities stored in the session, but the site unpacks it each time the cart is accessed and displays the information in a friendly way to the user.
 7. **Search Form** - (Satisfies User Story 14) - This form allows the user to enter a custom search query to the database where the all records view will then use the Django "Q" package to see if any of the database entries match in the "title" and "artist" field of the record model. It will then display any matches in the records template.
-8. **Facebook Link** - This link directs the user to the businesses Facebook page. It opens in a new tab so as not to take the user away from the application completely. This is part of my web marketing strategy.
-9. **Mail Chimp Sign Up** - Another part of my marketing strategy is to sign customers up to a mailing list via this embedded mail chimp form. This again opens in a separate tab if the user is not logged in and gets them to enter a few more details. These details can be accessed and used for marketing via the mail chimp dashboard.
+8. **Facebook Link** - This link directs the user to the businesses Facebook page. It opens in a new tab, so it does not take the user away from the application completely and the user can flick back to the website. This is part of my web marketing strategy.
+9. **Mail Chimp Sign Up** - Another part of my marketing strategy is to sign customers up to a mailing list via this embedded MailChimp form. This again opens in a separate tab if the user is not logged in already and requires to enter a few more details. These details can be accessed and used for marketing via the MailChimp dashboard.
 
 ## **Home App**
 This app is quite simple. Through its single view it renders the following template.
 
 <img src="readme-images/home-template.png" width="1000" alt="An image of the wax crate home template with annotations">
 
-1. **Hero Image** - I wanted customers and users to understand the purpose and context of the site straight away. What better way than with a large image of someone have a good dig through a crate of vinyl records just like they would do in a real record shop. Another word for vinyl is "Wax" hence the name "Wax Crate".
+1. **Hero Image** - I wanted customers and users to understand the purpose and context of the site straight away. What better way than with a large image of someone searching through a crate of vinyl records just like they would do in a real record shop. Another word for vinyl is "Wax" hence the name "Wax Crate".
 2. **Company Info** - (Satisfies User Story 1) In terms of SEO considerations, it's important to ensure that information about the site and who the business is readily available. That’s why on the first page, I've included some company information contained within the types of semantic HTML elements that search engines look for. To add to that, I wove the short and longtail keywords I decided on during the planning stage into this content so as not to content stuff.
 3. **Call to action button** - (Partially satisfies User Story 2) I wanted a definitive instruction to the user to be clear so included a call to action button to enter the site properly. This button serves the same purpose as the "records" link.
 
 ## **Records App**
-There is a fair bit of functionality here, so stick with me.
+There is a lot of functionality to go through here, so stick with me…!
 
 ### **Records**
-The records template does quite a lot of work in terms of the project. It gets rendered when all records are viewed and is responsible for displaying unfiltered, filtered, searched for and sorted results. I'll show the template and discuss the functionality below. In general, all this functionality satisfies User Story 2.
+The records template does a lot of work in terms of the project. It gets rendered when all records are viewed and is responsible for displaying unfiltered, filtered, searched for and sorted results. I'll show the template and discuss the functionality below. In general, all this functionality satisfies User Story 2.
 
 <img src="readme-images/records-template.png" width="1000" alt="An image of the wax crate records template with annotations">
 
-1. **Genre Filter** - (Satisfies User Story 13) This works just like the genre dropdown in the nav, it's just easier for users to use this, especially on mobile. This filters down so that when a user filters down to "House" records, the rest of the buttons disappear to indicate to the user their current filtering criteria.
+1. **Genre Filter** - (Satisfies User Story 13) This works just like the genre dropdown in the nav, it's easier for users to use this, especially on mobile. This filters down so that when a user filters down to "House" records, the rest of the buttons disappear to indicate to the user their current filtering criteria.
 2. **Filter Cancel, Record Counter & Search Query** - (Satisfies User Story 15) Over the other side of the viewport, I've provided a way for users to get back to an unfiltered view of the records in the shop. In addition to that, the number of results returned from the filter or search query is displayed to the user. If there is a search query from the search form in the nav, the search query is displayed next to the number of results to make it more specific to the user.
 3. **Sort Selector** - (Satisfies User Story 12) This sort selection field allows users to sort the entries that they're viewing by price (high to low and vice vera), record title (a-z and vice versa) and artist (a-z and vice versa). There’s a small piece of JavaScript tacked on to the end of the template listening for the change event on this field and entering the different parameters into the URL so that the view can pick up on it and reload the page with the relevant sorting criteria. You can see the sorting area of the view in the all_records view within the records directory in the views.py file from lines 37-48.
 * **Record Cards** - The record cards are really the focal point of the customer and user experience.
@@ -397,8 +397,8 @@ The records template does quite a lot of work in terms of the project. It gets r
     6. **Edit Details** - (Partially Satisfies User Story 23) This button is only rendered for superusers, it accesses the edit_record view and serves the edit record template. There’s some redundancy included here as the view checks for superuser login to ensure that this functionality cannot be accessed by using the URL pattern. It fires the record ID down the URL and then the view accesses the record in the database and instantiates a form with the records data already pre-populated. We'll look more at this functionality later.
     7. **Delete** - (Satisfies User Story 24) Similar to the above functionality, this button is only rendered for superusers and the permissions of the user are checked within the delete_record view to ensure that the URL pattern cannot be entered by regular users to delete records from the shop. There's some defensive programming applied to this functionality. Clicking this button doesn’t actually delete the record but instead triggers a modal with a warning which is demonstrated below.  
     <img src="readme-images/delete_record.png" width="700" alt="An image of the wax crate delete record functionality with annotations">
-1. **Header** - To let the admin know which record they are deleting; I included the title of the record in the heading. 
-2. **Record Image & Details** - Just to be clear, to the admin which record is being deleted, I've included the record image and details to provide further context to which record will be deleted.
+1. **Header** - To make it clear to the admin to know which record they are deleting; I included the title of the record in the heading. 
+2. **Record Image & Details** - Just to be clear to the admin which record is being deleted, I've included the record image and details to provide further context to which record will be deleted.
 3. **Warning** - As a warning, I've advised that this action cannot be undone.
 4. **Cancel & Delete** - The cancel button will dismiss the modal, as will the cross button and clicking anywhere other than the modal container. The real delete button is housed within the modal. This fires the record id down the URL to the delete_record view which finds the entry within the database and calls the delete function. The admin is the redirected back to the records page with a feedback message displayed.
 ### **Record Details**
@@ -407,12 +407,12 @@ The records template does quite a lot of work in terms of the project. It gets r
 * **Record Details (1, 2, 3 & 4)** - (Satisfying User Stories 3 & 6) All the additional record information from the model can be seen in this detailed view such as record label, the condition of the records in stock, and the release year.
 5. **Quantity Selector** - (Satisfies User Story 16) I've created a neat quantity selector so that the user can use it to increase the quantity of records they want to add to the cart. It's controlled by some JavaScript which is added as a small include at the bottom of the DOM. The number of records is limited to 10 of each record as anymore per customer becomes unrealistic. The buttons themselves become disabled at the relevant ranges (decrease reduced at qty of 1 and increase disabled at qty of 10). Further to that, there’s some backend code within the add_to_cart view within the cart app which checks how many copies of the record the user has in their cart already. There’s dynamic feedback messaging included with these views to ensure that the user is always being advised of how many copies they are adding to cart and restricting the user from adding more than 10 of a single record.
 6. **Add to Cart Button** - This functions exactly like it does in the record carts only this time the quantity field is not hidden in the form and is controlled by the quantity selector.
-7. **Listen to music button** - (Satisfies User Story 5) This link (styled as a button) allows users to access digital versions of the record on Spotify. This is rendered based on a truthy/falsy template check based on the Boolean value of the has_link field on the model. If it has a link, the link is rendered in the button format. If not, it advises the user that we couldn’t find a good quality link to the music. I decided to use Spotify for two reasons. Firstly, it’s the highest ranked music related redirect in terms of SEO so this should improve the SEO ranking and links like YouTube and Soundcloud aren’t as reliable as users can easily take them down or they can be struck off for copyright infringement whereas this happens much less with Spotify due to it being an official streaming channel. The Spotify browser version opens in a separate tab whereas on mobile it will trigger the Spotify app to open. A simple back button press will take the user back to the site on these occasions.
+7. **Listen to music button** - (Satisfies User Story 5) This link (styled as a button) allows users to access digital versions of the record on Spotify. This is rendered based on a truthy/falsy template check based on the Boolean value of the has_link field on the model. If it has a link, the link is rendered in the button format. If not, it advises the user that we couldn’t find a good quality link to the music. I decided to use Spotify for two reasons. Firstly, it’s the highest ranked music related redirect in terms of SEO so this should improve the SEO ranking. Spotify also has 406 million users (according to Musically.com) therefore a huge population of my website users will likely have used Spotify before and will be familiar with its functionality. Another benefit of Spotify is that links from other platforms including YouTube and Soundcloud aren’t as reliable as owners of the content can easily take videos and tracks down and/or they can be struck off for copyright infringement whereas this happens much less with Spotify due to it being an official streaming channel. The Spotify browser version opens in a separate tab whereas on mobile it will trigger the Spotify app to open. A simple back button press will take the user back to the site on these occasions.
 8. **Track list** - (Satisfies User Story 3) Here the user can see the track list for the record in question. The HTML isn’t hard coded but applied to the database content via a Summernote field.
-9. **Description** - (Satisfies User Story 3) I wanted to ensure that there was some character in the store by explaining the stores take on the record in question. I've included custom descriptions for each of the records based on my own perception as the true store admin. Again, this all populated via a Summernote field so that the relevant keywords can be bolded inside the already semantic HTML without being hard coded, and as such, improving the pages SEO rankings. Again, where possible, I've weaved the keywords from my keyword research into their descriptions so as not to content stuff.
+9. **Description** - (Satisfies User Story 3) I ensured that there was some character in my record shop by explaining take on the record in question. I've included custom descriptions for each of the records based on my own perception as the store owner (true store admin). Again, this all populated via a Summernote field so that the relevant keywords can be bolded inside the already semantic HTML without being hard coded, and as such, improving the pages SEO rankings. Again, where possible, I've weaved the keywords from my keyword research into their descriptions so as not to content stuff.
 
 ### **Back Office**
-The Back Office serves as the main central hub for the store in terms of the CRUD functionality. Here, admins can add new records to the store, add new genres if the genre for the record they're adding doesn’t exist and delete the existing genres if they are no longer needed. Below is the template (just note that I had to zoom out to fit it all on one screen shot). It's through this template that users can access the add_record view, the add_genre view and the delete_genre view. All the CRUD functionalities are secured via login required decorators and super user conditional checks within the views.
+The Back Office serves as the main central hub for the store in terms of the CRUD functionality. Here, admins can add new records to the store, add new genres if the genre for the record they're adding doesn’t exist and delete the existing genres if they are no longer needed. Below is the template (please note: I had to zoom out to fit it all on one screen shot). It's through this template that users can access the add_record view, the add_genre view and the delete_genre view. All the CRUD functionalities are secured via login required decorators and super user conditional checks within the views.
 
 <img src="readme-images/backoffice.png" width="1000" alt="An image of the wax crate back office template with annotations">
 
@@ -420,7 +420,7 @@ The Back Office serves as the main central hub for the store in terms of the CRU
 
 As the title of the records needs to be unique, I've added some try/except logic within the view for adding records where a record of the same title already exists. This logic catches the database integrity error and redirects the admin back to the back office page with an error message.
 
-Provided that the form is all valid and there are no integrity/server errors, the admin will be directed to the all records page and a success message is displayed. 
+Provided that the form is all valid and there are no integrity/server errors, the admin will be directed to the ‘all records’ page and a success message is displayed. 
 
 2. **Add Genre Form** - I didn't have this in my user stories, it was just a little something extra that I threw in as it's useful. This is another model form but this time its rendered from the Genre model. Using this form allows admins to add genres to the store where they don’t already exist. So if the admin gets a record in stock that they want to add but the genre doesn't exist, they can quickly add it and provided the form is valid, they are redirected back to the back office screen with a success message where the genre will then be available in the genre dropdown of the record form.
 
@@ -433,7 +433,7 @@ The edit record page is an almost carbon copy of the back office page only it do
 
 In the heading, there is a link **(1)** to take the admin back to shop (in case they click the wrong link).
 
-Once accessed, the form uses the ID of the record that was selected to locate it in the database and then instantiates a record form with the instance of the record that has been located in the database. This then populates the form with the current records details so that the admin can amend them more easily **(2)**. You will notice **(3 & 4)** that any relevantly applied Summernote styling is also carried across from the existing data **(4)**.
+Once accessed, the form uses the ID of the record that was selected to locate it in the database and then instantiates a record form with the instance of the record that has been in the database. This then populates the form with the current records details so that the admin can amend them more easily **(2)**. You will notice **(3 & 4)** that any relevantly applied Summernote styling is also carried across from the existing data **(4)**.
 
 Finally, there is a button at the bottom of the form to update the record. Once clicked, provided that the form is valid, the details of that database entry are overwritten with the new data and the admin is redirected back to the records page and a success message is displayed.
 
@@ -623,11 +623,11 @@ The command above will download all the dependencies you need for a clone of the
 
 There a couple of areas I would develop this further in another development cycle. 
 
-1. I would implement some sort of inventory management system by augmenting the Record model with a quantity_in_stock integer field. I would then probably use some sort of logic within the checkout/checkout success view to reduce the quantity of that record in the database by the quantity that the user just checked out with. This could include some sort of template logic on the records cards whereby the quantity in stock is rendered on the card and if it is 0, the card could gray out and the buttons would be disabled. That would probably raise some questions around the record details views and add to cart views as they would need some sort of defensive logic to ensure that users couldn't add out of stock records to the cart via the URL pattern.
+1. I would implement some sort of inventory management system by augmenting the Record model with a quantity_in_stock integer field. I would then use some form of logic within the checkout/checkout success view to reduce the quantity of that record in the database by the quantity that the user just checked out with. This could include some sort of template logic on the records cards whereby the quantity in stock is rendered on the card and if it is 0, the card could gray out and the buttons would be disabled. That would probably raise some questions around the record details views and add to cart views as they would need some sort of defensive logic to ensure that users couldn't add out of stock records to the cart via the URL pattern.
 
-2. I would implement some sort of contact messaging system. My first idea regarding this would be to have a contact form and then have an extra back office area to receive these messages into. I thought about this more in the shower today and it would probably be entirely possible to have an almost instant messenger by adding a messages model to the Accounts app and then having some fields in that model for user and store messages and augmenting the account model to have a some sort of OneToMany field for the messages. I.E one account can have many messages back and forth from the store. No doubt, this would take a considerable amount more thinking but I'm sure you catch my drift.
+2. I would implement some form of contact messaging system. My first idea regarding this would be to have a contact form and then have an extra back office area to receive these messages into. I thought about this more in the shower today and it would probably be entirely possible to have an almost instant messenger by adding a messages model to the Accounts app and then having some fields in that model for user and store messages and augmenting the account model to have a some sort of OneToMany field for the messages. I.E one account can have many messages back and forth from the store. This would take a considerable amount more time thinking about this build, but these are my initial thoughts.
 
-3. I would implement some kind of order fulfilment system by adding a Boolean field to the Order model. Within which I would loop through all orders in the order table and render some sort of HTML structure to interact with them and the details like the order history functionality I have. Inside the loop, I would do a conditional check something like {% if order is not fulfilled %}, render the order into the site. In the order details, it would contain all the order information including shipping address and the records in the order and then a small form at the bottom with the Boolean field on the model rendered in whereby store admins/staff can open the order, prepare it, put it in the out-tray and then update the Boolean field at the bottom. I could then possibly override the save method to check if the Boolean field is being changed to True on save and if so, send a dispatch confirmation email.
+3. I would implement an order fulfilment system by adding a Boolean field to the Order model. Within which I would loop through all orders in the order table and render some sort of HTML structure to interact with them and the details like the order history functionality I have. Inside the loop, I would do a conditional check something like {% if order is not fulfilled %}, render the order into the site. In the order details, it would contain all the order information including shipping address and the records in the order and then a small form at the bottom with the Boolean field on the model rendered in whereby store admins/staff can open the order, prepare it, put it in the out-tray and then update the Boolean field at the bottom. I could then possibly override the save method to check if the Boolean field is being changed to True on save and if so, send a dispatch confirmation email.
 
 # **Project Reflection**
 
@@ -646,4 +646,4 @@ In no particular order, I’d like to list the sources I pulled inspiration, cod
 # **Project Acknowledgements**
 * **Code Institute Tutor Support** - For pushing me in the right direction with tricky bugs, I would specifically like to mention James and Scott who have been amazing.
 * **My Mentor** - Chris Quinn, as always for keeping me real, for his useful feedback and general greatness.
-* **My Partner** - Charlotte Howard, for proof reading my work, content and her marketing genius when it came to my Facebook posts.
+* **My Partner** - Charlotte Howard, for content inspiration and constant support. 
