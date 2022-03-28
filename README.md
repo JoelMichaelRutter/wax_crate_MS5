@@ -66,12 +66,32 @@ Below is the table of keywords that I researched:
 
 2. In addition to my keyword research, I've tried to make all of the inclusion of said keywords as semantic as I can given the layout of the site. When admins add records to the shop, they are prompted to bold the keywords such as genres, artist names, and the reccomended tracks on the record as well as they main keywords from the keyword research (12" and vinyl" for example)
 
-3. One of the final ways that I've implemented SEO is by making it clear from the get go who the business is and what they do by including a paragraph about them on the first page. This is also interspersed with the keywords from the keyword research and bolded for greater semantic value.
+3. I've made sure that I have description meta tags throughout the site to describe each pages purpose.
+
+4. One of the final ways that I've implemented SEO is by making it clear from the get go who the business is and what they do by including a paragraph about them on the first page. This is also interspersed with the keywords from the keyword research and bolded for greater semantic value.
+
+I'm satsified that I have implemented sufficient SEO steps as my SEO score on lighthouse is above 90 across the board. There are areas where it could be a little higher but it would mean looking at the layout of site.
+
 </details>
 
-SOCIAL MEDIA
-EMAIL MARKETING
-SEO
+<details>
+<summary><b>Email Marketing</b></summary>
+
+
+
+</details>
+
+<details>
+<summary><b>Social Media Marketing</b></summary>
+
+One of the other ways I marketed the site was to use Social Media. I set up a Wax Crate page on Facebook and sent out some posts relating to specific content on the site to engage customers in questions and then direct them to the relevant content on the site via a link. You can see a screenshot of the business facebook page below with the aforementioned posts:  
+<img src="readme-images/facebook-screenshot.png" width="500" alt="the wax crate facebook page">
+
+To make this a more wide reaching strategy, this would need to be expanded to instagram, twitter and tik-tok.
+
+</details>
+
+
 
 ### **User Stories**
 Below are the user stories that needed to be fulfilled for the project to be successful from the perspective of the user and the store owner. There are 24 user stories in total broken down into five different epics:
@@ -381,7 +401,7 @@ The records template does quite alot of work in terms of the project. It gets re
 <img src="readme-images/record-details-template.png" width="1000" alt="An image of the wax crate record details template with annotations">
 
 * **Record Details(1, 2, 3 & 4)** - (Satisfying User Stories 3 & 6) All the additional record information from the model can be seen in this detailed view such as record label, the condition of the records in stock, and the release year.
-5. **Quantity Selector** -  (Satisfies User Story 16) I've created a neat quantity selector so that the user can use it to increase the quantity of records they want to add to the cart. It's controlled by some JavaScript which is added as a small include at the bottom of the DOM. The amount of records is limited to 10 of each record as anymore per customer becomes unrealistic. The buttons themselves become disabled at the relevant ranges (decrease reduced at qty of 1 and increase disabled at qty of 10). Further to that, theres some backend code withint the add_to_cart view within the cart app which checks how many copies of the record the user has in their cart already. Theres dynamic feedback messaging included with these views to ensure that the user is always being advised of how many copies they are adding to cart and restricting the user from adding more than 10 of a single record.
+5. **Quantity Selector** - (Satisfies User Story 16) I've created a neat quantity selector so that the user can use it to increase the quantity of records they want to add to the cart. It's controlled by some JavaScript which is added as a small include at the bottom of the DOM. The amount of records is limited to 10 of each record as anymore per customer becomes unrealistic. The buttons themselves become disabled at the relevant ranges (decrease reduced at qty of 1 and increase disabled at qty of 10). Further to that, theres some backend code withint the add_to_cart view within the cart app which checks how many copies of the record the user has in their cart already. Theres dynamic feedback messaging included with these views to ensure that the user is always being advised of how many copies they are adding to cart and restricting the user from adding more than 10 of a single record.
 6. **Add to Cart Button** - This functions exactly like it does in the record carts only this time the quantity field is not hidden in the form and is controlled by the quantity selector.
 7. **Listen to music button** - (Satisfies User Story 5) This link (styled as a button) allows users to access digital versions of the record on Spotify. This is rendered based on a truthy/falsy template check based on the boolean value of the has_link field on the model. If it has a link, the link is rendered in the button format. If not, it advises the user that we couldnt find a good quality link to the music. I decided to use Spotify for two reasons. Firstly, its the highest ranked music related redirect in terms of SEO so this should improve the SEO ranking and links like Youtube and Soundcloud arent as reliable as users can easliy take them down or they can be struck off for copyright infringment where as this happens much less with Spotify due to it being an official streaming channel. The Spotify browser version opens in a seperate tab whereas on mobile it will trigger the spotify app to open. A simple back button press will take the user back to the site on these occasions.
 8. **Tracklist** - (Satisfies User Story 3) Here the user can see the tracklist for the record in question. The HTML isnt hard coded but applied to the database content via a summernote field.
