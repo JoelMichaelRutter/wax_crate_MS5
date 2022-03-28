@@ -1,6 +1,6 @@
 # **Wax Crate Application Testing Document**
 ## **Testing approach**
-I wanted to adopt a hybrid approach to testing and do some automated testing and then resort to manual testing. As a result, I think that my application is pretty watertight from bugs.
+I wanted to adopt a hybrid approach to testing and do some automated testing and then resort to manual testing. As a result, I believe that my application is watertight from bugs.
 ## **Issues During the Development Process**
 In all honesty, I didn’t come across too many issues in the development process. I had a couple of issues here and there which I will detail below:
 
@@ -9,7 +9,7 @@ In all honesty, I didn’t come across too many issues in the development proces
 3. I had a few problems in terms of my combined CRUD functionality in the Back Office template as I was trying to render the edit form in that particular template as well by using a context variable from the view called "from_edit" which would be checked and if so, the edit form would be rendered prepopulated as opposed to the add form. The framework didn't really appreciate what I was trying to do here so I had to split it out into the back office and edit record templates which is fine.
 
 ## **Validation issues**
-My own HTML code had a fair few issues in terms of validation. Mostly duplicate IDs. Some of these were more tricky to fix than others, as my back office template has two elements rendered by Django with an ID of "id_genre", I had to use some JavaScript to make these unique. 
+My own HTML code had a few issues in terms of validation - mostly duplicate IDs. Some of these were more tricky to fix than others, as my back office template has two elements rendered by Django with an ID of "id_genre", I had to use some JavaScript to make these unique. 
 
 I have some outstanding HTML validation problems across the site however, the HTML in question is not being rendered by me but the third party packages I've used in Stripe and Summernote. I will detail screenshots of all outstanding validation issues below and you will be able to see from context and looking at the actual HTML files that this code is only generated on render. I was tempted to fix this post render with some JavaScript but I feel as though it will open a can of worms in the future, I checked with my mentor and tutor support and they said that I wasn't responsible for the errors coming from third party code.
 
@@ -132,13 +132,13 @@ To run the tests if you clone this repository, you will need to go to the settin
 Once the local Django database has been enabled, to run the tests, you should enter "python3 manage.py test" into the terminal. Provided all the code is functioning as it should, you should see 67 tests passed as demonstrated below:
 
 ## **Manual Testing**
-Like I mentioned a moment ago, I have done some very extensive manual testing on my application on several devices. To do so, I created a checklist using Excel. You can access the completed checklist [here](testing-md-files/files/wax-crate-manual-testing.xlsx). Just note you will need to download it to view it. I've tried to get these to render in as markdown tables but because of the considerable amount of testing completed and the layout of my testing checklist, it would be impractical and would make this markdown document really really really long.
+As mentioned earlier, I have done some extensive manual testing on my application on several devices. To do so, I created a checklist using Microsoft Excel. You can access the completed checklist [here](testing-md-files/files/wax-crate-manual-testing.xlsx). Please note you will need to download it to view it. I've tried to get these to render in as markdown tables but because of the considerable amount of testing completed and the layout of my testing checklist, it would be impractical and would make this markdown document extremely long.
 
-Just to make things easy, I will summarise the bugs I encountered during the testing process.
+To be succinct - I will summarise the bugs I encountered during the testing process.
 
 Largely, the errors I found were cosmetic, mostly height related when it came to images but there were some small functional bugs.
 
-* **VISUAL BUG (facebook link)** - On click, the colour of the link is changing from the contrasting grey colour to black. 
+* **VISUAL BUG (Facebook link)** - On click, the colour of the link is changing from the contrasting grey colour to black. 
     * **FIX** - Add fb link class to override element hover pseudo selector on hover. Now that link remains same colour when hovered, add hvr-grow hover.css class to provide visual feedback to the user.
 
 * **VISUAL BUG (Firefox QTY Selector)** - Looks like this was specific to Firefox. I think it was misinterpreting the flex layout here. Was rendering the input at full width when Chrome was rendering it within the constraints of the flex container so it really spoiled the layout.
@@ -162,7 +162,7 @@ Largely, the errors I found were cosmetic, mostly height related when it came to
 
 * **VISUAL BUG** (Hero Image Height Issues - Cross App) - I encountered some Hero Image issues across the app specifically on screen widths like landscape iPads and smaller laptops. Due to the condensed screen size, the text and content within my containers were wrapping and forcing the height of the container up but the hero images were still being styled by the general styling with a fixed height of 90vh. This more than enough space for large screens but on smaller screens it meant the image was cutting off leaving white space at the bottom. 
 
-    * **FIX** - Where I encountered this issue, I had two fixes. Firstly, I added a media query to dictate that under 1440px, hero images should have height of 100% as then the content containers would dictate the height of the image and there would then be no space. This then gave rise to another problem in that if the content was really minimal (sign out page), the height of the container would shrink down and leave lots of space because it no longer had a fixed height on laptops. To counteract this, on the templates that had the lack of content, I added a laptop-height container around the content to ensure that the page stretched the height of the viewport. I've tested all of these fixes and they are all working as expected now.
+    * **FIX** - Where I encountered this issue, I had two fixes. Firstly, I added a media query to dictate that under 1440px, hero images should have height of 100% as then the content containers would dictate the height of the image and there would then be no space. This then gave rise to another problem in that if the content was minimal (sign out page), the height of the container would shrink down and leave lots of space because it no longer had a fixed height on laptops. To counteract this, on the templates that had the lack of content, I added a laptop-height container around the content to ensure that the page stretched the height of the viewport. I've tested all of these fixes and they are all working as expected now.
 
 # **Performance Testing**
 To test the performance of the website, I used Google Lighthouse inside Chrome Dev Tools. Below I will outline the applications performance via the metrics provided by Google Lighthouse:
@@ -324,5 +324,4 @@ My custom JavaScript code has been validated through [JSHint](https://jshint.com
 | qty input script            | Valid  |
 | Edit cart script for button | Valid  |
 | Delete from cart            | Valid  |
-| stripe elements.js          | Valid  |
-
+| stripe_elements.js          | Valid  |
